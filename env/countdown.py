@@ -208,9 +208,10 @@ def is_success(state: State) -> bool:
     return state.target in state.values
 
 
-def legal_actions(state: State, rules: RuleSet = DEFAULT_RULES) -> tuple[Action, ...]:
-    """All legal, deduplicated actions from `state`, in a fixed deterministic
-    order (sorted by operator symbol, then left, then right).
+def allowed_actions(state: State, rules: RuleSet = DEFAULT_RULES) -> tuple[Action, ...]:
+    """What moves can be made right now? All legal, deduplicated actions
+    from `state`, in a fixed deterministic order (sorted by operator
+    symbol, then left, then right).
 
     A won game has no moves: if `state` is already a success, this returns
     an empty tuple even if len(values) >= 2. Likewise a bag of fewer than 2
@@ -250,7 +251,7 @@ def is_terminal(state: State, rules: RuleSet = DEFAULT_RULES) -> bool:
     """Terminal means the episode is over: either success, or no legal
     actions remain.
     """
-    return is_success(state) or len(legal_actions(state, rules)) == 0
+    return is_success(state) or len(allowed_actions(state, rules)) == 0
 
 
 def reward(state: State) -> int:
@@ -273,7 +274,7 @@ def transition(
     if is_terminal(state, rules):
         raise TerminalStateError(
             f"Cannot act on terminal state {state!r} (is_success="
-            f"{is_success(state)}, legal_actions={legal_actions(state, rules)})"
+            f"{is_success(state)}, allowed_actions={allowed_actions(state, rules)})"
         )
 
     left, right = action.operands
@@ -338,8 +339,8 @@ class CountdownEnv:
             raise CountdownError("reset() must be called before use")
         return self._state
 
-    def legal_actions(self) -> tuple[Action, ...]:
-        return legal_actions(self.current_state, self.rules)
+    def allowed_actions(self) -> tuple[Action, ...]:
+        return allowed_actions(self.current_state, self.rules)
 
     def is_terminal(self) -> bool:
         return is_terminal(self.current_state, self.rules)

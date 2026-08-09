@@ -15,7 +15,7 @@ from env.countdown import (
     TerminalStateError,
     is_success,
     is_terminal,
-    legal_actions,
+    allowed_actions,
     reward,
     transition,
 )
@@ -32,14 +32,14 @@ def make_state(values, target):
 
 def test_early_success_target_alone():
     s = make_state([1, 2], 3)
-    actions = legal_actions(s)
+    actions = allowed_actions(s)
     add = Action(Operator.ADD, 1, 2)
     assert add in actions
     result = transition(s, add)
     assert result.values == (3,)
     assert reward(result) == 1
     assert is_terminal(result)
-    assert legal_actions(result) == ()
+    assert allowed_actions(result) == ()
 
 
 def test_success_mid_bag_does_not_require_using_all_numbers():
@@ -52,14 +52,14 @@ def test_success_mid_bag_does_not_require_using_all_numbers():
     assert is_success(result)
     assert reward(result) == 1
     assert is_terminal(result)
-    assert legal_actions(result) == ()
+    assert allowed_actions(result) == ()
 
 
 def test_terminal_failure_no_moves_left():
     s = make_state([5], 3)
     assert is_terminal(s)
     assert reward(s) == 0
-    assert legal_actions(s) == ()
+    assert allowed_actions(s) == ()
 
 
 def test_every_success_state_is_terminal_and_actionless():
@@ -67,7 +67,7 @@ def test_every_success_state_is_terminal_and_actionless():
         s = make_state(values, target)
         assert is_success(s)
         assert is_terminal(s)
-        assert legal_actions(s) == ()
+        assert allowed_actions(s) == ()
 
 
 # ---------------------------------------------------------------------------
@@ -80,7 +80,7 @@ def test_duplicate_operands_deduplicated():
     # From (3,3): 3+3=6, 3x3=9 (no subtraction, equal operands).
     # From (3,7) x2 (deduped to 1): 3+7=10, 3x7=21, 7-3=4.
     s = make_state([3, 3, 7], 99)
-    actions = legal_actions(s)
+    actions = allowed_actions(s)
     expected = {
         Action(Operator.ADD, 3, 3),
         Action(Operator.MUL, 3, 3),
@@ -103,13 +103,13 @@ def test_permutation_invariance_of_state_and_actions():
     s2 = State(values=tuple(sorted([3, 7, 10, 25])), target=245)
     assert s1 == s2
     assert hash(s1) == hash(s2)
-    assert legal_actions(s1) == legal_actions(s2)
+    assert allowed_actions(s1) == allowed_actions(s2)
 
 
 def test_deterministic_action_ordering_is_stable_across_calls():
     s = make_state([3, 7, 10, 25], 245)
-    first = legal_actions(s)
-    second = legal_actions(s)
+    first = allowed_actions(s)
+    second = allowed_actions(s)
     assert first == second
     # sorted by (operator symbol, left, right)
     keys = [a.sort_key() for a in first]
@@ -118,7 +118,7 @@ def test_deterministic_action_ordering_is_stable_across_calls():
 
 def test_subtraction_requires_strictly_larger_minus_smaller():
     s = make_state([4, 4], 99)
-    actions = legal_actions(s)
+    actions = allowed_actions(s)
     # Equal operands: no SUB action should be generated (would yield 0).
     assert all(a.operator is not Operator.SUB for a in actions)
     for a in actions:
@@ -135,7 +135,7 @@ def test_subtraction_action_construction_rejects_non_positive_result():
 
 def test_cardinality_invariant_holds_for_all_legal_actions():
     s = make_state([2, 3, 5, 7, 11], 999)  # unsolvable target -> no early exit
-    for action in legal_actions(s):
+    for action in allowed_actions(s):
         result = transition(s, action)
         assert len(result.values) == len(s.values) - 1
 
@@ -157,7 +157,7 @@ def test_acting_on_terminal_state_raises():
     with pytest.raises(TerminalStateError):
         transition(s, Action(Operator.ADD, 1, 2))
 
-    s2 = make_state([5], 3)  # terminal failure, no legal actions
+    s2 = make_state([5], 3)  # terminal failure, no allowed actions
     with pytest.raises(TerminalStateError):
         transition(s2, Action(Operator.ADD, 1, 2))
 
@@ -193,7 +193,7 @@ def test_problem_rejects_non_positive_values_and_target():
 
 def test_worked_example_25_times_10_reachable():
     s = make_state([3, 7, 10, 25], 245)
-    actions = legal_actions(s)
+    actions = allowed_actions(s)
     mul_25_10 = Action(Operator.MUL, 10, 25)
     assert mul_25_10 in actions
     result = transition(s, mul_25_10)

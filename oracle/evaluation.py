@@ -10,7 +10,9 @@ into a single node. It then computes, exactly:
     SEPARATE recurrence from V* (see docs in that function).
   - Vpi(s), Qpi(s, a), Api(s, a): exact policy value, policy action value,
     and policy advantage for any stationary Policy[Fraction].
-  - Exact on-policy state/action occupancy over the merged DAG.
+  - Exact on-policy visit probabilities (state and action) over the merged
+    DAG -- how often the policy actually reaches each state and takes each
+    action, summed over every path that gets there.
 
 Everything here uses fractions.Fraction for exact rational arithmetic --
 there is no floating point anywhere in this module. This is what lets
@@ -20,7 +22,7 @@ in tests, rather than "close to zero within some tolerance."
 CRITICAL CORRECTNESS NOTE (stationarity): the Vpi/Qpi/Api recurrences are
 only the true win probability of the real sampling process if a policy's
 action_probs(state, actions) depends ONLY on the canonical state and its
-legal action set -- never on trajectory history, step count, or any other
+allowed action set -- never on trajectory history, step count, or any other
 hidden memory. Merging transpositions into one DAG node is only valid under
 this assumption. See docs/project_plan.md and the Phase 2 Markov warning in
 README.md for what this means for a future LLM policy.
@@ -38,9 +40,9 @@ from env.countdown import (
     DEFAULT_RULES,
     RuleSet,
     State,
+    allowed_actions,
     is_success,
     is_terminal,
-    legal_actions,
     transition,
 )
 
@@ -84,7 +86,7 @@ class DagNode:
 
 @dataclass(frozen=True, slots=True)
 class DagEdge:
-    """One legal action taken from `source`, landing on `target_state`.
+    """One allowed action taken from `source`, landing on `target_state`.
     Two edges with the same (source, target_state) but different actions
     (e.g. 2+2 and 2x2 both landing on (4,)) are BOTH kept -- this is the
     multigraph property the (2,2) fixture tests.
@@ -161,7 +163,7 @@ def build_reasoning_dag(
         seen_for_expansion.add(current)
 
         current_depth = nodes[current].depth
-        actions = legal_actions(current, rules)
+        actions = allowed_actions(current, rules)
         if not actions:
             continue
 
@@ -228,7 +230,7 @@ def compute_v_star(
 def compute_q_star(
     dag: ReasoningDag, v_star: Mapping[State, int]
 ) -> dict[State, dict[Action, int]]:
-    """Q*(s, a) = V*(child(s, a)) for every legal action at every
+    """Q*(s, a) = V*(child(s, a)) for every allowed action at every
     non-terminal state. Returns the COMPLETE mapping per state, not just
     the best action -- fragility statistics need to count every
     irreversibly destructive action, not only identify the best move.
@@ -319,7 +321,7 @@ P_co = TypeVar("P_co", bound=Real, covariant=True)
 
 class Policy(Protocol[P_co]):
     """A stationary policy: probabilities depend ONLY on the canonical
-    state and its legal action set, never on trajectory history. This is
+    state and its allowed action set, never on trajectory history. This is
     generic over the probability type (Real) so that Phase 1's exact
     Fraction-based evaluation and a future Phase 2 float-based LLM policy
     share the same abstraction without any protocol changes.
@@ -360,21 +362,21 @@ class ExactPolicyEvaluator:
         if cached is not None:
             return cached
 
-        actions = legal_actions(state, self._rules)
+        actions = allowed_actions(state, self._rules)
         probs = self._policy.action_probs(state, actions)
 
         prob_keys = set(probs.keys())
         action_keys = set(actions)
         if prob_keys != action_keys:
             raise PolicyValidationError(
-                f"Policy returned probabilities for {prob_keys} but legal "
+                f"Policy returned probabilities for {prob_keys} but allowed "
                 f"actions at {state!r} are {action_keys}"
             )
-        for action, p in probs.items():
-            if p < 0:
+        for action, exact_probability in probs.items():
+            if exact_probability < 0:
                 raise PolicyValidationError(
-                    f"Policy returned negative probability {p} for action "
-                    f"{action.render()} at state {state!r}"
+                    f"Policy returned negative probability {exact_probability} "
+                    f"for action {action.render()} at state {state!r}"
                 )
         total = sum(probs.values(), Fraction(0))
         if total != Fraction(1):
@@ -396,11 +398,11 @@ class ExactPolicyEvaluator:
                 continue
 
             probs = self._get_action_probs(state)
-            total = Fraction(0)
+            win_probability = Fraction(0)
             for edge in self._dag.out_edges(state):
-                p = probs[edge.action]
-                total += p * self._v_pi_cache[edge.target_state]
-            self._v_pi_cache[state] = total
+                action_probability = probs[edge.action]
+                win_probability += action_probability * self._v_pi_cache[edge.target_state]
+            self._v_pi_cache[state] = win_probability
 
     def v_pi(self, state: State) -> Fraction:
         return self._v_pi_cache[state]
@@ -415,7 +417,7 @@ class ExactPolicyEvaluator:
     def advantages(self, state: State) -> dict[Action, Fraction]:
         return {
             action: self.a_pi(state, action)
-            for action in legal_actions(state, self._rules)
+            for action in allowed_actions(state, self._rules)
         }
 
     def action_probs(self, state: State) -> Mapping[Action, Fraction]:
@@ -423,48 +425,52 @@ class ExactPolicyEvaluator:
 
 
 # ---------------------------------------------------------------------------
-# Exact stationary-policy occupancy
+# Exact stationary-policy visit probabilities
 # ---------------------------------------------------------------------------
 
 
 @dataclass(frozen=True, slots=True)
-class Occupancy:
-    """How much probability mass a stationary policy puts through each
-    state and each (state, action) pair, summed over every path that
-    reaches it. Root state occupancy is always exactly 1.
+class VisitProbabilities:
+    """How likely a stationary policy is to be at each state, and to take
+    each action, summed over every path that reaches it. The root state's
+    probability_of_reaching_state is always exactly 1.
     """
 
-    state_occupancy: Mapping[State, Fraction]
-    action_occupancy: Mapping[tuple[State, Action], Fraction]
+    probability_of_reaching_state: Mapping[State, Fraction]
+    probability_of_taking_action: Mapping[tuple[State, Action], Fraction]
 
 
-def compute_occupancy(
+def compute_visit_probabilities(
     dag: ReasoningDag,
     evaluator: ExactPolicyEvaluator,
     rules: RuleSet = DEFAULT_RULES,
-) -> Occupancy:
+) -> VisitProbabilities:
     """Propagate probability mass forward in topological (depth-ascending)
     order. A state accumulates mass from ALL of its incoming action edges
     -- this summation over merged transpositions is the entire point of
     building a DAG instead of a tree.
     """
-    state_occupancy: dict[State, Fraction] = {dag.root: Fraction(1)}
-    action_occupancy: dict[tuple[State, Action], Fraction] = {}
+    probability_of_reaching_state: dict[State, Fraction] = {dag.root: Fraction(1)}
+    probability_of_taking_action: dict[tuple[State, Action], Fraction] = {}
 
     for state in dag.topological_order():
-        mass = state_occupancy.get(state, Fraction(0))
-        if mass == 0:
+        reaching_probability = probability_of_reaching_state.get(state, Fraction(0))
+        if reaching_probability == 0:
             continue
         if is_terminal(state, rules):
             continue
 
         probs = evaluator.action_probs(state)
         for edge in dag.out_edges(state):
-            p = probs[edge.action]
-            edge_mass = mass * p
-            action_occupancy[(state, edge.action)] = edge_mass
-            state_occupancy[edge.target_state] = (
-                state_occupancy.get(edge.target_state, Fraction(0)) + edge_mass
+            action_probability = probs[edge.action]
+            edge_mass = reaching_probability * action_probability
+            probability_of_taking_action[(state, edge.action)] = edge_mass
+            probability_of_reaching_state[edge.target_state] = (
+                probability_of_reaching_state.get(edge.target_state, Fraction(0))
+                + edge_mass
             )
 
-    return Occupancy(state_occupancy=state_occupancy, action_occupancy=action_occupancy)
+    return VisitProbabilities(
+        probability_of_reaching_state=probability_of_reaching_state,
+        probability_of_taking_action=probability_of_taking_action,
+    )

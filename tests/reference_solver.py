@@ -3,7 +3,7 @@ cross-check oracle/evaluation.py's memoized computations.
 
 This is NOT a test file itself (no test_ functions) -- it is imported by
 test_oracle.py. It shares the environment's pure functions (is_success,
-legal_actions, transition), since those define what the game IS. It shares
+allowed_actions, transition), since those define what the game IS. It shares
 NOTHING with oracle/evaluation.py's DAG-building or memoization code: no
 shared cache, no shared recursion helpers. If oracle/evaluation.py has a
 canonicalization or memo-key bug, this independent path is the thing that
@@ -16,13 +16,13 @@ is deliberately exponential.
 
 from fractions import Fraction
 
-from env.countdown import DEFAULT_RULES, RuleSet, State, is_success, legal_actions, transition
+from env.countdown import DEFAULT_RULES, RuleSet, State, is_success, allowed_actions, transition
 
 
 def brute_force_v_star(state: State, rules: RuleSet = DEFAULT_RULES) -> int:
     if is_success(state):
         return 1
-    actions = legal_actions(state, rules)
+    actions = allowed_actions(state, rules)
     if not actions:
         return 0
     return max(brute_force_v_star(transition(state, a, rules), rules) for a in actions)
@@ -31,7 +31,7 @@ def brute_force_v_star(state: State, rules: RuleSet = DEFAULT_RULES) -> int:
 def brute_force_v_pi(state: State, policy, rules: RuleSet = DEFAULT_RULES) -> Fraction:
     if is_success(state):
         return Fraction(1)
-    actions = legal_actions(state, rules)
+    actions = allowed_actions(state, rules)
     if not actions:
         return Fraction(0)
     probs = policy.action_probs(state, actions)
@@ -46,7 +46,7 @@ def brute_force_min_steps_to_success(
 ) -> int | None:
     if is_success(state):
         return 0
-    actions = legal_actions(state, rules)
+    actions = allowed_actions(state, rules)
     if not actions:
         return None
     child_steps = [
@@ -67,7 +67,7 @@ def enumerate_successful_paths(
     """
     if is_success(state):
         return [prefix]
-    actions = legal_actions(state, rules)
+    actions = allowed_actions(state, rules)
     paths: list[tuple] = []
     for a in actions:
         child = transition(state, a, rules)

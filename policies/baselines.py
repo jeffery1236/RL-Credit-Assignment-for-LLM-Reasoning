@@ -15,14 +15,14 @@ from env.countdown import Action, State, transition
 
 
 class UniformPolicy:
-    """Equal probability on every legal action."""
+    """Equal probability on every allowed action."""
 
     def action_probs(
         self, state: State, actions: tuple[Action, ...]
     ) -> Mapping[Action, Fraction]:
         n = len(actions)
-        p = Fraction(1, n)
-        return {a: p for a in actions}
+        equal_probability = Fraction(1, n)
+        return {a: equal_probability for a in actions}
 
 
 def _distance_score(state: State, action: Action) -> int:
@@ -46,8 +46,11 @@ class GreedyDistancePolicy:
         scores = {a: _distance_score(state, a) for a in actions}
         best = min(scores.values())
         winners = [a for a in actions if scores[a] == best]
-        p = Fraction(1, len(winners))
-        return {a: (p if a in winners else Fraction(0)) for a in actions}
+        tied_winner_probability = Fraction(1, len(winners))
+        return {
+            a: (tied_winner_probability if a in winners else Fraction(0))
+            for a in actions
+        }
 
 
 class EpsilonGreedyDistancePolicy:
@@ -76,8 +79,8 @@ class EpsilonGreedyDistancePolicy:
 
         probs: dict[Action, Fraction] = {}
         for a in actions:
-            p = uniform_share
+            action_probability = uniform_share
             if a in winners:
-                p += greedy_share
-            probs[a] = p
+                action_probability += greedy_share
+            probs[a] = action_probability
         return probs

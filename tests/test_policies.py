@@ -6,7 +6,7 @@ from fractions import Fraction
 
 import pytest
 
-from env.countdown import Action, Operator, State, legal_actions
+from env.countdown import Action, Operator, State, allowed_actions
 from policies.baselines import EpsilonGreedyDistancePolicy, GreedyDistancePolicy, UniformPolicy
 
 
@@ -16,7 +16,7 @@ def make_state(values, target):
 
 def test_uniform_policy_sums_to_one_and_is_equal():
     s = make_state([3, 7, 10, 25], 245)
-    actions = legal_actions(s)
+    actions = allowed_actions(s)
     probs = UniformPolicy().action_probs(s, actions)
     assert sum(probs.values(), Fraction(0)) == Fraction(1)
     values = set(probs.values())
@@ -29,11 +29,11 @@ def test_greedy_worked_example_prefers_25_times_10():
     #   25+10=35  -> (3,7,35):  distances 242,238,210 -> score 210
     #   25-10=15  -> (3,7,15):  distances ... -> score 230
     s = make_state([3, 7, 10, 25], 245)
-    actions = legal_actions(s)
+    actions = allowed_actions(s)
     probs = GreedyDistancePolicy().action_probs(s, actions)
 
     # Hand-verified: mul(10,25)=250 has score 5, the unique minimum across
-    # all 18 legal actions from this state (next best is mul(7,25)=175,
+    # all 18 allowed actions from this state (next best is mul(7,25)=175,
     # score 70) -- so it gets ALL the probability mass, not just some.
     mul_25_10 = Action(Operator.MUL, 10, 25)
     assert probs[mul_25_10] == Fraction(1)
@@ -47,7 +47,7 @@ def test_greedy_worked_example_prefers_25_times_10():
 def test_greedy_wins_immediately_when_available():
     # (1, 2) -> 3: 1+2=3 wins immediately, distance-to-target score 0.
     s = make_state([1, 2], 3)
-    actions = legal_actions(s)
+    actions = allowed_actions(s)
     probs = GreedyDistancePolicy().action_probs(s, actions)
     winning_action = Action(Operator.ADD, 1, 2)
     assert probs[winning_action] == Fraction(1)
@@ -62,7 +62,7 @@ def test_greedy_splits_genuine_ties_uniformly():
     #   1*5=5 -> (1,5): distances 2,2 -> score 2
     # Two actions tie at the minimum score of 1; each must get exactly 1/2.
     s = make_state([1, 1, 5], 3)
-    actions = legal_actions(s)
+    actions = allowed_actions(s)
     probs = GreedyDistancePolicy().action_probs(s, actions)
 
     winner_a = Action(Operator.ADD, 1, 1)
@@ -78,7 +78,7 @@ def test_greedy_splits_genuine_ties_uniformly():
 
 def test_epsilon_greedy_sums_to_one():
     s = make_state([3, 7, 10, 25], 245)
-    actions = legal_actions(s)
+    actions = allowed_actions(s)
     policy = EpsilonGreedyDistancePolicy(epsilon=Fraction(1, 10))
     probs = policy.action_probs(s, actions)
     assert sum(probs.values(), Fraction(0)) == Fraction(1)
@@ -86,7 +86,7 @@ def test_epsilon_greedy_sums_to_one():
 
 def test_epsilon_greedy_composition_matches_formula():
     s = make_state([3, 7, 10, 25], 245)
-    actions = legal_actions(s)
+    actions = allowed_actions(s)
     eps = Fraction(1, 10)
     policy = EpsilonGreedyDistancePolicy(epsilon=eps)
     probs = policy.action_probs(s, actions)

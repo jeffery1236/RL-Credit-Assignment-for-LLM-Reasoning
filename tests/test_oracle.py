@@ -1,19 +1,19 @@
 """Tests for oracle/evaluation.py: DAG enumeration (Step 3) and exact
-V*/Q*/Vpi/Qpi/Api oracles + occupancy (Step 4).
+V*/Q*/Vpi/Qpi/Api oracles + visit_probabilities (Step 4).
 """
 
 from fractions import Fraction
 
 import pytest
 
-from env.countdown import Action, Operator, State, is_terminal, legal_actions
+from env.countdown import Action, Operator, State, is_terminal, allowed_actions
 from oracle.evaluation import (
     DagLimitExceeded,
     ExactPolicyEvaluator,
     PolicyValidationError,
     build_reasoning_dag,
     compute_min_steps_to_success,
-    compute_occupancy,
+    compute_visit_probabilities,
     compute_q_star,
     compute_v_star,
     is_pivotal,
@@ -58,12 +58,12 @@ def test_reachability_is_exact():
             assert edge.target_state in dag.nodes
 
 
-def test_action_completeness_matches_legal_actions():
+def test_action_completeness_matches_allowed_actions():
     root = make_state([3, 7, 10, 25], 245)
     dag = build_reasoning_dag(root)
     for state in dag.nodes:
         edge_actions = {e.action for e in dag.out_edges(state)}
-        assert edge_actions == set(legal_actions(state))
+        assert edge_actions == set(allowed_actions(state))
 
 
 def test_parallel_edges_from_2_2_fixture():
@@ -363,7 +363,7 @@ def test_v_pi_never_exceeds_v_star(root, policy_factory):
 
 
 # ---------------------------------------------------------------------------
-# Occupancy (Step 4)
+# VisitProbabilities (Step 4)
 # ---------------------------------------------------------------------------
 
 
@@ -375,8 +375,8 @@ def test_v_pi_never_exceeds_v_star(root, policy_factory):
 def test_root_occupancy_is_one(root, policy_factory):
     dag = build_reasoning_dag(root)
     evaluator = ExactPolicyEvaluator(policy_factory(), dag)
-    occupancy = compute_occupancy(dag, evaluator)
-    assert occupancy.state_occupancy[root] == Fraction(1)
+    visit_probabilities = compute_visit_probabilities(dag, evaluator)
+    assert visit_probabilities.probability_of_reaching_state[root] == Fraction(1)
 
 
 @pytest.mark.parametrize("root", SMALL_ROOTS)
@@ -387,14 +387,14 @@ def test_root_occupancy_is_one(root, policy_factory):
 def test_outgoing_action_mass_equals_state_mass(root, policy_factory):
     dag = build_reasoning_dag(root)
     evaluator = ExactPolicyEvaluator(policy_factory(), dag)
-    occupancy = compute_occupancy(dag, evaluator)
+    visit_probabilities = compute_visit_probabilities(dag, evaluator)
     for state in dag.nodes:
         if is_terminal(state):
             continue
-        state_mass = occupancy.state_occupancy.get(state, Fraction(0))
+        state_mass = visit_probabilities.probability_of_reaching_state.get(state, Fraction(0))
         outgoing = sum(
             (
-                occupancy.action_occupancy.get((state, edge.action), Fraction(0))
+                visit_probabilities.probability_of_taking_action.get((state, edge.action), Fraction(0))
                 for edge in dag.out_edges(state)
             ),
             Fraction(0),
@@ -410,13 +410,13 @@ def test_outgoing_action_mass_equals_state_mass(root, policy_factory):
 def test_incoming_action_mass_equals_state_mass_for_non_root(root, policy_factory):
     dag = build_reasoning_dag(root)
     evaluator = ExactPolicyEvaluator(policy_factory(), dag)
-    occupancy = compute_occupancy(dag, evaluator)
+    visit_probabilities = compute_visit_probabilities(dag, evaluator)
 
     incoming_by_target: dict[State, Fraction] = {}
     for state, edges in dag.edges_by_source.items():
         for edge in edges:
             key = (state, edge.action)
-            mass = occupancy.action_occupancy.get(key, Fraction(0))
+            mass = visit_probabilities.probability_of_taking_action.get(key, Fraction(0))
             incoming_by_target[edge.target_state] = (
                 incoming_by_target.get(edge.target_state, Fraction(0)) + mass
             )
@@ -424,7 +424,7 @@ def test_incoming_action_mass_equals_state_mass_for_non_root(root, policy_factor
     for state in dag.nodes:
         if state == root:
             continue
-        expected = occupancy.state_occupancy.get(state, Fraction(0))
+        expected = visit_probabilities.probability_of_reaching_state.get(state, Fraction(0))
         assert incoming_by_target.get(state, Fraction(0)) == expected
 
 
@@ -436,10 +436,10 @@ def test_incoming_action_mass_equals_state_mass_for_non_root(root, policy_factor
 def test_terminal_occupancy_sums_to_one(root, policy_factory):
     dag = build_reasoning_dag(root)
     evaluator = ExactPolicyEvaluator(policy_factory(), dag)
-    occupancy = compute_occupancy(dag, evaluator)
+    visit_probabilities = compute_visit_probabilities(dag, evaluator)
     total = sum(
         (
-            occupancy.state_occupancy.get(s, Fraction(0))
+            visit_probabilities.probability_of_reaching_state.get(s, Fraction(0))
             for s in dag.nodes
             if is_terminal(s)
         ),
@@ -458,10 +458,10 @@ def test_occupancy_weighted_reward_equals_v_pi_root(root, policy_factory):
 
     dag = build_reasoning_dag(root)
     evaluator = ExactPolicyEvaluator(policy_factory(), dag)
-    occupancy = compute_occupancy(dag, evaluator)
+    visit_probabilities = compute_visit_probabilities(dag, evaluator)
     total = sum(
         (
-            occupancy.state_occupancy.get(s, Fraction(0)) * env_reward(s)
+            visit_probabilities.probability_of_reaching_state.get(s, Fraction(0)) * env_reward(s)
             for s in dag.nodes
             if is_terminal(s)
         ),
@@ -476,7 +476,7 @@ def test_occupancy_transposition_fixture_sums_both_paths():
     root = make_state([1, 1, 2], 999)
     dag = build_reasoning_dag(root)
     evaluator = ExactPolicyEvaluator(UniformPolicy(), dag)
-    occupancy = compute_occupancy(dag, evaluator)
+    visit_probabilities = compute_visit_probabilities(dag, evaluator)
 
     child_4 = make_state([4], 999)
     incoming = [
@@ -487,6 +487,6 @@ def test_occupancy_transposition_fixture_sums_both_paths():
     ]
     assert len(incoming) >= 2
     expected = sum(
-        (occupancy.action_occupancy[(s, a)] for s, a in incoming), Fraction(0)
+        (visit_probabilities.probability_of_taking_action[(s, a)] for s, a in incoming), Fraction(0)
     )
-    assert occupancy.state_occupancy[child_4] == expected
+    assert visit_probabilities.probability_of_reaching_state[child_4] == expected

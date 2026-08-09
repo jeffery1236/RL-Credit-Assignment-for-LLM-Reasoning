@@ -15,7 +15,7 @@ from fractions import Fraction
 
 import pytest
 
-from env.countdown import is_terminal, legal_actions, transition
+from env.countdown import is_terminal, allowed_actions, transition
 from oracle.evaluation import ExactPolicyEvaluator, build_reasoning_dag
 from policies.baselines import EpsilonGreedyDistancePolicy, UniformPolicy
 from tests.test_countdown import make_state
@@ -24,7 +24,7 @@ from tests.test_countdown import make_state
 def _rollout_once(root, policy, rng: random.Random) -> int:
     state = root
     while not is_terminal(state):
-        actions = legal_actions(state)
+        actions = allowed_actions(state)
         probs = policy.action_probs(state, actions)
         weights = [float(probs[a]) for a in actions]
         action = rng.choices(actions, weights=weights, k=1)[0]
