@@ -28,7 +28,7 @@ README.md for what this means for a future LLM policy.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from fractions import Fraction
 from numbers import Real
 from typing import Mapping, Protocol, TypeVar
@@ -41,7 +41,6 @@ from env.countdown import (
     is_success,
     is_terminal,
     legal_actions,
-    reward,
     transition,
 )
 
@@ -193,3 +192,279 @@ def build_reasoning_dag(
         nodes=nodes,
         edges_by_source={s: tuple(es) for s, es in edges_by_source.items()},
     )
+
+
+# ---------------------------------------------------------------------------
+# Optimal value: V*, Q*
+# ---------------------------------------------------------------------------
+
+
+def compute_v_star(
+    dag: ReasoningDag, rules: RuleSet = DEFAULT_RULES
+) -> dict[State, int]:
+    """Exact optimal value for every state in `dag`, computed in a single
+    reverse topological (deepest-first) pass over the DAG.
+
+    V*(s) = 1                              if is_success(s)
+          = 0                              if terminal and not success
+          = max over legal a of V*(child)  otherwise
+
+    Binary, undiscounted, no step cost, no tie-breaking -- there is nothing
+    to break ties over since this returns a single scalar per state.
+    """
+    v_star: dict[State, int] = {}
+    for state in reversed(dag.topological_order()):
+        if is_success(state):
+            v_star[state] = 1
+        elif is_terminal(state, rules):
+            v_star[state] = 0
+        else:
+            v_star[state] = max(
+                v_star[edge.target_state] for edge in dag.out_edges(state)
+            )
+    return v_star
+
+
+def compute_q_star(
+    dag: ReasoningDag, v_star: Mapping[State, int]
+) -> dict[State, dict[Action, int]]:
+    """Q*(s, a) = V*(child(s, a)) for every legal action at every
+    non-terminal state. Returns the COMPLETE mapping per state, not just
+    the best action -- fragility statistics need to count every
+    irreversibly destructive action, not only identify the best move.
+    """
+    q_star: dict[State, dict[Action, int]] = {}
+    for state, edges in dag.edges_by_source.items():
+        q_star[state] = {edge.action: v_star[edge.target_state] for edge in edges}
+    return q_star
+
+
+def best_actions(
+    state: State, q_star_for_state: Mapping[Action, int]
+) -> tuple[Action, ...]:
+    """All actions achieving the maximum Q* at `state` -- every maximizer
+    is retained, never an arbitrary single pick.
+    """
+    if not q_star_for_state:
+        return ()
+    best_value = max(q_star_for_state.values())
+    return tuple(
+        sorted(
+            (a for a, q in q_star_for_state.items() if q == best_value),
+            key=Action.sort_key,
+        )
+    )
+
+
+def is_pivotal(
+    state: State,
+    action: Action,
+    v_star: Mapping[State, int],
+    q_star_for_state: Mapping[Action, int],
+) -> bool:
+    """An action is "irreversibly destructive" (the project plan's pivotal/
+    catastrophic decision) iff the state WAS winnable under optimal play
+    and this action makes it unwinnable: V*(s) == 1 and Q*(s, a) == 0.
+
+    This is a policy-INDEPENDENT, optimal-play concept. It must never be
+    confused with policy-relative harm (Api(s, a) < 0), which is
+    continuous and depends on a specific policy's behavior. See the module
+    docstring and PolicyCreditProfile in analysis/profiles.py (Step 5).
+    """
+    return v_star[state] == 1 and q_star_for_state[action] == 0
+
+
+def compute_min_steps_to_success(
+    dag: ReasoningDag,
+    v_star: Mapping[State, int],
+    q_star: Mapping[State, Mapping[Action, int]],
+) -> dict[State, int | None]:
+    """Shortest winning line length from each state, computed by a
+    recurrence SEPARATE from V*. V* is binary and says nothing about how
+    fast a win can be reached; conflating the two recurrences risks
+    quietly changing what V* means (e.g. by favoring shorter wins as if
+    they were more "optimal" in the value sense, which they are not).
+
+    min_steps_to_success(s) = 0      if is_success(s)
+                             = None   if V*(s) == 0 (unwinnable)
+                             = 1 + min over solution-preserving a
+                                   (Q*(s,a) == 1) of
+                                   min_steps_to_success(child(s, a))
+                                otherwise
+    """
+    min_steps: dict[State, int | None] = {}
+    for state in reversed(dag.topological_order()):
+        if is_success(state):
+            min_steps[state] = 0
+        elif v_star[state] == 0:
+            min_steps[state] = None
+        else:
+            candidates = [
+                min_steps[edge.target_state]
+                for edge in dag.out_edges(state)
+                if q_star[state][edge.action] == 1
+            ]
+            # candidates cannot be empty: v_star[state] == 1 guarantees at
+            # least one solution-preserving action exists.
+            min_steps[state] = 1 + min(c for c in candidates if c is not None)
+    return min_steps
+
+
+# ---------------------------------------------------------------------------
+# Policy protocol and exact policy evaluation: Vpi, Qpi, Api
+# ---------------------------------------------------------------------------
+
+P_co = TypeVar("P_co", bound=Real, covariant=True)
+
+
+class Policy(Protocol[P_co]):
+    """A stationary policy: probabilities depend ONLY on the canonical
+    state and its legal action set, never on trajectory history. This is
+    generic over the probability type (Real) so that Phase 1's exact
+    Fraction-based evaluation and a future Phase 2 float-based LLM policy
+    share the same abstraction without any protocol changes.
+    """
+
+    def action_probs(
+        self, state: State, actions: tuple[Action, ...]
+    ) -> Mapping[Action, P_co]: ...
+
+
+class ExactPolicyEvaluator:
+    """Exact Vpi/Qpi/Api evaluation for a Policy[Fraction] over a
+    ReasoningDag, using Fraction arithmetic throughout so that invariants
+    (e.g. sum of advantages weighted by pi equals zero) hold as literal
+    equality.
+
+    The internal memo cache is scoped to THIS evaluator instance and is
+    valid for exactly one (policy, dag, rules) combination. Never share an
+    evaluator's cache across different policies -- construct a fresh
+    evaluator per policy instead.
+    """
+
+    def __init__(
+        self,
+        policy: "Policy[Fraction]",
+        dag: ReasoningDag,
+        rules: RuleSet = DEFAULT_RULES,
+    ) -> None:
+        self._policy = policy
+        self._dag = dag
+        self._rules = rules
+        self._v_pi_cache: dict[State, Fraction] = {}
+        self._action_probs_cache: dict[State, Mapping[Action, Fraction]] = {}
+        self._compute_all()
+
+    def _get_action_probs(self, state: State) -> Mapping[Action, Fraction]:
+        cached = self._action_probs_cache.get(state)
+        if cached is not None:
+            return cached
+
+        actions = legal_actions(state, self._rules)
+        probs = self._policy.action_probs(state, actions)
+
+        prob_keys = set(probs.keys())
+        action_keys = set(actions)
+        if prob_keys != action_keys:
+            raise PolicyValidationError(
+                f"Policy returned probabilities for {prob_keys} but legal "
+                f"actions at {state!r} are {action_keys}"
+            )
+        for action, p in probs.items():
+            if p < 0:
+                raise PolicyValidationError(
+                    f"Policy returned negative probability {p} for action "
+                    f"{action.render()} at state {state!r}"
+                )
+        total = sum(probs.values(), Fraction(0))
+        if total != Fraction(1):
+            raise PolicyValidationError(
+                f"Policy probabilities at {state!r} sum to {total}, not "
+                f"exactly 1 (probs={dict(probs)})"
+            )
+
+        self._action_probs_cache[state] = probs
+        return probs
+
+    def _compute_all(self) -> None:
+        for state in reversed(self._dag.topological_order()):
+            if is_success(state):
+                self._v_pi_cache[state] = Fraction(1)
+                continue
+            if is_terminal(state, self._rules):
+                self._v_pi_cache[state] = Fraction(0)
+                continue
+
+            probs = self._get_action_probs(state)
+            total = Fraction(0)
+            for edge in self._dag.out_edges(state):
+                p = probs[edge.action]
+                total += p * self._v_pi_cache[edge.target_state]
+            self._v_pi_cache[state] = total
+
+    def v_pi(self, state: State) -> Fraction:
+        return self._v_pi_cache[state]
+
+    def q_pi(self, state: State, action: Action) -> Fraction:
+        child = transition(state, action, self._rules)
+        return self._v_pi_cache[child]
+
+    def a_pi(self, state: State, action: Action) -> Fraction:
+        return self.q_pi(state, action) - self.v_pi(state)
+
+    def advantages(self, state: State) -> dict[Action, Fraction]:
+        return {
+            action: self.a_pi(state, action)
+            for action in legal_actions(state, self._rules)
+        }
+
+    def action_probs(self, state: State) -> Mapping[Action, Fraction]:
+        return self._get_action_probs(state)
+
+
+# ---------------------------------------------------------------------------
+# Exact stationary-policy occupancy
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True, slots=True)
+class Occupancy:
+    """How much probability mass a stationary policy puts through each
+    state and each (state, action) pair, summed over every path that
+    reaches it. Root state occupancy is always exactly 1.
+    """
+
+    state_occupancy: Mapping[State, Fraction]
+    action_occupancy: Mapping[tuple[State, Action], Fraction]
+
+
+def compute_occupancy(
+    dag: ReasoningDag,
+    evaluator: ExactPolicyEvaluator,
+    rules: RuleSet = DEFAULT_RULES,
+) -> Occupancy:
+    """Propagate probability mass forward in topological (depth-ascending)
+    order. A state accumulates mass from ALL of its incoming action edges
+    -- this summation over merged transpositions is the entire point of
+    building a DAG instead of a tree.
+    """
+    state_occupancy: dict[State, Fraction] = {dag.root: Fraction(1)}
+    action_occupancy: dict[tuple[State, Action], Fraction] = {}
+
+    for state in dag.topological_order():
+        mass = state_occupancy.get(state, Fraction(0))
+        if mass == 0:
+            continue
+        if is_terminal(state, rules):
+            continue
+
+        probs = evaluator.action_probs(state)
+        for edge in dag.out_edges(state):
+            p = probs[edge.action]
+            edge_mass = mass * p
+            action_occupancy[(state, edge.action)] = edge_mass
+            state_occupancy[edge.target_state] = (
+                state_occupancy.get(edge.target_state, Fraction(0)) + edge_mass
+            )
+
+    return Occupancy(state_occupancy=state_occupancy, action_occupancy=action_occupancy)
