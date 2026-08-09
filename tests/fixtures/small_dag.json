@@ -1,0 +1,350 @@
+{
+  "artifact_version": "1.0",
+  "edge_count": 3,
+  "edges": [
+    {
+      "left": 1,
+      "operator": "*",
+      "policy_action_probability": {
+        "uniform": {
+          "den": 3,
+          "num": 1
+        }
+      },
+      "policy_advantage": {
+        "uniform": {
+          "den": 3,
+          "num": -1
+        }
+      },
+      "q_star": 0,
+      "result": 2,
+      "right": 2,
+      "source_id": 0,
+      "target_id": 2
+    },
+    {
+      "left": 1,
+      "operator": "+",
+      "policy_action_probability": {
+        "uniform": {
+          "den": 3,
+          "num": 1
+        }
+      },
+      "policy_advantage": {
+        "uniform": {
+          "den": 3,
+          "num": 2
+        }
+      },
+      "q_star": 1,
+      "result": 3,
+      "right": 2,
+      "source_id": 0,
+      "target_id": 3
+    },
+    {
+      "left": 2,
+      "operator": "-",
+      "policy_action_probability": {
+        "uniform": {
+          "den": 3,
+          "num": 1
+        }
+      },
+      "policy_advantage": {
+        "uniform": {
+          "den": 3,
+          "num": -1
+        }
+      },
+      "q_star": 0,
+      "result": 1,
+      "right": 1,
+      "source_id": 0,
+      "target_id": 1
+    }
+  ],
+  "generator_version": "fixture-v1",
+  "node_count": 4,
+  "nodes": [
+    {
+      "depth": 0,
+      "id": 0,
+      "is_success": false,
+      "is_terminal": false,
+      "min_steps_to_success": 1,
+      "optimal_action_profile": {
+        "action_to_q_star": [
+          {
+            "left": 1,
+            "operator": "*",
+            "q_star": 0,
+            "right": 2
+          },
+          {
+            "left": 1,
+            "operator": "+",
+            "q_star": 1,
+            "right": 2
+          },
+          {
+            "left": 2,
+            "operator": "-",
+            "q_star": 0,
+            "right": 1
+          }
+        ],
+        "allowed_action_count": 3,
+        "fraction_of_moves_that_ruin_solution": 0.6666666666666667,
+        "min_steps_to_success": 1,
+        "ruining_actions": [
+          {
+            "left": 1,
+            "operator": "*",
+            "right": 2
+          },
+          {
+            "left": 2,
+            "operator": "-",
+            "right": 1
+          }
+        ],
+        "solution_preserving_count": 1
+      },
+      "policy_credit_profiles": {
+        "uniform": {
+          "action_probs": [
+            {
+              "left": 1,
+              "operator": "*",
+              "probability": {
+                "den": 3,
+                "num": 1
+              },
+              "right": 2
+            },
+            {
+              "left": 1,
+              "operator": "+",
+              "probability": {
+                "den": 3,
+                "num": 1
+              },
+              "right": 2
+            },
+            {
+              "left": 2,
+              "operator": "-",
+              "probability": {
+                "den": 3,
+                "num": 1
+              },
+              "right": 1
+            }
+          ],
+          "action_to_advantage": [
+            {
+              "advantage": {
+                "den": 3,
+                "num": -1
+              },
+              "left": 1,
+              "operator": "*",
+              "right": 2
+            },
+            {
+              "advantage": {
+                "den": 3,
+                "num": 2
+              },
+              "left": 1,
+              "operator": "+",
+              "right": 2
+            },
+            {
+              "advantage": {
+                "den": 3,
+                "num": -1
+              },
+              "left": 2,
+              "operator": "-",
+              "right": 1
+            }
+          ],
+          "max_abs_advantage": {
+            "den": 3,
+            "num": 2
+          },
+          "mean_abs_advantage": {
+            "den": 9,
+            "num": 4
+          },
+          "negative_count": 2,
+          "positive_count": 1,
+          "zero_count": 0
+        }
+      },
+      "policy_win_probability": {
+        "uniform": {
+          "den": 3,
+          "num": 1
+        }
+      },
+      "target": 3,
+      "v_star": 1,
+      "values": [
+        1,
+        2
+      ]
+    },
+    {
+      "depth": 1,
+      "id": 1,
+      "is_success": false,
+      "is_terminal": true,
+      "min_steps_to_success": null,
+      "optimal_action_profile": {
+        "action_to_q_star": [],
+        "allowed_action_count": 0,
+        "fraction_of_moves_that_ruin_solution": null,
+        "min_steps_to_success": null,
+        "ruining_actions": [],
+        "solution_preserving_count": 0
+      },
+      "policy_credit_profiles": {
+        "uniform": {
+          "action_probs": [],
+          "action_to_advantage": [],
+          "max_abs_advantage": {
+            "den": 1,
+            "num": 0
+          },
+          "mean_abs_advantage": {
+            "den": 1,
+            "num": 0
+          },
+          "negative_count": 0,
+          "positive_count": 0,
+          "zero_count": 0
+        }
+      },
+      "policy_win_probability": {
+        "uniform": {
+          "den": 1,
+          "num": 0
+        }
+      },
+      "target": 3,
+      "v_star": 0,
+      "values": [
+        1
+      ]
+    },
+    {
+      "depth": 1,
+      "id": 2,
+      "is_success": false,
+      "is_terminal": true,
+      "min_steps_to_success": null,
+      "optimal_action_profile": {
+        "action_to_q_star": [],
+        "allowed_action_count": 0,
+        "fraction_of_moves_that_ruin_solution": null,
+        "min_steps_to_success": null,
+        "ruining_actions": [],
+        "solution_preserving_count": 0
+      },
+      "policy_credit_profiles": {
+        "uniform": {
+          "action_probs": [],
+          "action_to_advantage": [],
+          "max_abs_advantage": {
+            "den": 1,
+            "num": 0
+          },
+          "mean_abs_advantage": {
+            "den": 1,
+            "num": 0
+          },
+          "negative_count": 0,
+          "positive_count": 0,
+          "zero_count": 0
+        }
+      },
+      "policy_win_probability": {
+        "uniform": {
+          "den": 1,
+          "num": 0
+        }
+      },
+      "target": 3,
+      "v_star": 0,
+      "values": [
+        2
+      ]
+    },
+    {
+      "depth": 1,
+      "id": 3,
+      "is_success": true,
+      "is_terminal": true,
+      "min_steps_to_success": 0,
+      "optimal_action_profile": {
+        "action_to_q_star": [],
+        "allowed_action_count": 0,
+        "fraction_of_moves_that_ruin_solution": null,
+        "min_steps_to_success": 0,
+        "ruining_actions": [],
+        "solution_preserving_count": 0
+      },
+      "policy_credit_profiles": {
+        "uniform": {
+          "action_probs": [],
+          "action_to_advantage": [],
+          "max_abs_advantage": {
+            "den": 1,
+            "num": 0
+          },
+          "mean_abs_advantage": {
+            "den": 1,
+            "num": 0
+          },
+          "negative_count": 0,
+          "positive_count": 0,
+          "zero_count": 0
+        }
+      },
+      "policy_win_probability": {
+        "uniform": {
+          "den": 1,
+          "num": 1
+        }
+      },
+      "target": 3,
+      "v_star": 1,
+      "values": [
+        3
+      ]
+    }
+  ],
+  "policy_names": [
+    "uniform"
+  ],
+  "problem": {
+    "target": 3,
+    "values": [
+      1,
+      2
+    ]
+  },
+  "rules": {
+    "min_intermediate": 1,
+    "operators": [
+      "+",
+      "-",
+      "*"
+    ]
+  }
+}

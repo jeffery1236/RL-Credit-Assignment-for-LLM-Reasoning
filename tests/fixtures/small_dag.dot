@@ -1,0 +1,14 @@
+digraph reasoning_dag {
+  rankdir=TB;
+  node [shape=box, fontname="monospace", fontsize=10];
+  edge [fontname="monospace", fontsize=9];
+  n0 [label="{1, 2}  target=3\nV*=1", style=filled, fillcolor="honeydew"];
+  n1 [label="{1}  target=3\nV*=0", style=filled, fillcolor="lightcoral"];
+  n2 [label="{2}  target=3\nV*=0", style=filled, fillcolor="lightcoral"];
+  n3 [label="{3}  target=3\nV*=1", style=filled, fillcolor="palegreen"];
+  { rank=same; n0 }
+  { rank=same; n1 n2 n3 }
+  n0 -> n2 [label="1 * 2 = 2"];
+  n0 -> n3 [label="1 + 2 = 3"];
+  n0 -> n1 [label="2 - 1 = 1"];
+}
