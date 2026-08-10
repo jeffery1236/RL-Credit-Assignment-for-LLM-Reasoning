@@ -13,6 +13,19 @@ literally "regenerate everything and confirm `git status` is empty."
 Fraction values are serialized as {"num": ..., "den": ...} HERE, at the
 artifact boundary only -- this encoding must never leak into the Policy
 protocol or the oracle, which stay generic over `Real`.
+
+DAG artifact schema: nodes hold AGGREGATES only, edges are the single
+source of truth for per-action facts. Every action already appears as an
+edge with its own q_star/policy_action_probability/policy_advantage, so a
+node's profile does NOT repeat a full action-by-action breakdown -- only
+counts, fragility, and mean/max summaries. Earlier revisions duplicated
+the full per-action Q*/probability/advantage mapping on BOTH the node and
+every one of its outgoing edges, which roughly doubled artifact size for
+no benefit (1.3MB for a 236-node/420-edge example) and created two sources
+of truth for the same numbers. If you need "which actions are ruining from
+this node," filter its outgoing edges for q_star == 0 (only meaningful
+when the node's own v_star == 1) rather than adding a list back here. See
+docs/project_plan.md's DAG artifact schema note for the full rationale.
 """
 
 from __future__ import annotations
@@ -30,7 +43,6 @@ from analysis.profiles import (
     compute_policy_credit_profile,
 )
 from env.countdown import (
-    Action,
     DEFAULT_RULES,
     RuleSet,
     State,
@@ -50,7 +62,7 @@ ARTIFACT_VERSION = "1.0"
 
 
 # ---------------------------------------------------------------------------
-# Fraction / Action serialization helpers
+# Fraction serialization + aggregate-only profile serializers
 # ---------------------------------------------------------------------------
 
 
@@ -58,40 +70,24 @@ def _serialize_fraction(value: Fraction) -> dict:
     return {"num": value.numerator, "den": value.denominator}
 
 
-def _serialize_action(action: Action) -> dict:
-    return {"operator": action.operator.value, "left": action.left, "right": action.right}
-
-
-def _sorted_action_items(mapping: Mapping[Action, object]) -> list[tuple[Action, object]]:
-    return sorted(mapping.items(), key=lambda kv: kv[0].sort_key())
-
-
 def _serialize_optimal_action_profile(profile: OptimalActionProfile) -> dict:
+    """Aggregate-only. The exact Q* for each action is NOT repeated here --
+    it lives on this state's outgoing edges (see module docstring).
+    """
     return {
-        "action_to_q_star": [
-            {**_serialize_action(action), "q_star": q_star}
-            for action, q_star in _sorted_action_items(profile.action_to_q_star)
-        ],
         "allowed_action_count": profile.allowed_action_count,
         "solution_preserving_count": profile.solution_preserving_count,
-        "ruining_actions": [
-            _serialize_action(action) for action in profile.ruining_actions
-        ],
+        "ruining_action_count": len(profile.ruining_actions),
         "fraction_of_moves_that_ruin_solution": profile.fraction_of_moves_that_ruin_solution,
-        "min_steps_to_success": profile.min_steps_to_success,
     }
 
 
 def _serialize_policy_credit_profile(profile: PolicyCreditProfile) -> dict:
+    """Aggregate-only -- see _serialize_optimal_action_profile and the
+    module docstring. Each action's exact probability/advantage lives on
+    the corresponding edge, not duplicated here.
+    """
     return {
-        "action_to_advantage": [
-            {**_serialize_action(action), "advantage": _serialize_fraction(value)}
-            for action, value in _sorted_action_items(profile.action_to_advantage)
-        ],
-        "action_probs": [
-            {**_serialize_action(action), "probability": _serialize_fraction(value)}
-            for action, value in _sorted_action_items(profile.action_probs)
-        ],
         "negative_count": profile.negative_count,
         "zero_count": profile.zero_count,
         "positive_count": profile.positive_count,

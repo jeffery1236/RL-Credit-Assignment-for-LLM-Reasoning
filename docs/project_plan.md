@@ -1668,3 +1668,30 @@ The first milestone is:
 Once that is true, the research apparatus exists.
 
 Everything after that is an experiment.
+
+---
+
+# 31. Implementation notes (decisions made during construction)
+
+A running log of concrete decisions made while actually building Phase 1, where those decisions clarify or refine something the sections above only described at a high level. Where the two seem to disagree, this section is authoritative — it reflects what was actually learned by building the thing, not just planned in advance.
+
+## 31.1 DAG artifact schema: nodes hold aggregates, edges hold the per-action facts
+
+Sections 14–15 ask for a JSON representation of the reasoning DAG where "the true value of taking an action can be computed" and where the visualization deliverable labels every edge with its causal credit. The first implementation put the *full* per-action breakdown — Q* for every legal action, Aπ for every legal action, every action's probability under every policy — on **both** a state's node entry and every one of its outgoing edges.
+
+This was redundant. An edge already *is* a specific action, so its Q*/probability/advantage belongs there natively; repeating the same numbers as a list attached to the source node duplicates the same fact twice for no benefit. On the worked example `(3,7,10,25) → 245` (236 nodes, 420 edges), this roughly doubled the JSON artifact size — 1.3MB before the fix, 694KB after — and created two sources of truth for the same numbers, which is a latent bug risk if they were ever computed by different code paths and drifted apart.
+
+**Resolved schema** (`analysis/artifacts.py`):
+
+- **Node-level** `optimal_action_profile` and `policy_credit_profiles` hold **aggregates only**: counts (`allowed_action_count`, `solution_preserving_count`, `ruining_action_count`), fragility (`fraction_of_moves_that_ruin_solution`), and mean/max advantage-magnitude summaries. No per-action list.
+- **Edge-level** fields (`q_star`, `policy_action_probability`, `policy_advantage`) remain the single source of truth for any specific action's exact numbers.
+- To find "which actions from this state are ruining," filter the state's outgoing edges for `q_star == 0` (meaningful only when the node's own `v_star == 1`) rather than reintroducing a duplicated list.
+
+Note that the underlying `OptimalActionProfile` / `PolicyCreditProfile` dataclasses in `analysis/profiles.py` were **not** trimmed — they still expose the full per-action mappings (`action_to_q_star`, `action_to_advantage`, `action_probs`, `ruining_actions`), because those are genuinely useful when inspecting one specific state on demand (e.g. in a notebook). Only the *artifact serialization* of those objects was trimmed. The compute cost of building the full dataclass for one state at a time is trivial; the problem was only ever in writing megabytes of duplicated JSON to disk.
+
+This distinction reflects two different consumers of the oracle's output, which want different things:
+
+1. **A single illustrative DAG** (the "aha" visualization) — small scale (one problem, hundreds of nodes), human-inspected. Full per-action detail is genuinely wanted, but each fact should be stored exactly once.
+2. **Bulk analysis across many problems** (Step 7's 750-problem exploratory study; later credit-fidelity benchmarking in Phase 3) — needs small aggregate summaries (`ProblemProfile`, which was already designed decoupled from the full per-node profile objects — it computes its statistics directly from the raw `v_star`/`q_star`/evaluator outputs) plus the ability to query Aπ/Q* on demand for whatever specific `(state, action)` pairs appear in real sampled trajectories, using the in-memory `ExactPolicyEvaluator` — never by materializing and storing a full DAG artifact per problem.
+
+**Rule going forward:** `build_dag_artifact()` (and the JSON/DOT it produces) is for illustrative, one-off DAGs only — do not call it in a loop over hundreds of generated problems. Bulk analysis goes through `analysis/profiles.py`'s `compute_problem_profile()`, which was already built for that scale.
