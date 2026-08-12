@@ -2,13 +2,29 @@
 byte-identical regeneration.
 """
 
+import csv
 import json
 from fractions import Fraction
 from pathlib import Path
 
-from analysis.artifacts import build_dag_artifact, to_canonical_json, to_dot
+from analysis.artifacts import (
+    build_dag_artifact,
+    flatten_problem_profile,
+    to_canonical_json,
+    to_dot,
+    write_csv_rows,
+    write_json_rows,
+)
+from analysis.profiles import compute_problem_profile
 from env.countdown import Action, Operator, Problem
-from oracle.evaluation import ExactPolicyEvaluator, build_reasoning_dag
+from env.generator import canonical_problem_hash
+from oracle.evaluation import (
+    ExactPolicyEvaluator,
+    build_reasoning_dag,
+    compute_min_steps_to_success,
+    compute_q_star,
+    compute_v_star,
+)
 from policies.baselines import UniformPolicy
 
 FIXTURES_DIR = Path(__file__).parent / "fixtures"
@@ -144,3 +160,74 @@ def test_artifact_includes_optimal_and_policy_profiles_as_separate_sections():
     assert set(root_node["optimal_action_profile"].keys()).isdisjoint(
         root_node["policy_credit_profiles"]["uniform"].keys()
     )
+
+
+# ---------------------------------------------------------------------------
+# ProblemProfile flattening + CSV/JSON row output
+# ---------------------------------------------------------------------------
+
+
+def _small_problem_row() -> dict:
+    problem = Problem(values=(1, 2), target=3)
+    root = problem.to_state()
+    dag = build_reasoning_dag(root)
+    v_star = compute_v_star(dag)
+    q_star = compute_q_star(dag, v_star)
+    min_steps = compute_min_steps_to_success(dag, v_star, q_star)
+    evaluators = {"uniform": ExactPolicyEvaluator(UniformPolicy(), dag)}
+    profile = compute_problem_profile(dag, v_star, q_star, min_steps, evaluators)
+    return flatten_problem_profile(2, problem, canonical_problem_hash(problem), profile)
+
+
+def test_flatten_problem_profile_has_expected_scalar_fields():
+    row = _small_problem_row()
+    assert row["n_values"] == 2
+    assert row["values"] == "1,2"
+    assert row["target"] == 3
+    assert row["solvable"] is True
+    assert row["node_count"] == 4
+    assert row["min_solution_depth"] == 1
+    assert row["unweighted_uniform_positive_count"] == 1
+    assert row["unweighted_uniform_negative_count"] == 2
+    # Occupancy-weighted keys are absent entirely when not requested --
+    # flatten_problem_profile never invents zero-filled columns for data
+    # that was never computed.
+    assert not any(k.startswith("occupancy_weighted_") for k in row)
+
+
+def test_flatten_problem_profile_values_are_json_safe():
+    row = _small_problem_row()
+    text = json.dumps(row)  # must not raise (no Fraction, no Action, etc.)
+    assert json.loads(text) == row
+
+
+def test_write_json_rows_round_trips(tmp_path):
+    rows = [_small_problem_row()]
+    path = tmp_path / "rows.json"
+    write_json_rows(rows, path)
+    loaded = json.loads(path.read_text())
+    assert loaded == rows
+
+
+def test_write_csv_rows_round_trips(tmp_path):
+    rows = [_small_problem_row()]
+    path = tmp_path / "rows.csv"
+    write_csv_rows(rows, path)
+    with path.open(newline="") as f:
+        reader = csv.DictReader(f)
+        loaded_rows = list(reader)
+    assert len(loaded_rows) == 1
+    assert loaded_rows[0]["target"] == "3"  # CSV round-trips as strings
+    assert loaded_rows[0]["values"] == "1,2"
+
+
+def test_write_csv_rows_handles_heterogeneous_columns(tmp_path):
+    rows = [{"a": 1, "b": 2}, {"a": 3, "c": 4}]
+    path = tmp_path / "rows.csv"
+    write_csv_rows(rows, path)
+    with path.open(newline="") as f:
+        reader = csv.DictReader(f)
+        assert reader.fieldnames == ["a", "b", "c"]
+        loaded_rows = list(reader)
+    assert loaded_rows[0] == {"a": "1", "b": "2", "c": ""}
+    assert loaded_rows[1] == {"a": "3", "b": "", "c": "4"}

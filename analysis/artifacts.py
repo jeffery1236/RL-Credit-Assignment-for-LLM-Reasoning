@@ -30,6 +30,7 @@ docs/project_plan.md's DAG artifact schema note for the full rationale.
 
 from __future__ import annotations
 
+import csv
 import json
 import subprocess
 from fractions import Fraction
@@ -39,11 +40,13 @@ from typing import Mapping
 from analysis.profiles import (
     OptimalActionProfile,
     PolicyCreditProfile,
+    ProblemProfile,
     compute_optimal_action_profile,
     compute_policy_credit_profile,
 )
 from env.countdown import (
     DEFAULT_RULES,
+    Problem,
     RuleSet,
     State,
     is_success,
@@ -317,3 +320,84 @@ def render_svg(dot_path: Path, svg_path: Path) -> bool:
             "Install Graphviz (e.g. `brew install graphviz`) to enable it."
         )
         return False
+
+
+# ---------------------------------------------------------------------------
+# ProblemProfile flattening + CSV output (for bulk exploratory studies,
+# e.g. experiments/profile_environment.py -- NOT the per-problem DAG
+# artifact above, which stays a one-off, illustrative-only structure)
+# ---------------------------------------------------------------------------
+
+
+def flatten_problem_profile(
+    n_values: int,
+    problem: Problem,
+    canonical_hash: str,
+    profile: ProblemProfile,
+) -> dict:
+    """Flatten one problem's ProblemProfile into a single scalar-valued
+    row, suitable for both a JSON list entry and a CSV row. Column names
+    are explicit and stable so an analysis notebook can load this
+    directly (e.g. pandas.read_csv) with no nested structure to unpack.
+    """
+    row: dict = {
+        "n_values": n_values,
+        "values": ",".join(str(v) for v in problem.values),
+        "target": problem.target,
+        "canonical_hash": canonical_hash,
+        "solvable": profile.solvable,
+        "initially_solved": profile.initially_solved,
+        "node_count": profile.node_count,
+        "edge_count": profile.edge_count,
+        "branching_mean": profile.branching.mean if profile.branching else None,
+        "branching_min": profile.branching.minimum if profile.branching else None,
+        "branching_max": profile.branching.maximum if profile.branching else None,
+        "min_solution_depth": profile.min_solution_depth,
+        "solution_preserving_root_action_count": profile.solution_preserving_root_action_count,
+        "ruining_move_state_count": profile.ruining_move_state_count,
+        "ruining_move_state_rate": profile.ruining_move_state_rate,
+        "ruining_action_count": profile.ruining_action_count,
+        "ruining_action_rate": profile.ruining_action_rate,
+        "fraction_of_moves_that_ruin_solution_mean": profile.fraction_of_moves_that_ruin_solution_mean,
+    }
+
+    for bucket_label, count in sorted(
+        profile.fraction_of_moves_that_ruin_solution_histogram.items()
+    ):
+        row[f"fragility_histogram_{bucket_label}"] = count
+
+    for policy_name in sorted(profile.policy_advantage_summaries):
+        summary = profile.policy_advantage_summaries[policy_name]
+        prefix = f"unweighted_{policy_name}"
+        row[f"{prefix}_negative_count"] = summary.negative_count
+        row[f"{prefix}_zero_count"] = summary.zero_count
+        row[f"{prefix}_positive_count"] = summary.positive_count
+        row[f"{prefix}_mean_abs_advantage"] = summary.mean_abs_advantage
+
+    for policy_name in sorted(profile.occupancy_weighted_advantage_summaries):
+        summary = profile.occupancy_weighted_advantage_summaries[policy_name]
+        prefix = f"occupancy_weighted_{policy_name}"
+        row[f"{prefix}_negative_mass"] = summary.negative_mass
+        row[f"{prefix}_zero_mass"] = summary.zero_mass
+        row[f"{prefix}_positive_mass"] = summary.positive_mass
+        row[f"{prefix}_mean_abs_advantage"] = summary.mean_abs_advantage
+
+    return row
+
+
+def write_json_rows(rows: list[dict], path: Path) -> None:
+    path.write_text(json.dumps(rows, sort_keys=True, indent=2, separators=(",", ": ")) + "\n")
+
+
+def write_csv_rows(rows: list[dict], path: Path) -> None:
+    """Canonical CSV: a fixed, sorted column order (the union of every
+    row's keys), so re-running the same generation produces a
+    byte-identical file. Rows may have different keys (e.g. different
+    policy names across strata) -- DictWriter fills missing ones blank.
+    """
+    fieldnames = sorted({key for row in rows for key in row})
+    with path.open("w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in rows:
+            writer.writerow(row)

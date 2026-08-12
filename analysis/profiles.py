@@ -36,7 +36,12 @@ from env.countdown import (
     is_success,
     is_terminal,
 )
-from oracle.evaluation import ExactPolicyEvaluator, ReasoningDag, is_pivotal
+from oracle.evaluation import (
+    ExactPolicyEvaluator,
+    ReasoningDag,
+    VisitProbabilities,
+    is_pivotal,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -203,15 +208,79 @@ class BranchingStats:
 @dataclass(frozen=True, slots=True)
 class PolicyAdvantageSummary:
     """Aggregate Api statistics for one policy across every non-terminal
-    reachable state-action pair in a problem's DAG. Unweighted -- see
-    experiments/profile_environment.py (Step 7) for the occupancy-weighted
-    companion view.
+    reachable state-action pair in a problem's DAG. Unweighted -- treats a
+    state the policy would visit 0.01% of the time the same as one it
+    visits 60% of the time. See OccupancyWeightedAdvantageSummary for the
+    companion view that corrects for this.
     """
 
     negative_count: int
     zero_count: int
     positive_count: int
     mean_abs_advantage: float
+
+
+@dataclass(frozen=True, slots=True)
+class OccupancyWeightedAdvantageSummary:
+    """Api sign/magnitude distribution weighted by how often the policy
+    actually reaches each state and takes each action, rather than
+    treating every reachable state-action pair as equally important. A
+    credit structure that looks rich when every corner of the DAG is
+    enumerated may be nearly flat in the region the policy actually
+    visits -- and it's the visited region that determines what RL will
+    experience. negative_mass/zero_mass/positive_mass are a proper
+    distribution (sum to 1) over the visited state-action pairs.
+    """
+
+    negative_mass: float
+    zero_mass: float
+    positive_mass: float
+    mean_abs_advantage: float
+
+
+def compute_occupancy_weighted_advantage_summary(
+    non_terminal_states: list[State],
+    evaluator: ExactPolicyEvaluator,
+    visit_probabilities: VisitProbabilities,
+) -> OccupancyWeightedAdvantageSummary:
+    """Weight each state-action pair's advantage by
+    probability_of_taking_action, then normalize into a proper
+    distribution over {negative, zero, positive}.
+    """
+    negative_mass = zero_mass = positive_mass = 0.0
+    weighted_abs_sum = 0.0
+
+    for state in non_terminal_states:
+        state_mass = visit_probabilities.probability_of_reaching_state.get(
+            state, Fraction(0)
+        )
+        if state_mass == 0:
+            continue
+        for action, advantage in evaluator.advantages(state).items():
+            action_mass = float(
+                visit_probabilities.probability_of_taking_action.get(
+                    (state, action), Fraction(0)
+                )
+            )
+            if action_mass == 0:
+                continue
+            if advantage < 0:
+                negative_mass += action_mass
+            elif advantage == 0:
+                zero_mass += action_mass
+            else:
+                positive_mass += action_mass
+            weighted_abs_sum += action_mass * float(abs(advantage))
+
+    total_mass = negative_mass + zero_mass + positive_mass
+    if total_mass == 0:
+        return OccupancyWeightedAdvantageSummary(0.0, 0.0, 0.0, 0.0)
+    return OccupancyWeightedAdvantageSummary(
+        negative_mass=negative_mass / total_mass,
+        zero_mass=zero_mass / total_mass,
+        positive_mass=positive_mass / total_mass,
+        mean_abs_advantage=weighted_abs_sum / total_mass,
+    )
 
 
 _FRAGILITY_BUCKETS = (
@@ -249,6 +318,7 @@ class ProblemProfile:
     fraction_of_moves_that_ruin_solution_mean: float | None
     fraction_of_moves_that_ruin_solution_histogram: Mapping[str, int]
     policy_advantage_summaries: Mapping[str, PolicyAdvantageSummary]
+    occupancy_weighted_advantage_summaries: Mapping[str, OccupancyWeightedAdvantageSummary]
 
 
 def compute_problem_profile(
@@ -258,6 +328,7 @@ def compute_problem_profile(
     min_steps_to_success: Mapping[State, int | None],
     evaluators: Mapping[str, ExactPolicyEvaluator],
     rules: RuleSet = DEFAULT_RULES,
+    visit_probabilities: Mapping[str, VisitProbabilities] | None = None,
 ) -> ProblemProfile:
     root = dag.root
     non_terminal_states = [s for s in dag.nodes if not is_terminal(s, rules)]
@@ -336,6 +407,18 @@ def compute_problem_profile(
             mean_abs_advantage=mean_abs_advantage,
         )
 
+    occupancy_weighted_advantage_summaries: dict[str, OccupancyWeightedAdvantageSummary] = {}
+    if visit_probabilities:
+        for name, evaluator in evaluators.items():
+            visit_probs_for_policy = visit_probabilities.get(name)
+            if visit_probs_for_policy is None:
+                continue
+            occupancy_weighted_advantage_summaries[name] = (
+                compute_occupancy_weighted_advantage_summary(
+                    non_terminal_states, evaluator, visit_probs_for_policy
+                )
+            )
+
     return ProblemProfile(
         solvable=bool(v_star[root]),
         initially_solved=is_success(root),
@@ -353,4 +436,5 @@ def compute_problem_profile(
             fragility_values
         ),
         policy_advantage_summaries=policy_advantage_summaries,
+        occupancy_weighted_advantage_summaries=occupancy_weighted_advantage_summaries,
     )

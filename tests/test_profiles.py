@@ -8,6 +8,7 @@ import pytest
 
 from env.countdown import Action, Operator, State
 from analysis.profiles import (
+    compute_occupancy_weighted_advantage_summary,
     compute_optimal_action_profile,
     compute_policy_credit_profile,
     compute_problem_profile,
@@ -19,6 +20,7 @@ from oracle.evaluation import (
     compute_min_steps_to_success,
     compute_q_star,
     compute_v_star,
+    compute_visit_probabilities,
 )
 from policies.baselines import UniformPolicy
 
@@ -206,6 +208,55 @@ def test_problem_profile_initially_solved_flag():
     assert profile.solvable is True
     assert profile.node_count == 1  # root is terminal (already a success)
     assert profile.branching is None
+
+
+def test_occupancy_weighted_advantage_summary_hand_computed():
+    # (1, 2) -> 3, uniform policy: each of the 3 root actions gets exactly
+    # 1/3 visit mass. add is positive (2/3), mul and sub are both negative
+    # (-1/3 each) -- so occupancy-weighted mass should be 2/3 negative,
+    # 1/3 positive, 0 zero.
+    root = make_state([1, 2], 3)
+    dag = build_reasoning_dag(root)
+    evaluator = ExactPolicyEvaluator(UniformPolicy(), dag)
+    visit_probs = compute_visit_probabilities(dag, evaluator)
+
+    summary = compute_occupancy_weighted_advantage_summary([root], evaluator, visit_probs)
+
+    assert summary.negative_mass == pytest.approx(2 / 3)
+    assert summary.positive_mass == pytest.approx(1 / 3)
+    assert summary.zero_mass == pytest.approx(0.0)
+    assert summary.mean_abs_advantage == pytest.approx(4 / 9)
+
+
+def test_problem_profile_includes_occupancy_weighted_summary_when_provided():
+    root = make_state([1, 2], 3)
+    dag = build_reasoning_dag(root)
+    v_star = compute_v_star(dag)
+    q_star = compute_q_star(dag, v_star)
+    min_steps = compute_min_steps_to_success(dag, v_star, q_star)
+    evaluator = ExactPolicyEvaluator(UniformPolicy(), dag)
+    evaluators = {"uniform": evaluator}
+    visit_probabilities = {"uniform": compute_visit_probabilities(dag, evaluator)}
+
+    profile = compute_problem_profile(
+        dag, v_star, q_star, min_steps, evaluators, visit_probabilities=visit_probabilities
+    )
+
+    assert "uniform" in profile.occupancy_weighted_advantage_summaries
+    summary = profile.occupancy_weighted_advantage_summaries["uniform"]
+    assert summary.negative_mass == pytest.approx(2 / 3)
+
+
+def test_problem_profile_occupancy_weighted_summary_empty_when_not_requested():
+    root = make_state([1, 2], 3)
+    dag = build_reasoning_dag(root)
+    v_star = compute_v_star(dag)
+    q_star = compute_q_star(dag, v_star)
+    min_steps = compute_min_steps_to_success(dag, v_star, q_star)
+    evaluators = {"uniform": ExactPolicyEvaluator(UniformPolicy(), dag)}
+
+    profile = compute_problem_profile(dag, v_star, q_star, min_steps, evaluators)
+    assert profile.occupancy_weighted_advantage_summaries == {}
 
 
 def test_problem_profile_unsolvable_root():
