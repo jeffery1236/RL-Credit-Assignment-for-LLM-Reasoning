@@ -1,0 +1,28 @@
+{
+  "distinct_min_solution_depths_by_stratum": {
+    "4": [
+      2,
+      3
+    ],
+    "5": [
+      2,
+      3,
+      4
+    ],
+    "6": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "initially_solved_count": 1,
+  "mean_ruining_action_rate": 0.8583578679229815,
+  "mean_ruining_move_state_rate": 0.9999745222929937,
+  "node_limit_hit_rate": 0.0,
+  "node_limit_hits": 0,
+  "solvable_count": 315,
+  "total_candidates": 750
+}
