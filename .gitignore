@@ -5,3 +5,5 @@ __pycache__/
 .hypothesis/
 *.egg-info/
 .DS_Store
+.runpod-countdown-pod-id
+.runpod/

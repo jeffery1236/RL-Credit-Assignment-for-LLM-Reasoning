@@ -1,0 +1,123 @@
+{
+  "affordable_reference_pool_size": 64,
+  "batches": [
+    {
+      "batch_index": 0,
+      "generated_token_count": 9819,
+      "seconds": 179.2087838537991,
+      "state": {
+        "target": 100,
+        "values": [
+          2,
+          3,
+          5,
+          7
+        ]
+      },
+      "success_count": 7,
+      "tokens_per_second": 54.790841100793756,
+      "truncation_count": 1
+    },
+    {
+      "batch_index": 1,
+      "generated_token_count": 5675,
+      "seconds": 160.05921912565827,
+      "state": {
+        "target": 103,
+        "values": [
+          3,
+          8,
+          9,
+          100
+        ]
+      },
+      "success_count": 8,
+      "tokens_per_second": 35.45562717974219,
+      "truncation_count": 0
+    },
+    {
+      "batch_index": 2,
+      "generated_token_count": 6546,
+      "seconds": 180.07453013584018,
+      "state": {
+        "target": 108,
+        "values": [
+          1,
+          8,
+          25,
+          100
+        ]
+      },
+      "success_count": 7,
+      "tokens_per_second": 36.35161505106797,
+      "truncation_count": 1
+    }
+  ],
+  "budget_projections": [
+    {
+      "affordable": false,
+      "projected_gpu_hours": 131.26264706310127,
+      "projected_token_count": 20054016,
+      "projected_usd": 44.62930000145443,
+      "projected_usd_with_contingency": 53.555160001745314,
+      "reference_pool_size": 256,
+      "response_count": 9792,
+      "token_cap": 2048
+    },
+    {
+      "affordable": false,
+      "projected_gpu_hours": 69.49198962164184,
+      "projected_token_count": 10616832,
+      "projected_usd": 23.627276471358226,
+      "projected_usd_with_contingency": 28.35273176562987,
+      "reference_pool_size": 128,
+      "response_count": 5184,
+      "token_cap": 2048
+    },
+    {
+      "affordable": true,
+      "projected_gpu_hours": 38.60666090091213,
+      "projected_token_count": 5898240,
+      "projected_usd": 13.126264706310126,
+      "projected_usd_with_contingency": 15.75151764757215,
+      "reference_pool_size": 64,
+      "response_count": 2880,
+      "token_cap": 2048
+    },
+    {
+      "affordable": true,
+      "projected_gpu_hours": 23.16399654054728,
+      "projected_token_count": 3538944,
+      "projected_usd": 7.875758823786076,
+      "projected_usd_with_contingency": 9.450910588543291,
+      "reference_pool_size": 32,
+      "response_count": 1728,
+      "token_cap": 2048
+    }
+  ],
+  "metadata": {
+    "artifact_version": "1.0",
+    "batch_size": 8,
+    "batches": 3,
+    "budget_ceiling_usd": 25.0,
+    "completion_model": {
+      "device": "cuda",
+      "dtype": "float16",
+      "model_repository": "Qwen/Qwen3.5-4B",
+      "model_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "temperature": 0.6,
+      "tokenizer_repository": "Qwen/Qwen3.5-4B",
+      "tokenizer_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a"
+    },
+    "completion_prompt_version": "policy-bridge-completion-v1",
+    "gpu_hourly_usd": 0.34,
+    "model_repository": "Qwen/Qwen3.5-4B",
+    "seed": 20260904,
+    "software_versions": {
+      "torch": "2.9.1+cu128",
+      "transformers": "5.15.0"
+    },
+    "token_cap": 2048
+  },
+  "tokens_per_second": 42.438272613244585
+}

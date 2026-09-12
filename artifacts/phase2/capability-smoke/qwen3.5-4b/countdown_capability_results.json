@@ -1,0 +1,58 @@
+{
+  "metadata": {
+    "artifact_version": "1.0",
+    "dataset": "data/countdown-capability/tinyzero-test-12.jsonl",
+    "device": "mps",
+    "dtype": "float16",
+    "generation_batch_size": 2,
+    "max_new_tokens": 1024,
+    "model_repository": "Qwen/Qwen3.5-4B",
+    "model_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "native_thinking_enabled": false,
+    "problem_count": 1,
+    "samples_per_problem": 2,
+    "seed": 20260823,
+    "temperature": 0.6
+  },
+  "problems": [
+    {
+      "numbers": [
+        79,
+        17,
+        60
+      ],
+      "responses": [
+        {
+          "score": {
+            "correct": true,
+            "equation": "(79 - 60) + 17",
+            "equation_valid": true,
+            "format_valid": true
+          },
+          "text": "To solve the Countdown problem with the numbers [79, 17, 60] to reach the target 36:\n\n\u0433\u0438\u0439\u043d steps:\n differenze between 79 and 60 is 19.\n 19 * 2 = 38, close but not quite.\n 19 + 17 = 36.\n Wait, I can use 79, 60, and remov 17.\n (79 - heatmap) = 19.\n 19 + 17 = 36.\n\nSo the equation is (79 - 60) + 17 = 36.\n\nCheck:\n79 -  COMUNICA = 1 ansible\n19 + 17 = 36\n\nThe numbers used are 79, 60, and 17. Each is used exactly once.\nThe operations are subtraction and addition.\nThe result is 36.\n\nFinal equation: (79 - 60) + 17\n\n<answer>(79 - 60) + 17</answer>"
+        },
+        {
+          "score": {
+            "correct": false,
+            "equation": "issimo",
+            "equation_valid": false,
+            "format_valid": true
+          },
+          "text": "To solve the Countdown problem with the numbers [79, 17, 60] to reach the target 36:\n\n1.  **Analyze the target**: The target is 36.\n2.  **Analyze the available numbers**: 79, 17, 60.\n Ajay's first thought might be simple addition or subtraction.\n   - $79 + 17 + 60$ is way too big.\n   - $79 - 17 - 60 = 2$. Not 36.\n   - $60 - 17 = 43$. $79 - 43 = 36$. This looks promising.\n\nLet's test this hypothesis:\n- Step 1: Subtract 17 from 60.\n  $60 - 17 = 43$\n- Step 2: Subtract the result from 79.\n  $79 - 43 = 36$\n\nSo the equation is $79 - (60 - 17) = 36$.\nLet's check the order of operations:\n$79 - 60 + 17 = 19 + 17 = 36$.\nYes, this works.\n\nAlternatively, could we do it differently?\n$79 + 17 = 96$. $96 - 60 = 36$.\nThis is even simpler: $79 + 17 - 60$.\nLet's verify:\n$79 + 17 = 96$\n$96 - 60 = 36$\n\nBoth $79 - 60 + 17$ and $79 + 17 - 60$ obligatoire.\nLet's write down the first one found as well, just to be sure.\n$79 - (60 - 17) = 79 - 43 = 36$.\nThe expression $79 creditor 17 - 60$ is $96 - 60 = 36$.\nBoth are valid. I will provide one clear solution.\n\nReasoning steps:\n1. Add 79 and 17 to get 96.\n2. Subtract 60 from 96 to get 36.\nEquation: $79 + 17 - 60$.\n\n looked at the constraints: \"Use each number exactly once\".\nNumbers used: 79, 17, 60.\nOperators: +, -.\nResult: 36.\n\nAnother possibility:\n$(79 - 6 \u03a3\u03c5) ...$ no.\n$60 - (79 - 17) = 60 - 62 = -2$. No.\n$(60 - 17) ...$ we did this. $43$. $79 - 43 = 36$.\nSo $79 - (60 - 17)$ is also correct.\n$79 - 60 + 17$ is the same as $79 + 17 - 60$.\n\nI will present the solution $79 + 17 - 60$.\n\n<answer>issimo</answer> -> No, must be expression.\n<(vertical space)\n79 + 17 - 60\n</answer>"
+        }
+      ],
+      "source_row_index": 327680,
+      "target": 36
+    }
+  ],
+  "summary": {
+    "accuracy": 0.5,
+    "all_correct_at_k": 0.0,
+    "format_rate": 1.0,
+    "pass_at_k": 1.0,
+    "problem_count": 1,
+    "sample_count": 2,
+    "samples_per_problem": 2,
+    "valid_equation_rate": 0.5
+  }
+}

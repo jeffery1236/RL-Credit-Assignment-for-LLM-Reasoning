@@ -1,0 +1,1428 @@
+{
+  "artifact_version": "1.0",
+  "menu_orderings": {
+    "phase2-sensitivity-1": {
+      "average_probability_by_label": {
+        "a": {
+          "appearance_count": 103,
+          "mean_probability": 0.37760175008256175
+        },
+        "b": {
+          "appearance_count": 103,
+          "mean_probability": 0.27153763621154126
+        },
+        "c": {
+          "appearance_count": 103,
+          "mean_probability": 0.24993321806359742
+        },
+        "d": {
+          "appearance_count": 19,
+          "mean_probability": 0.1827745476016119
+        },
+        "e": {
+          "appearance_count": 19,
+          "mean_probability": 0.03945571848460912
+        },
+        "f": {
+          "appearance_count": 16,
+          "mean_probability": 0.0859873960837857
+        },
+        "g": {
+          "appearance_count": 16,
+          "mean_probability": 0.10945774399563961
+        },
+        "h": {
+          "appearance_count": 16,
+          "mean_probability": 0.12009884754483625
+        },
+        "i": {
+          "appearance_count": 16,
+          "mean_probability": 0.04982664999737573
+        },
+        "j": {
+          "appearance_count": 1,
+          "mean_probability": 0.0022594516276171965
+        },
+        "k": {
+          "appearance_count": 1,
+          "mean_probability": 0.0016274219568890066
+        },
+        "l": {
+          "appearance_count": 1,
+          "mean_probability": 0.07719789124624019
+        },
+        "m": {
+          "appearance_count": 1,
+          "mean_probability": 0.029301014535086867
+        },
+        "n": {
+          "appearance_count": 1,
+          "mean_probability": 0.009969168110198453
+        },
+        "o": {
+          "appearance_count": 1,
+          "mean_probability": 0.01982605816131655
+        },
+        "p": {
+          "appearance_count": 1,
+          "mean_probability": 0.07139637810187888
+        },
+        "q": {
+          "appearance_count": 1,
+          "mean_probability": 0.09758727845203803
+        },
+        "r": {
+          "appearance_count": 1,
+          "mean_probability": 0.018051831381201908
+        }
+      },
+      "menu_ordering_id": "phase2-sensitivity-1",
+      "root_action_probabilities": [
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 21,
+            "right": 7
+          },
+          "label": "p",
+          "probability": 0.07139637810187888
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 30,
+            "right": 10
+          },
+          "label": "i",
+          "probability": 0.002405173737791444
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 75,
+            "right": 25
+          },
+          "label": "f",
+          "probability": 0.017496434917823895
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 70,
+            "right": 10
+          },
+          "label": "e",
+          "probability": 0.002367884975234657
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 175,
+            "right": 25
+          },
+          "label": "q",
+          "probability": 0.09758727845203803
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 250,
+            "right": 25
+          },
+          "label": "d",
+          "probability": 0.5885266093313458
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 10,
+            "right": 7
+          },
+          "label": "h",
+          "probability": 0.0029932870793523895
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 13,
+            "right": 10
+          },
+          "label": "j",
+          "probability": 0.0022594516276171965
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 28,
+            "right": 25
+          },
+          "label": "r",
+          "probability": 0.018051831381201908
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 17,
+            "right": 10
+          },
+          "label": "k",
+          "probability": 0.0016274219568890066
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 32,
+            "right": 25
+          },
+          "label": "g",
+          "probability": 0.0009418795688543976
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 35,
+            "right": 25
+          },
+          "label": "m",
+          "probability": 0.029301014535086867
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "-",
+            "result": 4,
+            "right": 3
+          },
+          "label": "a",
+          "probability": 0.050627613115680405
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 7,
+            "right": 3
+          },
+          "label": "c",
+          "probability": 0.0042876857758361725
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 3,
+            "right": 7
+          },
+          "label": "b",
+          "probability": 0.003136937925613951
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 22,
+            "right": 3
+          },
+          "label": "o",
+          "probability": 0.01982605816131655
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 18,
+            "right": 7
+          },
+          "label": "n",
+          "probability": 0.009969168110198453
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 15,
+            "right": 10
+          },
+          "label": "l",
+          "probability": 0.07719789124624019
+        }
+      ],
+      "root_entropy_nats": 1.5651211968303647,
+      "root_v_pi": 0.029100340462644814,
+      "top_root_action": {
+        "left": 10,
+        "operator": "*",
+        "result": 250,
+        "right": 25
+      },
+      "top_root_action_label": "d",
+      "top_root_action_probability": 0.5885266093313458,
+      "winning_root_action_label": "m",
+      "winning_root_action_probability": 0.029301014535086867
+    },
+    "phase2-sensitivity-2": {
+      "average_probability_by_label": {
+        "a": {
+          "appearance_count": 103,
+          "mean_probability": 0.3821374540532343
+        },
+        "b": {
+          "appearance_count": 103,
+          "mean_probability": 0.22766806059991782
+        },
+        "c": {
+          "appearance_count": 103,
+          "mean_probability": 0.29607074403495837
+        },
+        "d": {
+          "appearance_count": 19,
+          "mean_probability": 0.1684851232965554
+        },
+        "e": {
+          "appearance_count": 19,
+          "mean_probability": 0.0525336172248532
+        },
+        "f": {
+          "appearance_count": 16,
+          "mean_probability": 0.10547320362581837
+        },
+        "g": {
+          "appearance_count": 16,
+          "mean_probability": 0.05163138073850829
+        },
+        "h": {
+          "appearance_count": 16,
+          "mean_probability": 0.08375146116898989
+        },
+        "i": {
+          "appearance_count": 16,
+          "mean_probability": 0.05452424970509241
+        },
+        "j": {
+          "appearance_count": 1,
+          "mean_probability": 0.09159130042561496
+        },
+        "k": {
+          "appearance_count": 1,
+          "mean_probability": 0.16846218338430252
+        },
+        "l": {
+          "appearance_count": 1,
+          "mean_probability": 0.021085514616316237
+        },
+        "m": {
+          "appearance_count": 1,
+          "mean_probability": 0.019808007866711948
+        },
+        "n": {
+          "appearance_count": 1,
+          "mean_probability": 0.008129190049184973
+        },
+        "o": {
+          "appearance_count": 1,
+          "mean_probability": 0.3511053404387179
+        },
+        "p": {
+          "appearance_count": 1,
+          "mean_probability": 0.0582189727365414
+        },
+        "q": {
+          "appearance_count": 1,
+          "mean_probability": 0.03369455641674092
+        },
+        "r": {
+          "appearance_count": 1,
+          "mean_probability": 0.01720949546917218
+        }
+      },
+      "menu_ordering_id": "phase2-sensitivity-2",
+      "root_action_probabilities": [
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 21,
+            "right": 7
+          },
+          "label": "c",
+          "probability": 0.01076942707797061
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 30,
+            "right": 10
+          },
+          "label": "q",
+          "probability": 0.03369455641674092
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 75,
+            "right": 25
+          },
+          "label": "j",
+          "probability": 0.09159130042561496
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 70,
+            "right": 10
+          },
+          "label": "b",
+          "probability": 0.05137806311165479
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 175,
+            "right": 25
+          },
+          "label": "k",
+          "probability": 0.16846218338430252
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 250,
+            "right": 25
+          },
+          "label": "o",
+          "probability": 0.3511053404387179
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 10,
+            "right": 7
+          },
+          "label": "r",
+          "probability": 0.01720949546917218
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 13,
+            "right": 10
+          },
+          "label": "a",
+          "probability": 0.07834219084106009
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 28,
+            "right": 25
+          },
+          "label": "d",
+          "probability": 0.008789750208918297
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 17,
+            "right": 10
+          },
+          "label": "l",
+          "probability": 0.021085514616316237
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 32,
+            "right": 25
+          },
+          "label": "f",
+          "probability": 0.004930603003461537
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 35,
+            "right": 25
+          },
+          "label": "e",
+          "probability": 0.008928168633758102
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "-",
+            "result": 4,
+            "right": 3
+          },
+          "label": "i",
+          "probability": 0.00318343656358588
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 7,
+            "right": 3
+          },
+          "label": "n",
+          "probability": 0.008129190049184973
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 3,
+            "right": 7
+          },
+          "label": "h",
+          "probability": 0.03067924273954672
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 22,
+            "right": 3
+          },
+          "label": "p",
+          "probability": 0.0582189727365414
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 18,
+            "right": 7
+          },
+          "label": "m",
+          "probability": 0.019808007866711948
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 15,
+            "right": 10
+          },
+          "label": "g",
+          "probability": 0.03369455641674092
+        }
+      ],
+      "root_entropy_nats": 2.1845349641483667,
+      "root_v_pi": 0.008911711100126297,
+      "top_root_action": {
+        "left": 10,
+        "operator": "*",
+        "result": 250,
+        "right": 25
+      },
+      "top_root_action_label": "o",
+      "top_root_action_probability": 0.3511053404387179,
+      "winning_root_action_label": "e",
+      "winning_root_action_probability": 0.008928168633758102
+    },
+    "phase2-sensitivity-3": {
+      "average_probability_by_label": {
+        "a": {
+          "appearance_count": 103,
+          "mean_probability": 0.3966682025602131
+        },
+        "b": {
+          "appearance_count": 103,
+          "mean_probability": 0.22159668349030895
+        },
+        "c": {
+          "appearance_count": 103,
+          "mean_probability": 0.2853505259085707
+        },
+        "d": {
+          "appearance_count": 19,
+          "mean_probability": 0.1378403570311272
+        },
+        "e": {
+          "appearance_count": 19,
+          "mean_probability": 0.051599405027738625
+        },
+        "f": {
+          "appearance_count": 16,
+          "mean_probability": 0.07816283086074295
+        },
+        "g": {
+          "appearance_count": 16,
+          "mean_probability": 0.03869788258098862
+        },
+        "h": {
+          "appearance_count": 16,
+          "mean_probability": 0.12423850334902806
+        },
+        "i": {
+          "appearance_count": 16,
+          "mean_probability": 0.10744632943340945
+        },
+        "j": {
+          "appearance_count": 1,
+          "mean_probability": 0.004714456208099978
+        },
+        "k": {
+          "appearance_count": 1,
+          "mean_probability": 0.008671212032099168
+        },
+        "l": {
+          "appearance_count": 1,
+          "mean_probability": 0.011309392522100845
+        },
+        "m": {
+          "appearance_count": 1,
+          "mean_probability": 0.018939668351265142
+        },
+        "n": {
+          "appearance_count": 1,
+          "mean_probability": 0.05148335631628492
+        },
+        "o": {
+          "appearance_count": 1,
+          "mean_probability": 0.01013767393737409
+        },
+        "p": {
+          "appearance_count": 1,
+          "mean_probability": 0.09469238424054342
+        },
+        "q": {
+          "appearance_count": 1,
+          "mean_probability": 0.04761432098950311
+        },
+        "r": {
+          "appearance_count": 1,
+          "mean_probability": 0.5039658849110104
+        }
+      },
+      "menu_ordering_id": "phase2-sensitivity-3",
+      "root_action_probabilities": [
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 21,
+            "right": 7
+          },
+          "label": "a",
+          "probability": 0.09177900585773871
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 30,
+            "right": 10
+          },
+          "label": "p",
+          "probability": 0.09469238424054342
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 75,
+            "right": 25
+          },
+          "label": "i",
+          "probability": 0.020161172013663693
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 70,
+            "right": 10
+          },
+          "label": "k",
+          "probability": 0.008671212032099168
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 175,
+            "right": 25
+          },
+          "label": "f",
+          "probability": 0.05654340521534878
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 250,
+            "right": 25
+          },
+          "label": "r",
+          "probability": 0.5039658849110104
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 10,
+            "right": 7
+          },
+          "label": "q",
+          "probability": 0.04761432098950311
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 13,
+            "right": 10
+          },
+          "label": "d",
+          "probability": 0.0015305598402125475
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 28,
+            "right": 25
+          },
+          "label": "c",
+          "probability": 0.008946465849145213
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 17,
+            "right": 10
+          },
+          "label": "j",
+          "probability": 0.004714456208099978
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 32,
+            "right": 25
+          },
+          "label": "b",
+          "probability": 0.012420937752931804
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 35,
+            "right": 25
+          },
+          "label": "n",
+          "probability": 0.05148335631628492
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "-",
+            "result": 4,
+            "right": 3
+          },
+          "label": "g",
+          "probability": 0.004160493001018947
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 7,
+            "right": 3
+          },
+          "label": "l",
+          "probability": 0.011309392522100845
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 3,
+            "right": 7
+          },
+          "label": "o",
+          "probability": 0.01013767393737409
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 22,
+            "right": 3
+          },
+          "label": "e",
+          "probability": 0.046876129364597646
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 18,
+            "right": 7
+          },
+          "label": "h",
+          "probability": 0.006053481597061684
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 15,
+            "right": 10
+          },
+          "label": "m",
+          "probability": 0.018939668351265142
+        }
+      ],
+      "root_entropy_nats": 1.8691692426247306,
+      "root_v_pi": 0.05119900075431642,
+      "top_root_action": {
+        "left": 10,
+        "operator": "*",
+        "result": 250,
+        "right": 25
+      },
+      "top_root_action_label": "r",
+      "top_root_action_probability": 0.5039658849110104,
+      "winning_root_action_label": "n",
+      "winning_root_action_probability": 0.05148335631628492
+    },
+    "phase2-sensitivity-4": {
+      "average_probability_by_label": {
+        "a": {
+          "appearance_count": 103,
+          "mean_probability": 0.3782722270386782
+        },
+        "b": {
+          "appearance_count": 103,
+          "mean_probability": 0.24717422951292248
+        },
+        "c": {
+          "appearance_count": 103,
+          "mean_probability": 0.28644113300694724
+        },
+        "d": {
+          "appearance_count": 19,
+          "mean_probability": 0.14733497747925584
+        },
+        "e": {
+          "appearance_count": 19,
+          "mean_probability": 0.11162058505121496
+        },
+        "f": {
+          "appearance_count": 16,
+          "mean_probability": 0.05906851235844091
+        },
+        "g": {
+          "appearance_count": 16,
+          "mean_probability": 0.03819716588202803
+        },
+        "h": {
+          "appearance_count": 16,
+          "mean_probability": 0.061096598321637316
+        },
+        "i": {
+          "appearance_count": 16,
+          "mean_probability": 0.08398323266451765
+        },
+        "j": {
+          "appearance_count": 1,
+          "mean_probability": 0.01927747120785446
+        },
+        "k": {
+          "appearance_count": 1,
+          "mean_probability": 0.0738981001446555
+        },
+        "l": {
+          "appearance_count": 1,
+          "mean_probability": 0.01648889491994169
+        },
+        "m": {
+          "appearance_count": 1,
+          "mean_probability": 0.03228368903230915
+        },
+        "n": {
+          "appearance_count": 1,
+          "mean_probability": 0.014103699222235219
+        },
+        "o": {
+          "appearance_count": 1,
+          "mean_probability": 0.027185591784847144
+        },
+        "p": {
+          "appearance_count": 1,
+          "mean_probability": 0.06521484448454472
+        },
+        "q": {
+          "appearance_count": 1,
+          "mean_probability": 0.011332640697586849
+        },
+        "r": {
+          "appearance_count": 1,
+          "mean_probability": 0.018109508270669154
+        }
+      },
+      "menu_ordering_id": "phase2-sensitivity-4",
+      "root_action_probabilities": [
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 21,
+            "right": 7
+          },
+          "label": "o",
+          "probability": 0.027185591784847144
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 30,
+            "right": 10
+          },
+          "label": "b",
+          "probability": 0.009395089124175741
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 75,
+            "right": 25
+          },
+          "label": "g",
+          "probability": 0.0683445702177169
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 70,
+            "right": 10
+          },
+          "label": "a",
+          "probability": 0.19167708729781222
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 175,
+            "right": 25
+          },
+          "label": "k",
+          "probability": 0.0738981001446555
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 250,
+            "right": 25
+          },
+          "label": "i",
+          "probability": 0.24230254206481602
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 10,
+            "right": 7
+          },
+          "label": "h",
+          "probability": 0.011332640697586849
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 13,
+            "right": 10
+          },
+          "label": "e",
+          "probability": 0.005028828825669536
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 28,
+            "right": 25
+          },
+          "label": "m",
+          "probability": 0.03228368903230915
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 17,
+            "right": 10
+          },
+          "label": "l",
+          "probability": 0.01648889491994169
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 32,
+            "right": 25
+          },
+          "label": "f",
+          "probability": 0.013669774015248541
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 35,
+            "right": 25
+          },
+          "label": "c",
+          "probability": 0.1109341873993427
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "-",
+            "result": 4,
+            "right": 3
+          },
+          "label": "p",
+          "probability": 0.06521484448454472
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 7,
+            "right": 3
+          },
+          "label": "r",
+          "probability": 0.018109508270669154
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 3,
+            "right": 7
+          },
+          "label": "q",
+          "probability": 0.011332640697586849
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 22,
+            "right": 3
+          },
+          "label": "d",
+          "probability": 0.06942084059298778
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 18,
+            "right": 7
+          },
+          "label": "n",
+          "probability": 0.014103699222235219
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 15,
+            "right": 10
+          },
+          "label": "j",
+          "probability": 0.01927747120785446
+        }
+      ],
+      "root_entropy_nats": 2.3592459402796284,
+      "root_v_pi": 0.11060558624674485,
+      "top_root_action": {
+        "left": 10,
+        "operator": "*",
+        "result": 250,
+        "right": 25
+      },
+      "top_root_action_label": "i",
+      "top_root_action_probability": 0.24230254206481602,
+      "winning_root_action_label": "c",
+      "winning_root_action_probability": 0.1109341873993427
+    },
+    "phase2-v1": {
+      "average_probability_by_label": {
+        "a": {
+          "appearance_count": 103,
+          "mean_probability": 0.3911861748990234
+        },
+        "b": {
+          "appearance_count": 103,
+          "mean_probability": 0.2885893455796282
+        },
+        "c": {
+          "appearance_count": 103,
+          "mean_probability": 0.233851975440105
+        },
+        "d": {
+          "appearance_count": 19,
+          "mean_probability": 0.12130781973901388
+        },
+        "e": {
+          "appearance_count": 19,
+          "mean_probability": 0.039121956412116125
+        },
+        "f": {
+          "appearance_count": 16,
+          "mean_probability": 0.08537005958793739
+        },
+        "g": {
+          "appearance_count": 16,
+          "mean_probability": 0.04082091760860528
+        },
+        "h": {
+          "appearance_count": 16,
+          "mean_probability": 0.15172268977402767
+        },
+        "i": {
+          "appearance_count": 16,
+          "mean_probability": 0.03879790045602267
+        },
+        "j": {
+          "appearance_count": 1,
+          "mean_probability": 0.023187496519289124
+        },
+        "k": {
+          "appearance_count": 1,
+          "mean_probability": 0.003844863840573692
+        },
+        "l": {
+          "appearance_count": 1,
+          "mean_probability": 0.08350138263778971
+        },
+        "m": {
+          "appearance_count": 1,
+          "mean_probability": 0.013631225999320044
+        },
+        "n": {
+          "appearance_count": 1,
+          "mean_probability": 0.011843014383530776
+        },
+        "o": {
+          "appearance_count": 1,
+          "mean_probability": 0.040695323749429094
+        },
+        "p": {
+          "appearance_count": 1,
+          "mean_probability": 0.15120147065556847
+        },
+        "q": {
+          "appearance_count": 1,
+          "mean_probability": 0.02885730566701166
+        },
+        "r": {
+          "appearance_count": 1,
+          "mean_probability": 0.42405501121860956
+        }
+      },
+      "menu_ordering_id": "phase2-v1",
+      "root_action_probabilities": [
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 21,
+            "right": 7
+          },
+          "label": "k",
+          "probability": 0.003844863840573692
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 30,
+            "right": 10
+          },
+          "label": "m",
+          "probability": 0.013631225999320044
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 75,
+            "right": 25
+          },
+          "label": "h",
+          "probability": 0.03535670999299486
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 70,
+            "right": 10
+          },
+          "label": "j",
+          "probability": 0.023187496519289124
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 175,
+            "right": 25
+          },
+          "label": "l",
+          "probability": 0.08350138263778971
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 250,
+            "right": 25
+          },
+          "label": "r",
+          "probability": 0.42405501121860956
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 10,
+            "right": 7
+          },
+          "label": "q",
+          "probability": 0.02885730566701166
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 13,
+            "right": 10
+          },
+          "label": "f",
+          "probability": 0.003555917759932478
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 28,
+            "right": 25
+          },
+          "label": "n",
+          "probability": 0.011843014383530776
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 17,
+            "right": 10
+          },
+          "label": "g",
+          "probability": 0.0008186187503950525
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 32,
+            "right": 25
+          },
+          "label": "c",
+          "probability": 0.006438935234932503
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 35,
+            "right": 25
+          },
+          "label": "i",
+          "probability": 0.010129867014187645
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "-",
+            "result": 4,
+            "right": 3
+          },
+          "label": "o",
+          "probability": 0.040695323749429094
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 7,
+            "right": 3
+          },
+          "label": "e",
+          "probability": 0.0036119153165741153
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 3,
+            "right": 7
+          },
+          "label": "a",
+          "probability": 0.08350138263778971
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 22,
+            "right": 3
+          },
+          "label": "d",
+          "probability": 0.020145646093000662
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 18,
+            "right": 7
+          },
+          "label": "b",
+          "probability": 0.055623912529070764
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 15,
+            "right": 10
+          },
+          "label": "p",
+          "probability": 0.15120147065556847
+        }
+      ],
+      "root_entropy_nats": 1.9991659956440349,
+      "root_v_pi": 0.010065625049387189,
+      "top_root_action": {
+        "left": 10,
+        "operator": "*",
+        "result": 250,
+        "right": 25
+      },
+      "top_root_action_label": "r",
+      "top_root_action_probability": 0.42405501121860956,
+      "winning_root_action_label": "i",
+      "winning_root_action_probability": 0.010129867014187645
+    }
+  },
+  "nonterminal_state_count": 103,
+  "pairwise_total_variation": [
+    {
+      "distance": 0.41863065837174224,
+      "first": "phase2-sensitivity-1",
+      "second": "phase2-sensitivity-2"
+    },
+    {
+      "distance": 0.24407988449925924,
+      "first": "phase2-sensitivity-1",
+      "second": "phase2-sensitivity-3"
+    },
+    {
+      "distance": 0.47204445192932976,
+      "first": "phase2-sensitivity-1",
+      "second": "phase2-sensitivity-4"
+    },
+    {
+      "distance": 0.2829058357388673,
+      "first": "phase2-sensitivity-1",
+      "second": "phase2-v1"
+    },
+    {
+      "distance": 0.3796322735787669,
+      "first": "phase2-sensitivity-2",
+      "second": "phase2-sensitivity-3"
+    },
+    {
+      "distance": 0.3741679114926857,
+      "first": "phase2-sensitivity-2",
+      "second": "phase2-sensitivity-4"
+    },
+    {
+      "distance": 0.3340176217495167,
+      "first": "phase2-sensitivity-2",
+      "second": "phase2-v1"
+    },
+    {
+      "distance": 0.4478357323273699,
+      "first": "phase2-sensitivity-3",
+      "second": "phase2-sensitivity-4"
+    },
+    {
+      "distance": 0.3533224790282058,
+      "first": "phase2-sensitivity-3",
+      "second": "phase2-v1"
+    },
+    {
+      "distance": 0.4587295081862494,
+      "first": "phase2-sensitivity-4",
+      "second": "phase2-v1"
+    }
+  ],
+  "root_problem": {
+    "target": 245,
+    "values": [
+      3,
+      7,
+      10,
+      25
+    ]
+  },
+  "winning_root_action": {
+    "left": 10,
+    "operator": "+",
+    "result": 35,
+    "right": 25
+  }
+}

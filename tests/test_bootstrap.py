@@ -8,7 +8,7 @@ import sys
 
 import pytest
 
-PACKAGES = ["env", "oracle", "policies", "analysis", "experiments"]
+PACKAGES = ["env", "oracle", "policies", "analysis", "experiments", "inference"]
 
 
 @pytest.mark.parametrize("package", PACKAGES)
@@ -20,6 +20,10 @@ EXPERIMENT_MODULES = [
     "experiments.render_dag",
     "experiments.profile_environment",
     "experiments.freeze_dataset",
+    "experiments.evaluate_allowed_action_llm_policy",
+    "experiments.compare_menu_ordering_sensitivity",
+    "experiments.evaluate_countdown_capability",
+    "experiments.evaluate_policy_bridge",
 ]
 
 

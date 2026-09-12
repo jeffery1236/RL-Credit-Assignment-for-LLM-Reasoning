@@ -1,0 +1,2056 @@
+{
+  "aggregate": {
+    "credit_interpretation": "Constrained results are exact dynamic-programming credit conditional on next-token distributions; deliberative root distributions are sampled and condition on valid legal responses.",
+    "gate": {
+      "median_spearman": null,
+      "median_tv": null,
+      "passed": false,
+      "valid_rate": 0.0
+    },
+    "gate_thresholds": {
+      "maximum_median_tv": 0.35,
+      "minimum_median_spearman": 0.5,
+      "minimum_valid_rate": 0.9
+    },
+    "statewise_spearman": [
+      null
+    ],
+    "statewise_tv_distance": [
+      null
+    ],
+    "total_response_count": 10,
+    "valid_legal_response_rate": 0.0,
+    "valid_response_count": 0
+  },
+  "metadata": {
+    "artifact_version": "1.0",
+    "chat_template": {
+      "add_generation_prompt": true,
+      "enable_thinking": false
+    },
+    "constrained_model": {
+      "device": "mps",
+      "dtype": "float16",
+      "model_repository": "Qwen/Qwen3.5-4B",
+      "model_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "temperature": 1.0,
+      "tokenizer_repository": "Qwen/Qwen3.5-4B",
+      "tokenizer_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a"
+    },
+    "constrained_prompt_version": "phase2-allowed-action-v2",
+    "constrained_temperature": 1.0,
+    "dataset": "data/v1/test.jsonl",
+    "deliberative_model": {
+      "device": "mps",
+      "dtype": "float16",
+      "model_repository": "Qwen/Qwen3.5-4B",
+      "model_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "temperature": 0.6,
+      "tokenizer_repository": "Qwen/Qwen3.5-4B",
+      "tokenizer_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a"
+    },
+    "deliberative_prompt_version": "policy-bridge-deliberative-v1",
+    "deliberative_temperature": 0.6,
+    "execution_mode": "smoke",
+    "max_new_tokens": 512,
+    "menu_ordering_ids": [
+      "phase2-v1",
+      "phase2-sensitivity-1",
+      "phase2-sensitivity-2",
+      "phase2-sensitivity-3",
+      "phase2-sensitivity-4"
+    ],
+    "model_repository": "Qwen/Qwen3.5-4B",
+    "rules": {
+      "min_intermediate": 1,
+      "operators": [
+        "+",
+        "-",
+        "*"
+      ]
+    },
+    "samples_per_ordering": 2,
+    "seed": 20260904,
+    "selected_problems": [
+      {
+        "source_canonical_hash": "81672dcf9cfd56cd691297271daf40b4",
+        "source_row_index": 297,
+        "state": {
+          "target": 100,
+          "values": [
+            2,
+            3,
+            5,
+            7
+          ]
+        }
+      }
+    ],
+    "selection_rule": "filter data/v1/test.jsonl rows with exactly four values, sort by canonical (target, sorted values, source row index), and take the first 12",
+    "software_versions": {
+      "torch": "2.13.0",
+      "transformers": "5.15.0"
+    }
+  },
+  "progress": {
+    "completed_deliberative_responses": 10,
+    "expected_deliberative_responses": 10
+  },
+  "roots": [
+    {
+      "averaged_constrained_distribution": [
+        {
+          "action": {
+            "left": 2,
+            "operator": "*",
+            "result": 6,
+            "right": 3
+          },
+          "probability": 0.024385492192450585
+        },
+        {
+          "action": {
+            "left": 2,
+            "operator": "*",
+            "result": 10,
+            "right": 5
+          },
+          "probability": 0.1695784082349426
+        },
+        {
+          "action": {
+            "left": 2,
+            "operator": "*",
+            "result": 14,
+            "right": 7
+          },
+          "probability": 0.12980642690624883
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 15,
+            "right": 5
+          },
+          "probability": 0.10481389114868671
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 21,
+            "right": 7
+          },
+          "probability": 0.09758087436869485
+        },
+        {
+          "action": {
+            "left": 5,
+            "operator": "*",
+            "result": 35,
+            "right": 7
+          },
+          "probability": 0.15973994603665834
+        },
+        {
+          "action": {
+            "left": 2,
+            "operator": "+",
+            "result": 5,
+            "right": 3
+          },
+          "probability": 0.009904708129704618
+        },
+        {
+          "action": {
+            "left": 2,
+            "operator": "+",
+            "result": 7,
+            "right": 5
+          },
+          "probability": 0.010812393877650605
+        },
+        {
+          "action": {
+            "left": 2,
+            "operator": "+",
+            "result": 9,
+            "right": 7
+          },
+          "probability": 0.02134271440326871
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 8,
+            "right": 5
+          },
+          "probability": 0.017138549405747043
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 10,
+            "right": 7
+          },
+          "probability": 0.15970149126045638
+        },
+        {
+          "action": {
+            "left": 5,
+            "operator": "+",
+            "result": 12,
+            "right": 7
+          },
+          "probability": 0.03046923267129606
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "-",
+            "result": 1,
+            "right": 2
+          },
+          "probability": 0.008521154669452257
+        },
+        {
+          "action": {
+            "left": 5,
+            "operator": "-",
+            "result": 3,
+            "right": 2
+          },
+          "probability": 0.008585665260436713
+        },
+        {
+          "action": {
+            "left": 5,
+            "operator": "-",
+            "result": 2,
+            "right": 3
+          },
+          "probability": 0.006112751597618535
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "-",
+            "result": 5,
+            "right": 2
+          },
+          "probability": 0.012487232391037793
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "-",
+            "result": 4,
+            "right": 3
+          },
+          "probability": 0.014563385227786158
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "-",
+            "result": 2,
+            "right": 5
+          },
+          "probability": 0.01445568221786317
+        }
+      ],
+      "constrained_by_menu": {
+        "phase2-sensitivity-1": {
+          "distribution": [
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "probability": 0.010155556386568143
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "probability": 0.2311393979746863
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "probability": 0.060296314529543184
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "probability": 0.054900419132178566
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "probability": 0.0850314325596312
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "probability": 0.2311393979746863
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "probability": 0.008288723552724024
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "probability": 0.006455264393523867
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "probability": 0.007665816140814019
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "probability": 0.056643145508562844
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "probability": 0.11622418821486481
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "probability": 0.046230787994852175
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "probability": 0.009540262329680934
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "probability": 0.001999747620709785
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "probability": 0.001968744407498826
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "probability": 0.01648409510431152
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "probability": 0.03773246947067709
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "probability": 0.018104236704486323
+            }
+          ],
+          "menu": [
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "label": "a"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "label": "b"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "label": "c"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "label": "d"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "label": "e"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "label": "f"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "label": "g"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "label": "h"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "label": "i"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "label": "j"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "label": "k"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "label": "l"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "label": "m"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "label": "n"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "label": "o"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "label": "p"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "label": "q"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "label": "r"
+            }
+          ]
+        },
+        "phase2-sensitivity-2": {
+          "distribution": [
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "probability": 0.017346531624940983
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "probability": 0.11311359509132612
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "probability": 0.02092391116854149
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "probability": 0.09088932704700467
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "probability": 0.11670420603399859
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "probability": 0.19544276610456304
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "probability": 0.004668755649968182
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "probability": 0.006185096327307125
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "probability": 0.0840588862534418
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "probability": 0.0035241616566059116
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "probability": 0.26299698811171346
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "probability": 0.014607244146312991
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "probability": 0.0067929993876539255
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "probability": 0.007119002234965809
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "probability": 0.0148372747703837
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "probability": 0.005901860145178004
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "probability": 0.014607244146312991
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "probability": 0.02028015009978117
+            }
+          ],
+          "menu": [
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "label": "a"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "label": "b"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "label": "c"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "label": "d"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "label": "e"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "label": "f"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "label": "g"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "label": "h"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "label": "i"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "label": "j"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "label": "k"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "label": "l"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "label": "m"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "label": "n"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "label": "o"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "label": "p"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "label": "q"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "label": "r"
+            }
+          ]
+        },
+        "phase2-sensitivity-3": {
+          "distribution": [
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "probability": 0.020089667236207354
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "probability": 0.3451418924827171
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "probability": 0.31920406965383585
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "probability": 0.12500210973457498
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "probability": 0.02312306525006815
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "probability": 0.024614374831893656
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "probability": 0.004211023016785385
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "probability": 0.00811695931167056
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "probability": 0.003331193389566479
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "probability": 0.010586510697903095
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "probability": 0.022064182999255524
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "probability": 0.03312226169362252
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "probability": 0.007052136461052267
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "probability": 0.017729069109908218
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "probability": 0.003178646937956829
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "probability": 0.01947157315490269
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "probability": 0.011446747345750501
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "probability": 0.002514516692328773
+            }
+          ],
+          "menu": [
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "label": "a"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "label": "b"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "label": "c"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "label": "d"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "label": "e"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "label": "f"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "label": "g"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "label": "h"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "label": "i"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "label": "j"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "label": "k"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "label": "l"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "label": "m"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "label": "n"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "label": "o"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "label": "p"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "label": "q"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "label": "r"
+            }
+          ]
+        },
+        "phase2-sensitivity-4": {
+          "distribution": [
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "probability": 0.05261557063387133
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "probability": 0.08149258997766427
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "probability": 0.022278834352807645
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "probability": 0.09527449016901537
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "probability": 0.16721193766064862
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "probability": 0.0568909965412598
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "probability": 0.0035805345166481915
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "probability": 0.027726457329659157
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "probability": 0.00581178118165558
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "probability": 0.0108578366981087
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "probability": 0.3768179183555981
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "probability": 0.04500448248529549
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "probability": 0.004057277148692275
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "probability": 0.0031108222975327507
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "probability": 0.0036369197308009373
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "probability": 0.013303299612104118
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "probability": 0.003871480900966631
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "probability": 0.026456770407671026
+            }
+          ],
+          "menu": [
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "label": "a"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "label": "b"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "label": "c"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "label": "d"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "label": "e"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "label": "f"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "label": "g"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "label": "h"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "label": "i"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "label": "j"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "label": "k"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "label": "l"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "label": "m"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "label": "n"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "label": "o"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "label": "p"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "label": "q"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "label": "r"
+            }
+          ]
+        },
+        "phase2-v1": {
+          "distribution": [
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "probability": 0.021720135080665122
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "probability": 0.07700456564831927
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "probability": 0.22632900482651588
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "probability": 0.15800310966065997
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "probability": 0.09583373033912765
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "probability": 0.2906121947308889
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "probability": 0.02877450391239731
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "probability": 0.005578192026092314
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "probability": 0.005845895050865676
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "probability": 0.004081092467554671
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "probability": 0.02040417862085004
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "probability": 0.013381387036397123
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "probability": 0.015163098020181884
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "probability": 0.012969685039067003
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "probability": 0.00694217214145238
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "probability": 0.007275333938692633
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "probability": 0.005158984275223574
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "probability": 0.004922737185048555
+            }
+          ],
+          "menu": [
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "label": "a"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "label": "b"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "label": "c"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "label": "d"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "label": "e"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "label": "f"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "label": "g"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "label": "h"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "label": "i"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "label": "j"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "label": "k"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "label": "l"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "label": "m"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "label": "n"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "label": "o"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "label": "p"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "label": "q"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "label": "r"
+            }
+          ]
+        }
+      },
+      "deliberative_responses": [
+        {
+          "action": null,
+          "normalized_answer": null,
+          "ordering_id": "phase2-sensitivity-1",
+          "raw_response": "To determine the best next move, let's analyze the current state and the goal.\n\n**Current State:**\n- Numbers available: $\\{2, 3, 5, 7\\}$\n- Target: $100$\n- Allowed operations: $+$, $-$, $*$\n\n**Analysis of Options:**\nWe need to reach 100. Since the numbers are small, multiplication is likely required to grow the numbers quickly.\n- If we use addition only, the maximum sum is $2+3+5+7 = 17$, which is far from 100.\n- We need to create a larger base number first.\n\nLet's evaluate the potential results of the allowed actions that involve multiplication, as they increase the magnitude of numbers fastest:\n- **Option b) $2 * 7 = 14$**: New set $\\{14, 3, 5\\}$. Max product $14ej = 210$. This looks promising.\n- **Option d) $5 * 7 = 35$**: New set $\\{35, 2, 3\\}$. Max product $35 * 6 = 210$. Also promising.\n- **Option i) $3 * 5 = 15$**: New set $\\{15, 2, 7\\}$. Max product $15 * 14 = 210$. Also promising.\n- **Option j) $2 * eze = 6$**: Too small.\n\u5c45\u4f4f **Option o) $2 * 5 = 10$**: New set $\\{10, 3, 7\\}$. Max product $10 * 21 = 210$. Also promising.\n- **Option n) $3 * 7 = 21$**: New set $\\{21, 2, 5\\}$. Max product $21 * 10 = 210$. Also promising.\n\nLet's look ahead from the most promising paths:\n\n**Path 1: Choose $5 * 7\u901f\u5ea6 =  interessato$ (Option d)**\n- Current: $\\{2, 3, 35\\}$\n- Next possible moves:\n  - $35 * 3 = 105$. Set becomes $\\{105, 2\\}",
+          "sample_index": 0,
+          "seed": 3887896591108008116,
+          "status": "missing_answer"
+        },
+        {
+          "action": null,
+          "normalized_answer": null,
+          "ordering_id": "phase2-sensitivity-1",
+          "raw_response": "To determine the best next move, let's analyze the current state and the goal.\n\n**Current State:**\n- Target: 100\n- Available numbers: {2, 3, 5, 7}\n- Allowed operations: +, -, * (with subtraction defined as larger minus smaller)\n\n**Strategy Analysis:**\nThe target is 100. The numbers available are small (2, 3, 5, 7). To reach 100, we likely need to create numbers that can be multiplied to get close to 100, or sum up to a number that can be multiplied by a remaining number.\nCommon strategies for reaching 100 with small numbers involve creating factors like 20, 25, 50, 10, etc., and then multiplying them.\n\nLet's look at the options provided:\n- **a) 3 + 5 = 8**: New set {2, 8, 7}. Hard to reach 100 quickly.\n- **b) 2 * 7 = 14**: New set {3, 5, 14}. $14 \\times ?$ needs roughly 7. We have 3 and 5. $14 \\times 5 = 70$, need 30. $14 \\times 3 = 42$. Not great.\n- **c) 7 - 5 = 2**: New set {2, 3, 2}. Duplicate 2s. $2 \\times 2 \\times 3 = 12$. Too small.\n- **d) 5 * 7 = 35**: New set {2, 3, 35}. $35 \\times 3 = 105$. Close! If we have a 3 left, we can do $35 \\times 3 = 105$. Then $105 - ? = 100$. We don't have a 5 left (used in 35). Wait, if we have {2, 3, 35},.dispatchEvent? $105 - 5 = 100$, but we don't have a 5.printf?\n- **e) 5 - 3 = 2**: New set {2, 2, 7}. Very small numbers.\n-",
+          "sample_index": 1,
+          "seed": 12538605376111583427,
+          "status": "missing_answer"
+        },
+        {
+          "action": null,
+          "normalized_answer": null,
+          "ordering_id": "phase2-sensitivity-2",
+          "raw_response": "To reach the target of 100 using the numbers 2, 3, 5, and 7 with the allowed operations (+, -, *), we need to look for combinations that can generate factors of 100 (like 20, 25, 50, etc.) or sums that get close.\n\nLet's analyze the potential moves from the current set {2, 3, 5, 7}:\n\n1.  **Option: Create 25 and 4?**\n    *   We have 5 and 7. $5 \\times  \u00f4m? No.\n    *   Can we make 4? $7 - 3 = 4$. Remaining: 2, 5.\n    *   If we have 4, 5, 2. $4 \\times 5 = 20$. $20 \\times 2 = 40$. Too small.\n    *   $5 \\times 2 = 10$. $10 \\times 4 = 40$. Still too small.\n    *   Maybe $25 \\times 4$? We have 5. Need 25. $5 \\times (7-3)\u4e2a\u4eba\u6240\u5f97\u7a0e? No, $5 \\times 5 = 25$. But we only have one 5.\n    *   Can we make 25 from {2, 3, 5, 7}?\n        *   $5 \\times (7 - 2) =  introductions? No, $5 \\times 5 = 25$. But we need to make the second 5 from {2, 3, 7}. $7-2=5$. Yes!\n        \ubaa8\ud130: $5 \\times (7-2) = 25$. Used {2, 5, 7}. Remaining: {3}.\n        *   Now we have 25 and 3. Can we get 100? $2\u7684\u6709\u5173? No.\n        *   Wait, the rule says \"Choose exactly two current numbers \u30cd\". If I do $7-2=5$, I have {3, 5, 5}. Then $5 \\times 5 = 25$. I have {3, 25}. Then $25 \\times 4$? No 4.\u062f.\n        *   Let's re-e",
+          "sample_index": 0,
+          "seed": 787105960422671679,
+          "status": "missing_answer"
+        },
+        {
+          "action": null,
+          "normalized_answer": null,
+          "ordering_id": "phase2-sensitivity-2",
+          "raw_response": "To solve this Countdown arithmetic problem, let's analyze the current state and the possible moves to reach the target of 100.\n\n**Current State:**\n- Numbers: {2, 3, 5, 7}\n- Target: 100\n- Allowed Operators: +, -, *\n\n**Strategy Analysis keinen:**\nTo reach 100 from small numbers like 2, 3, 5, and 7, we likely need to create larger intermediate numbers through multiplication. Specifically, $100 = 4 \\times 25$, $100 = 5 \\times 20_ss$, $100 = 25 \\times 4$, or combinations resulting in factors close to 100.\n\nLet's evaluate the most promising paths based on the provided options:\n\n1.  **Path involving 25 and 4:**\n    - We have 5 and 7. If we\u5230 25, we need 4.\n    - From {2, 3, 5, 7}, can we make 25?\n      - $5 \\times 7 = 35$ (\u043e\u0431\u0440\u0435\u0439). Remaining: {2eluar, 3}. Can we make 4? $3+2=5$ (no), $3-2=1$ (no).\n      - $7 \\times 3 = 21$. Remaining: {2, 5}. Can we make 4? $5-2=3$ (no).\n      - $5 \\times 2 = 10$. Remaining: {3, 7}. Can we make 4? No.\n      - $7 + 5 + 3 + 2 = 17$. Too small.\n    - This path seems difficult.\n\n2.  **Path involving 20 and 5:**\n    - We have a 5. If we can make 20 from {2, 3, 7}, we can multiply by 5 to get 100.\n    - Can we make 20 from {2, 3, 7}?\n      - $7 \\times 3 = 21$. Close. Remaining {2}. $21-2=19$. No.\n      - $7 \\times 2 = 14$. Remaining {3}. $14+3=",
+          "sample_index": 1,
+          "seed": 17008743741557852716,
+          "status": "missing_answer"
+        },
+        {
+          "action": null,
+          "normalized_answer": null,
+          "ordering_id": "phase2-sensitivity-3",
+          "raw_response": "To determine the best next move, let's analyze the current state and the goal.\n\n**Current State:**\n- Target: 100\n- Available numbers: 2, 3, 5, 7\n- Allowed operations: +, -, *\n\n**Analysis of Options:**\nWe need a strategy to reach 100. Since 100 is $10 \\times 10$ or $25 \\times 4$ or $20 \\times 5$, we should look for intermediate numbers that can form these products.\n\n1.  **Option f: $2 \\times 5 = 10$**\n    - New set: 10, 3, 7\n    - Next possibilities:\n \u0443\u0445\u0430\n    - $10 \\times 7 = 70$, then $70 + 3 = 73$ (too small).\n    - $10 \\times 3 = 30$, then $30 \\times 7 = 210$ (too big).\n    - $10 + 7 + 3 = 20$.\n    - $10 \\times (7 - 3) = 40$.\n    - $(10 + 7) \\times 3 = 51$.\n    - This path seems to struggle to get high enough numbers quickly.\n\n2.  **Option g: $3 + 7 = 10$**\n    - New set: 10, 2, 5\n    - Next possibilities:\n    - $10 \\times 10 = 100$? Can we make 10 from 2 and 5? Yes, $2 \\times 5 = 10$.\n    - Sequence:\n        1. $3 + 7 = 10$ (Set becomes 10, Read the list again: 10, 2, 5).\n        2. $2 \\times 5 = 1 \u043f\u043e\u0434\u0440\u0430\u0437\u0443\u043c\u0435\u0432\u0430\u0435\u0442\u0441\u044f 10$.\n        3. $10 \\times 10 = 100$.\n    - Let's verify the steps:\n        - Start: {2, 3, 5, 7}\n        - Move 1: Choose 3 and 7, add them. Result: 10. New set:",
+          "sample_index": 0,
+          "seed": 17983047180828552881,
+          "status": "missing_answer"
+        },
+        {
+          "action": null,
+          "normalized_answer": null,
+          "ordering_id": "phase2-sensitivity-3",
+          "raw_response": "To determine the best next move, let's analyze the current state and the goal.\n\n**Current State:**\n- Target: 100\n- Numbers available: 2, 3, 5, 7\n- Allowed operations: +, -, *\n- Constraint: Subtraction must be larger minus smaller, result must be positive.\n\n**Analysis of Options:**\nThe goal is to reach 100. Since the current numbers are small (2, 3, 5, 7), we likely need to create larger numbers quickly through multiplication or addition to get closer to 100.\n\nLet's evaluate the impact of each option on the set of numbers:\n- **a) 5 - 2 = 3**: New set {3, 3, 7}. Sum = 13.\u5176\u4e2d\u4e4b\u4e00 is 3.\n- **b) 7 - 5 = 2**: New set {2, 3, 2}. Sum = 7.\n- **c) 2 * 7 = 14**: New set {3, 5, nhi\u00eau}. Sum = 17.\n- **d) 2 + 5 = 7**: New set {7, 3, 7}. Sum = 17.\n- **e) 5 - 3 = 2**: New set {2, 2, 7}. Sum = 11.\n- **f) 2 * 5 = 10**: New set {3, 7, 10}. Sum = 20.\n- **g) 3 + 7 = 10**: New set {2, 5, 10}. Sum = 17.\n- **h) 3 * 7 = 21**: New set {2, 5, 21}. Sum = 28.\n- **i) 2 + 7 = 9**: New set {3, 5, 9}. Sum = 17.\n- **j) 2 + 3 = 5**: New set {5, 5, 7}. Sum = 17.\n- **k) 5 * 7 = 35**: New set {2, 3, 35}. Sum = 40.\n- **l) 7 - 3 = 4**: New set",
+          "sample_index": 1,
+          "seed": 12232205421871751114,
+          "status": "missing_answer"
+        },
+        {
+          "action": null,
+          "normalized_answer": null,
+          "ordering_id": "phase2-sensitivity-4",
+          "raw_response": "To determine the best next move, let's analyze the current state and the goal.\n**Target**: 100\n**Current Numbers**: 2, 3, 5, 7\n**Allowed Operators**: +, -, *\n\nWe need to reach 100. Since the largest number available is 7 and the target is 100, simple addition of small numbers won't work quickly. Multiplication is likely necessary to build up magnitude. Let's evaluate the potential of combining numbers to create factors of 100 (like 25 * 4, 20 * 5, 10 * 10, etc.) or numbers close to the target.\n\nCurrent set: {2, 3, 5, 7 lakukan\n\nLet's look at the options provided in the prompt and see which ones lead towards tedious calculation or dead ends.\n\n**Option Analysis:**\n- **a) 2 + 5 = 7**: New set {7, 7, 3}. Sum = 17. Too small.\n- **b) 5 - 2 = 3**: New set {3, 3, 7}. Sum = 13. Too small.\n- **c) 3 + 7 = 10**: New set {10, 5, 2}. We have 10 and 5. If we multiply them, we get 50. Then we have 2 left. 50 * 2 = 100. This looks very promising!\n    - Step 1: 3 + 7 = 10. Set: {10, 5, 2}\n    - Step 2: 10 * 5 = 50. Set: {50, 2}\n    - Step 3 Allocate 50 * 2 = 100. Target reached.\n- **d) 2 * 3 = 6**: New set {6, 5, 7}.\n    - 6 * 7 = 42, +5 = 47.\n    - 7 * 5 = 35, +6 = 41.\n    - 6 * 5 = 30, +7 = 37.\n    - Doesn't seem to lead to 100 easily.\n- **e)",
+          "sample_index": 0,
+          "seed": 9244365041236545975,
+          "status": "missing_answer"
+        },
+        {
+          "action": null,
+          "normalized_answer": null,
+          "ordering_id": "phase2-sensitivity-4",
+          "raw_response": "To determine the best next move, let's analyze the current state and the goal.\n\n**Current State:**\n- Target: 100\n- Available Numbers: 2, 3, 5, 7\n- Allowed Operations: +, -, * (with subtraction defined as larger minus smaller)\n\n**Analysis of Options:**\nWe need to generate a number that can eventually lead to 100. Since  joueurs often look for factors of the target or numbers close to it, let's see which intermediate results are most promising.\n\n1.  **Multiplication Strategy**: Getting numbers that can be multiplied to reach 100 is usually efficient. Factors of 100 include 2, 4, 5, 10, 20, 25, 50, 100.\n    - If we get a **5**, we still have a 5 (from the original set, assuming we didn't use it). Wait, the rules say \"Choose exactly two current numbers... The chosen numbers are removed\". So if we use 5, we don't have another 5 unless we generate one.\n presentado numbers: 2, 3, 5, 7.\n    - Option **h) 2 * 5 = 10**: Removes 2 and 5. New set: {10, 3, 7}.\n     \uc2a4\ud15c: Can we make 100 from {10, 3, 7}?\n      - 10 * (3 * 7) = 10 * 21 = 210 (Too high)\n      - 10 * (7 + 3) = 10 * \u0442\u0430\u0446\u0438\u0438 = 100. Yes!\n      - Path: 2 * 5 = 10. Then 7 + 3 = 10. Then 10 * 10 = 100.\n      - This looks\u5b8c\u597d.\n\n    - Option **q) 3 * 5 = 15**: Removes 3 and 5. New set: {15, 2, 7}.\n      - Hard to reach 100 quickly. 15 * 7 = 105 (close, need -5, but only 2 left). 15 * 2 = 30. Not obvious.\n\n    - Option",
+          "sample_index": 1,
+          "seed": 12025032066863978175,
+          "status": "missing_answer"
+        },
+        {
+          "action": null,
+          "normalized_answer": null,
+          "ordering_id": "phase2-v1",
+          "raw_response": "To solve this, I need to reach the target number **100 \u0622\u0644\u0629** using the numbers **2, 3, 5, 7** and the operations **+, -, ***.\n\nLet's analyze the possible moves and their potential impact on reaching 100. The target is quite large compared to the initial numbers (sum = 17), so multiplication is likely required early on to generate larger factors.\n\nCurrent numbers: {2, 3, 5, 7}\n\nLet's evaluate some promising paths:\n\n**Path 1: Focus on getting close to 100 via multiplication.**\nTo get 100, we might need factors like $10 \\times 10$, $20 \\times 5$, vanishing $25 \\times 4$, etc.\n- If we can make a\u77ed\u6682\u7684 20 and keep a 5, we can multiply them.\n- If we can make a 25 and a 4.\n- If we can make a 50 and a 2.\n\nLet's look at the provided options to see which ones create useful intermediate \u0433\u043e\u0442\u043e\u0432\u0430 numbers.\n\n**Option Analysis:**\n- **a) 2 * 7 = 14**: Remaining {3, 5, 14}. Can we nasledovat 100? $14 \\times 5 = 70$, $70+3=73$ (too small). $14 \\times 3 = 42$, $42+5=47$.\n- **b) 3 * 5 = 15**: Remaining {2, 7, 15}. $15 \\times 7 = 105$. Close! $105 - 2 = 103$ (no). $15 \\times 2 = 30$, $30+7=37$.\n- **c) 5 + 7 = 12**: Remaining {2, 3, 12}. $12 \\times 3 = 36$, $36 \\times 2 = 72$.\n- **d) 3 * 7 = 21**: Remaining {2, 5, 21}. $21 \\times 5 = 105$. Again, 105. $105 - 2 = 10",
+          "sample_index": 0,
+          "seed": 5968033082950074301,
+          "status": "missing_answer"
+        },
+        {
+          "action": null,
+          "normalized_answer": null,
+          "ordering_id": "phase2-v1",
+          "raw_response": "To determine the best next move, let's analyze the current state and the goal.\n**Target**: 100\n**Current Numbers**: 2, 3, 5, 7\n**Allowed Operators**: +, -, *\n\nWe need to reach 100. Since 100 is a product of\u8dcc\u5b95 numbers like $10 \\times 10$, $ toes$,\u5c81\u7684\u65f6\u5019\uff0c$20 \\times 5$, etc., let's look at combinations.\n\nCurrent numbers: $\\{2,.StartsWith{3, 5, 7}\\}$.\n\nLet comptere possible strategies:\n1.  **Strategy A: Reach 20 and multiply by 5.**\n    - We have a 5. Can we make 20 from $\\{2, 3, 7\\}$?\n    - $2 \\times 3 = 6$, $6 + 7 = 13$ (No)\n    - $7 \\times 3 = 21$, $21 - 2 = 19$ (Close, but no)\n    - $7 \\times 2 = 14$, $14 + 3 = 17$ (No)\n    - $7 + 3 + 2 = 12$ (No)\n    - $7 \\times (3+2) = 35$ (No)\n    - $2 \\times (3+7) = 20$. Yes!\n    - So, if we do $2 + 7 = 9$, then $3 \\times 9 = 27$ (No \u0645\u0628\u0627\u0631\u0643). Wait, $2 \\times (3+7)$ requires combining 3 and 7 first.\n    - Step 1: $3 + 7 = 10$ (Option j). Remaining: $\\{2, 5, 1 Palestinian\\}$.\n    - Step 2: $10 \\times 2 = 20$ (Not an allowed action directly, we need to pick two numbers). From $\\{2, 5, 10\\}$, we can do $10 \\times 2 = 20$.\n    - Step 3: $20 \\times 5 = 100$.\n    - Path:\n        1. $3 + 7 = 10$. (Numbers:",
+          "sample_index": 1,
+          "seed": 16720536107310433395,
+          "status": "missing_answer"
+        }
+      ],
+      "metrics": {
+        "constrained_solution_preserving_probability": 0.329279899495399,
+        "deliberative_solution_preserving_probability": null,
+        "deliberative_valid_conditioned_distribution": null,
+        "invalid_probability": 1.0,
+        "invalid_response_frequency": 1.0,
+        "response_count": 10,
+        "spearman_rank_correlation": null,
+        "status_counts": {
+          "missing_answer": 10
+        },
+        "top_action_agreement": false,
+        "tv_distance": null,
+        "valid_response_count": 0
+      },
+      "selection_index": 0,
+      "source_canonical_hash": "81672dcf9cfd56cd691297271daf40b4",
+      "source_row_index": 297,
+      "state": {
+        "target": 100,
+        "values": [
+          2,
+          3,
+          5,
+          7
+        ]
+      }
+    }
+  ],
+  "selection": {
+    "problems": [
+      {
+        "source_canonical_hash": "81672dcf9cfd56cd691297271daf40b4",
+        "source_row_index": 297,
+        "state": {
+          "target": 100,
+          "values": [
+            2,
+            3,
+            5,
+            7
+          ]
+        }
+      }
+    ],
+    "rule": "filter data/v1/test.jsonl rows with exactly four values, sort by canonical (target, sorted values, source row index), and take the first 12"
+  }
+}

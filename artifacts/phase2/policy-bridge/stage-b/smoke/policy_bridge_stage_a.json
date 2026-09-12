@@ -1,0 +1,1764 @@
+{
+  "aggregate": null,
+  "metadata": {
+    "artifact_version": "1.0",
+    "chat_template": {
+      "add_generation_prompt": true,
+      "enable_thinking": false
+    },
+    "constrained_model": {
+      "device": "cuda",
+      "dtype": "float16",
+      "model_repository": "Qwen/Qwen3.5-4B",
+      "model_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "temperature": 1.0,
+      "tokenizer_repository": "Qwen/Qwen3.5-4B",
+      "tokenizer_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a"
+    },
+    "constrained_prompt_version": "phase2-allowed-action-v2",
+    "constrained_temperature": 1.0,
+    "dataset": "data/v1/test.jsonl",
+    "deliberative_model": {
+      "device": "cuda",
+      "dtype": "float16",
+      "model_repository": "Qwen/Qwen3.5-4B",
+      "model_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "temperature": 0.6,
+      "tokenizer_repository": "Qwen/Qwen3.5-4B",
+      "tokenizer_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a"
+    },
+    "deliberative_prompt_version": "policy-bridge-deliberative-v1",
+    "deliberative_temperature": 0.6,
+    "execution_mode": "smoke",
+    "max_new_tokens": 512,
+    "menu_ordering_ids": [
+      "phase2-v1",
+      "phase2-sensitivity-1",
+      "phase2-sensitivity-2",
+      "phase2-sensitivity-3",
+      "phase2-sensitivity-4"
+    ],
+    "model_repository": "Qwen/Qwen3.5-4B",
+    "rules": {
+      "min_intermediate": 1,
+      "operators": [
+        "+",
+        "-",
+        "*"
+      ]
+    },
+    "samples_per_ordering": 2,
+    "seed": 20260904,
+    "selected_problems": [
+      {
+        "source_canonical_hash": "81672dcf9cfd56cd691297271daf40b4",
+        "source_row_index": 297,
+        "state": {
+          "target": 100,
+          "values": [
+            2,
+            3,
+            5,
+            7
+          ]
+        }
+      }
+    ],
+    "selection_rule": "filter data/v1/test.jsonl rows with exactly four values, sort by canonical (target, sorted values, source row index), and take the first 12",
+    "software_versions": {
+      "torch": "2.9.1+cu128",
+      "transformers": "5.15.0"
+    }
+  },
+  "progress": {
+    "completed_deliberative_responses": 0,
+    "expected_deliberative_responses": 10
+  },
+  "roots": [
+    {
+      "constrained_by_menu": {
+        "phase2-sensitivity-1": {
+          "distribution": [
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "probability": 0.010242528231690667
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "probability": 0.23678995604580816
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "probability": 0.06081269014985467
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "probability": 0.0545121431402282
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "probability": 0.08443005893906626
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "probability": 0.22950469498979
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "probability": 0.008359707903915692
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "probability": 0.006310238586936079
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "probability": 0.007611600664625803
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "probability": 0.057128235511601864
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "probability": 0.11361306253304432
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "probability": 0.045192153957667146
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "probability": 0.009773488715056837
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "probability": 0.0019856046687368304
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "probability": 0.0019245140354711276
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "probability": 0.01636751351023259
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "probability": 0.03746561154419769
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "probability": 0.017976196872076036
+            }
+          ],
+          "menu": [
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "label": "a"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "label": "b"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "label": "c"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "label": "d"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "label": "e"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "label": "f"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "label": "g"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "label": "h"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "label": "i"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "label": "j"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "label": "k"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "label": "l"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "label": "m"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "label": "n"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "label": "o"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "label": "p"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "label": "q"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "label": "r"
+            }
+          ]
+        },
+        "phase2-sensitivity-2": {
+          "distribution": [
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "probability": 0.01719953191925411
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "probability": 0.11215503659980028
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "probability": 0.02042494952388608
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "probability": 0.09011910366086233
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "probability": 0.11753746918743682
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "probability": 0.1968382192860322
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "probability": 0.004629191215918297
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "probability": 0.006132681968090104
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "probability": 0.08334654606885666
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "probability": 0.003494296854954776
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "probability": 0.2648747756148895
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "probability": 0.014483457983359416
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "probability": 0.006631010258599367
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "probability": 0.007058673677306508
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "probability": 0.014943212292121328
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "probability": 0.0058518460142206186
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "probability": 0.014483457983359416
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "probability": 0.01979653989105217
+            }
+          ],
+          "menu": [
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "label": "a"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "label": "b"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "label": "c"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "label": "d"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "label": "e"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "label": "f"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "label": "g"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "label": "h"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "label": "i"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "label": "j"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "label": "k"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "label": "l"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "label": "m"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "label": "n"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "label": "o"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "label": "p"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "label": "q"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "label": "r"
+            }
+          ]
+        },
+        "phase2-sensitivity-3": {
+          "distribution": [
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "probability": 0.01998150085803925
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "probability": 0.34328358651751645
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "probability": 0.32248508542401494
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "probability": 0.12432907591503059
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "probability": 0.022998566511943867
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "probability": 0.02448184661501809
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "probability": 0.0041883501122144595
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "probability": 0.008200391429363716
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "probability": 0.0033654338616774283
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "probability": 0.01069532669322752
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "probability": 0.021945385473432583
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "probability": 0.03294392548516218
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "probability": 0.00701416649119809
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "probability": 0.017633612616211075
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "probability": 0.0031615325316945767
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "probability": 0.019366734706329228
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "probability": 0.011385116001256967
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "probability": 0.002540362756668918
+            }
+          ],
+          "menu": [
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "label": "a"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "label": "b"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "label": "c"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "label": "d"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "label": "e"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "label": "f"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "label": "g"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "label": "h"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "label": "i"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "label": "j"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "label": "k"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "label": "l"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "label": "m"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "label": "n"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "label": "o"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "label": "p"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "label": "q"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "label": "r"
+            }
+          ]
+        },
+        "phase2-sensitivity-4": {
+          "distribution": [
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "probability": 0.05161528079850977
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "probability": 0.08248098386394291
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "probability": 0.02185528498750871
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "probability": 0.09493503049858505
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "probability": 0.16923999023502243
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "probability": 0.05668829591381914
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "probability": 0.003623961513223398
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "probability": 0.027627668933619152
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "probability": 0.005882270154823717
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "probability": 0.011162587312861195
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "probability": 0.37547532931470884
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "probability": 0.04484413309097972
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "probability": 0.004042821212362453
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "probability": 0.00309973854667757
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "probability": 0.0036810306030630045
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "probability": 0.013464650478576035
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "probability": 0.003918436680067635
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "probability": 0.026362505861649246
+            }
+          ],
+          "menu": [
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "label": "a"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "label": "b"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "label": "c"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "label": "d"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "label": "e"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "label": "f"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "label": "g"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "label": "h"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "label": "i"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "label": "j"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "label": "k"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "label": "l"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "label": "m"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "label": "n"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "label": "o"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "label": "p"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "label": "q"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "label": "r"
+            }
+          ]
+        },
+        "phase2-v1": {
+          "distribution": [
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "probability": 0.02155614895750672
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "probability": 0.07642318435675423
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "probability": 0.2246202301839107
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "probability": 0.1592795939239226
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "probability": 0.09511018963149592
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "probability": 0.2929600086067228
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "probability": 0.02900696896644751
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "probability": 0.005536076906587082
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "probability": 0.005893123191205074
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "probability": 0.004050280387909688
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "probability": 0.0202501279146349
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "probability": 0.013280358116713551
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "probability": 0.015048617256127432
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "probability": 0.012871764452466445
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "probability": 0.006889759028387147
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "probability": 0.007220405467812588
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "probability": 0.0050406553848442665
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "probability": 0.004962507266551306
+            }
+          ],
+          "menu": [
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 14,
+                "right": 7
+              },
+              "label": "a"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 15,
+                "right": 5
+              },
+              "label": "b"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "+",
+                "result": 12,
+                "right": 7
+              },
+              "label": "c"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "*",
+                "result": 21,
+                "right": 7
+              },
+              "label": "d"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 2,
+                "right": 3
+              },
+              "label": "e"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 10,
+                "right": 5
+              },
+              "label": "f"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 4,
+                "right": 3
+              },
+              "label": "g"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 2,
+                "right": 5
+              },
+              "label": "h"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 8,
+                "right": 5
+              },
+              "label": "i"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "+",
+                "result": 10,
+                "right": 7
+              },
+              "label": "j"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "*",
+                "result": 35,
+                "right": 7
+              },
+              "label": "k"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "*",
+                "result": 6,
+                "right": 3
+              },
+              "label": "l"
+            },
+            {
+              "action": {
+                "left": 3,
+                "operator": "-",
+                "result": 1,
+                "right": 2
+              },
+              "label": "m"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 7,
+                "right": 5
+              },
+              "label": "n"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 9,
+                "right": 7
+              },
+              "label": "o"
+            },
+            {
+              "action": {
+                "left": 2,
+                "operator": "+",
+                "result": 5,
+                "right": 3
+              },
+              "label": "p"
+            },
+            {
+              "action": {
+                "left": 5,
+                "operator": "-",
+                "result": 3,
+                "right": 2
+              },
+              "label": "q"
+            },
+            {
+              "action": {
+                "left": 7,
+                "operator": "-",
+                "result": 5,
+                "right": 2
+              },
+              "label": "r"
+            }
+          ]
+        }
+      },
+      "deliberative_responses": [],
+      "selection_index": 0,
+      "source_canonical_hash": "81672dcf9cfd56cd691297271daf40b4",
+      "source_row_index": 297,
+      "state": {
+        "target": 100,
+        "values": [
+          2,
+          3,
+          5,
+          7
+        ]
+      }
+    }
+  ],
+  "selection": {
+    "problems": [
+      {
+        "source_canonical_hash": "81672dcf9cfd56cd691297271daf40b4",
+        "source_row_index": 297,
+        "state": {
+          "target": 100,
+          "values": [
+            2,
+            3,
+            5,
+            7
+          ]
+        }
+      }
+    ],
+    "rule": "filter data/v1/test.jsonl rows with exactly four values, sort by canonical (target, sorted values, source row index), and take the first 12"
+  }
+}

@@ -1,0 +1,5519 @@
+{
+  "metadata": {
+    "device": "mps",
+    "dtype": "float16",
+    "enable_thinking": false,
+    "label_token_ids": [
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+    ],
+    "labels": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+      "g",
+      "h",
+      "i",
+      "j",
+      "k",
+      "l",
+      "m",
+      "n",
+      "o",
+      "p",
+      "q",
+      "r",
+      "s",
+      "t",
+      "u",
+      "v",
+      "w",
+      "x",
+      "y",
+      "z",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "menu_ordering_id": "phase2-v1",
+    "model_repository": "Qwen/Qwen3-0.6B",
+    "model_revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "prompt_version": "phase2-allowed-action-v1",
+    "root_problem": {
+      "target": 245,
+      "values": [
+        3,
+        7,
+        10,
+        25
+      ]
+    },
+    "rules": {
+      "min_intermediate": 1,
+      "operators": [
+        "+",
+        "-",
+        "*"
+      ]
+    },
+    "schema_version": "2.0",
+    "software_versions": {
+      "torch": "2.13.0",
+      "transformers": "5.15.0"
+    },
+    "temperature": 1.0,
+    "tokenizer_repository": "Qwen/Qwen3-0.6B",
+    "tokenizer_revision": "c1899de289a04d12100db370d81485cdf75e47ca"
+  },
+  "records": [
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 24,
+            "right": 8
+          },
+          "label": "a",
+          "probability": 0.9933585104246863
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 11,
+            "right": 8
+          },
+          "label": "b",
+          "probability": 0.0010926343732950254
+        },
+        {
+          "action": {
+            "left": 8,
+            "operator": "-",
+            "result": 5,
+            "right": 3
+          },
+          "label": "c",
+          "probability": 0.005548855202018785
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          8
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 66,
+            "right": 22
+          },
+          "label": "a",
+          "probability": 0.8974781245001929
+        },
+        {
+          "action": {
+            "left": 22,
+            "operator": "-",
+            "result": 19,
+            "right": 3
+          },
+          "label": "b",
+          "probability": 0.10227995866113877
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 25,
+            "right": 22
+          },
+          "label": "c",
+          "probability": 0.00024191683866825713
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          22
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 28,
+            "operator": "-",
+            "result": 25,
+            "right": 3
+          },
+          "label": "a",
+          "probability": 0.9972799123528573
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 84,
+            "right": 28
+          },
+          "label": "b",
+          "probability": 0.002631440684981307
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 31,
+            "right": 28
+          },
+          "label": "c",
+          "probability": 8.864696216160593e-05
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          28
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 45,
+            "right": 42
+          },
+          "label": "a",
+          "probability": 0.44883694053069884
+        },
+        {
+          "action": {
+            "left": 42,
+            "operator": "-",
+            "result": 39,
+            "right": 3
+          },
+          "label": "b",
+          "probability": 0.5414006947256947
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 126,
+            "right": 42
+          },
+          "label": "c",
+          "probability": 0.009762364743606387
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          42
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 45,
+            "operator": "-",
+            "result": 42,
+            "right": 3
+          },
+          "label": "a",
+          "probability": 0.9982868321786971
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 135,
+            "right": 45
+          },
+          "label": "b",
+          "probability": 0.001345365390570068
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 48,
+            "right": 45
+          },
+          "label": "c",
+          "probability": 0.0003678024307329788
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          45
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 78,
+            "right": 75
+          },
+          "label": "a",
+          "probability": 0.36436222147468633
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 225,
+            "right": 75
+          },
+          "label": "b",
+          "probability": 0.006076315365021596
+        },
+        {
+          "action": {
+            "left": 75,
+            "operator": "-",
+            "result": 72,
+            "right": 3
+          },
+          "label": "c",
+          "probability": 0.6295614631602922
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          75
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 285,
+            "right": 95
+          },
+          "label": "a",
+          "probability": 0.9666338361544947
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 98,
+            "right": 95
+          },
+          "label": "b",
+          "probability": 0.0008025747869419499
+        },
+        {
+          "action": {
+            "left": 95,
+            "operator": "-",
+            "result": 92,
+            "right": 3
+          },
+          "label": "c",
+          "probability": 0.032563589058563255
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          95
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 315,
+            "right": 105
+          },
+          "label": "a",
+          "probability": 0.9436540227211481
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 108,
+            "right": 105
+          },
+          "label": "b",
+          "probability": 0.0014187264423699225
+        },
+        {
+          "action": {
+            "left": 105,
+            "operator": "-",
+            "result": 102,
+            "right": 3
+          },
+          "label": "c",
+          "probability": 0.05492725083648204
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          105
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 165,
+            "operator": "-",
+            "result": 162,
+            "right": 3
+          },
+          "label": "a",
+          "probability": 0.9987592376678505
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 168,
+            "right": 165
+          },
+          "label": "b",
+          "probability": 0.0011694268374622151
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 495,
+            "right": 165
+          },
+          "label": "c",
+          "probability": 7.133549468728832e-05
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          165
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 540,
+            "right": 180
+          },
+          "label": "a",
+          "probability": 0.4450957483281773
+        },
+        {
+          "action": {
+            "left": 180,
+            "operator": "-",
+            "result": 177,
+            "right": 3
+          },
+          "label": "b",
+          "probability": 0.553930608675614
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 183,
+            "right": 180
+          },
+          "label": "c",
+          "probability": 0.0009736429962088525
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          180
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 555,
+            "right": 185
+          },
+          "label": "a",
+          "probability": 0.5885630412377537
+        },
+        {
+          "action": {
+            "left": 185,
+            "operator": "-",
+            "result": 182,
+            "right": 3
+          },
+          "label": "b",
+          "probability": 0.4108832220518181
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 188,
+            "right": 185
+          },
+          "label": "c",
+          "probability": 0.000553736710428212
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          185
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 243,
+            "operator": "-",
+            "result": 240,
+            "right": 3
+          },
+          "label": "a",
+          "probability": 0.9986284134897402
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 246,
+            "right": 243
+          },
+          "label": "b",
+          "probability": 0.0012841958836425815
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 729,
+            "right": 243
+          },
+          "label": "c",
+          "probability": 8.739062661728028e-05
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          243
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 771,
+            "right": 257
+          },
+          "label": "a",
+          "probability": 0.3883527533013308
+        },
+        {
+          "action": {
+            "left": 257,
+            "operator": "-",
+            "result": 254,
+            "right": 3
+          },
+          "label": "b",
+          "probability": 0.6109646396493598
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 260,
+            "right": 257
+          },
+          "label": "c",
+          "probability": 0.0006826070493094799
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          257
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 323,
+            "right": 320
+          },
+          "label": "a",
+          "probability": 0.28088940031443205
+        },
+        {
+          "action": {
+            "left": 320,
+            "operator": "-",
+            "result": 317,
+            "right": 3
+          },
+          "label": "b",
+          "probability": 0.7172762115245511
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 960,
+            "right": 320
+          },
+          "label": "c",
+          "probability": 0.0018343881610168565
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          320
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 425,
+            "operator": "-",
+            "result": 422,
+            "right": 3
+          },
+          "label": "a",
+          "probability": 0.9988372329606747
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 1275,
+            "right": 425
+          },
+          "label": "b",
+          "probability": 0.0009251650133257015
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 428,
+            "right": 425
+          },
+          "label": "c",
+          "probability": 0.00023760202599969204
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          425
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 1750,
+            "operator": "-",
+            "result": 1747,
+            "right": 3
+          },
+          "label": "a",
+          "probability": 0.996897771288946
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 1753,
+            "right": 1750
+          },
+          "label": "b",
+          "probability": 0.003027609088662181
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 5250,
+            "right": 1750
+          },
+          "label": "c",
+          "probability": 7.461962239194804e-05
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          1750
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 4,
+            "operator": "*",
+            "result": 40,
+            "right": 10
+          },
+          "label": "a",
+          "probability": 0.8764110144184317
+        },
+        {
+          "action": {
+            "left": 4,
+            "operator": "+",
+            "result": 14,
+            "right": 10
+          },
+          "label": "b",
+          "probability": 0.0031118275038962747
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 6,
+            "right": 4
+          },
+          "label": "c",
+          "probability": 0.12047715807767206
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          4,
+          10
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 4,
+            "operator": "*",
+            "result": 60,
+            "right": 15
+          },
+          "label": "a",
+          "probability": 0.7514101538717938
+        },
+        {
+          "action": {
+            "left": 15,
+            "operator": "-",
+            "result": 11,
+            "right": 4
+          },
+          "label": "b",
+          "probability": 0.247788769245952
+        },
+        {
+          "action": {
+            "left": 4,
+            "operator": "+",
+            "result": 19,
+            "right": 15
+          },
+          "label": "c",
+          "probability": 0.0008010768822543222
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          4,
+          15
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 4,
+            "operator": "*",
+            "result": 140,
+            "right": 35
+          },
+          "label": "a",
+          "probability": 0.7146789402365359
+        },
+        {
+          "action": {
+            "left": 35,
+            "operator": "-",
+            "result": 31,
+            "right": 4
+          },
+          "label": "b",
+          "probability": 0.28427964159559643
+        },
+        {
+          "action": {
+            "left": 4,
+            "operator": "+",
+            "result": 39,
+            "right": 35
+          },
+          "label": "c",
+          "probability": 0.0010414181678676912
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          4,
+          35
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 4,
+            "operator": "*",
+            "result": 1000,
+            "right": 250
+          },
+          "label": "a",
+          "probability": 0.1142639608419171
+        },
+        {
+          "action": {
+            "left": 250,
+            "operator": "-",
+            "result": 246,
+            "right": 4
+          },
+          "label": "b",
+          "probability": 0.8848217549280916
+        },
+        {
+          "action": {
+            "left": 4,
+            "operator": "+",
+            "result": 254,
+            "right": 250
+          },
+          "label": "c",
+          "probability": 0.0009142842299912552
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          4,
+          250
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 5,
+            "operator": "*",
+            "result": 35,
+            "right": 7
+          },
+          "label": "a",
+          "probability": 0.9760535189838032
+        },
+        {
+          "action": {
+            "left": 5,
+            "operator": "+",
+            "result": 12,
+            "right": 7
+          },
+          "label": "b",
+          "probability": 0.003689136500393179
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "-",
+            "result": 2,
+            "right": 5
+          },
+          "label": "c",
+          "probability": 0.02025734451580346
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          5,
+          7
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 19,
+            "right": 6
+          },
+          "label": "a",
+          "probability": 0.9944607569974528
+        },
+        {
+          "action": {
+            "left": 6,
+            "operator": "*",
+            "result": 150,
+            "right": 25
+          },
+          "label": "b",
+          "probability": 0.005384102540011846
+        },
+        {
+          "action": {
+            "left": 6,
+            "operator": "+",
+            "result": 31,
+            "right": 25
+          },
+          "label": "c",
+          "probability": 0.00015514046253541807
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          6,
+          25
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 12,
+            "operator": "-",
+            "result": 5,
+            "right": 7
+          },
+          "label": "a",
+          "probability": 0.99868020600131
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 19,
+            "right": 12
+          },
+          "label": "b",
+          "probability": 0.000868975465873714
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 84,
+            "right": 12
+          },
+          "label": "c",
+          "probability": 0.0004508185328161874
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          12
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 18,
+            "operator": "-",
+            "result": 11,
+            "right": 7
+          },
+          "label": "a",
+          "probability": 0.9988478378259863
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 25,
+            "right": 18
+          },
+          "label": "b",
+          "probability": 0.0010483604342269646
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 126,
+            "right": 18
+          },
+          "label": "c",
+          "probability": 0.00010380173978659272
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          18
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 224,
+            "right": 32
+          },
+          "label": "a",
+          "probability": 0.9712375654953389
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 39,
+            "right": 32
+          },
+          "label": "b",
+          "probability": 0.0012105455176229774
+        },
+        {
+          "action": {
+            "left": 32,
+            "operator": "-",
+            "result": 25,
+            "right": 7
+          },
+          "label": "c",
+          "probability": 0.02755188898703798
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          32
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 45,
+            "right": 38
+          },
+          "label": "a",
+          "probability": 0.6639467453226202
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 266,
+            "right": 38
+          },
+          "label": "b",
+          "probability": 0.007375782095366234
+        },
+        {
+          "action": {
+            "left": 38,
+            "operator": "-",
+            "result": 31,
+            "right": 7
+          },
+          "label": "c",
+          "probability": 0.32867747258201363
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          38
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 52,
+            "right": 45
+          },
+          "label": "a",
+          "probability": 0.15996286743854776
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 315,
+            "right": 45
+          },
+          "label": "b",
+          "probability": 0.0018916353316400238
+        },
+        {
+          "action": {
+            "left": 45,
+            "operator": "-",
+            "result": 38,
+            "right": 7
+          },
+          "label": "c",
+          "probability": 0.8381454972298122
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          45
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 62,
+            "right": 55
+          },
+          "label": "a",
+          "probability": 0.3222608778369617
+        },
+        {
+          "action": {
+            "left": 55,
+            "operator": "-",
+            "result": 48,
+            "right": 7
+          },
+          "label": "b",
+          "probability": 0.6716493455680197
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 385,
+            "right": 55
+          },
+          "label": "c",
+          "probability": 0.0060897765950186575
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          55
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 455,
+            "right": 65
+          },
+          "label": "a",
+          "probability": 0.2748158569354243
+        },
+        {
+          "action": {
+            "left": 65,
+            "operator": "-",
+            "result": 58,
+            "right": 7
+          },
+          "label": "b",
+          "probability": 0.7240433470670026
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 72,
+            "right": 65
+          },
+          "label": "c",
+          "probability": 0.0011407959975730715
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          65
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 85,
+            "operator": "-",
+            "result": 78,
+            "right": 7
+          },
+          "label": "a",
+          "probability": 0.994041880613852
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 595,
+            "right": 85
+          },
+          "label": "b",
+          "probability": 0.00572893322177238
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 92,
+            "right": 85
+          },
+          "label": "c",
+          "probability": 0.0002291861643756714
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          85
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 105,
+            "operator": "-",
+            "result": 98,
+            "right": 7
+          },
+          "label": "a",
+          "probability": 0.9980102870243028
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 735,
+            "right": 105
+          },
+          "label": "b",
+          "probability": 0.0018967437192298111
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 112,
+            "right": 105
+          },
+          "label": "c",
+          "probability": 9.296925646724413e-05
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          105
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 1225,
+            "right": 175
+          },
+          "label": "a",
+          "probability": 0.713796080937353
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 182,
+            "right": 175
+          },
+          "label": "b",
+          "probability": 0.006677357467731678
+        },
+        {
+          "action": {
+            "left": 175,
+            "operator": "-",
+            "result": 168,
+            "right": 7
+          },
+          "label": "c",
+          "probability": 0.2795265615949153
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          175
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 1540,
+            "right": 220
+          },
+          "label": "a",
+          "probability": 0.906429378755445
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 227,
+            "right": 220
+          },
+          "label": "b",
+          "probability": 0.0038219590128725544
+        },
+        {
+          "action": {
+            "left": 220,
+            "operator": "-",
+            "result": 213,
+            "right": 7
+          },
+          "label": "c",
+          "probability": 0.08974866223168226
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          220
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 1729,
+            "right": 247
+          },
+          "label": "a",
+          "probability": 0.9917498753318573
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 254,
+            "right": 247
+          },
+          "label": "b",
+          "probability": 0.0010247728043094966
+        },
+        {
+          "action": {
+            "left": 247,
+            "operator": "-",
+            "result": 240,
+            "right": 7
+          },
+          "label": "c",
+          "probability": 0.007225351863833249
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          247
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 253,
+            "operator": "-",
+            "result": 246,
+            "right": 7
+          },
+          "label": "a",
+          "probability": 0.9988025938110011
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 1771,
+            "right": 253
+          },
+          "label": "b",
+          "probability": 0.0011513465326088513
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 260,
+            "right": 253
+          },
+          "label": "c",
+          "probability": 4.6059656389958094e-05
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          253
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 280,
+            "operator": "-",
+            "result": 273,
+            "right": 7
+          },
+          "label": "a",
+          "probability": 0.9975385216549175
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 287,
+            "right": 280
+          },
+          "label": "b",
+          "probability": 0.002359419858665375
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 1960,
+            "right": 280
+          },
+          "label": "c",
+          "probability": 0.00010205848641703617
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          280
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 332,
+            "right": 325
+          },
+          "label": "a",
+          "probability": 0.4990568709182089
+        },
+        {
+          "action": {
+            "left": 325,
+            "operator": "-",
+            "result": 318,
+            "right": 7
+          },
+          "label": "b",
+          "probability": 0.4990568709182089
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 2275,
+            "right": 325
+          },
+          "label": "c",
+          "probability": 0.00188625816358224
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          325
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 757,
+            "right": 750
+          },
+          "label": "a",
+          "probability": 0.4913427837693404
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 5250,
+            "right": 750
+          },
+          "label": "b",
+          "probability": 0.0017175382543855918
+        },
+        {
+          "action": {
+            "left": 750,
+            "operator": "-",
+            "result": 743,
+            "right": 7
+          },
+          "label": "c",
+          "probability": 0.506939677976274
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          750
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 16,
+            "right": 9
+          },
+          "label": "a",
+          "probability": 0.9929604012956409
+        },
+        {
+          "action": {
+            "left": 9,
+            "operator": "*",
+            "result": 225,
+            "right": 25
+          },
+          "label": "b",
+          "probability": 0.006902894286054281
+        },
+        {
+          "action": {
+            "left": 9,
+            "operator": "+",
+            "result": 34,
+            "right": 25
+          },
+          "label": "c",
+          "probability": 0.00013670441830466036
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          9,
+          25
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 150,
+            "right": 15
+          },
+          "label": "a",
+          "probability": 0.6876995607327163
+        },
+        {
+          "action": {
+            "left": 15,
+            "operator": "-",
+            "result": 5,
+            "right": 10
+          },
+          "label": "b",
+          "probability": 0.30997047703627867
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 25,
+            "right": 15
+          },
+          "label": "c",
+          "probability": 0.002329962231005103
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          10,
+          15
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 31,
+            "right": 21
+          },
+          "label": "a",
+          "probability": 0.5949333193968639
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 210,
+            "right": 21
+          },
+          "label": "b",
+          "probability": 0.008755651092297902
+        },
+        {
+          "action": {
+            "left": 21,
+            "operator": "-",
+            "result": 11,
+            "right": 10
+          },
+          "label": "c",
+          "probability": 0.3963110295108382
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          10,
+          21
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 290,
+            "right": 29
+          },
+          "label": "a",
+          "probability": 0.9428204809067262
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 39,
+            "right": 29
+          },
+          "label": "b",
+          "probability": 0.0023007862085211144
+        },
+        {
+          "action": {
+            "left": 29,
+            "operator": "-",
+            "result": 19,
+            "right": 10
+          },
+          "label": "c",
+          "probability": 0.05487873288475285
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          10,
+          29
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 350,
+            "right": 35
+          },
+          "label": "a",
+          "probability": 0.7378753706143799
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 45,
+            "right": 35
+          },
+          "label": "b",
+          "probability": 0.007121724746982495
+        },
+        {
+          "action": {
+            "left": 35,
+            "operator": "-",
+            "result": 25,
+            "right": 10
+          },
+          "label": "c",
+          "probability": 0.25500290463863756
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          10,
+          35
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 460,
+            "right": 46
+          },
+          "label": "a",
+          "probability": 0.5149408811818699
+        },
+        {
+          "action": {
+            "left": 46,
+            "operator": "-",
+            "result": 36,
+            "right": 10
+          },
+          "label": "b",
+          "probability": 0.4837421903589305
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 56,
+            "right": 46
+          },
+          "label": "c",
+          "probability": 0.0013169284591996785
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          10,
+          46
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 54,
+            "operator": "-",
+            "result": 44,
+            "right": 10
+          },
+          "label": "a",
+          "probability": 0.9987698309642092
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 64,
+            "right": 54
+          },
+          "label": "b",
+          "probability": 0.0009251025827645445
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 540,
+            "right": 54
+          },
+          "label": "c",
+          "probability": 0.00030506645302611835
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          10,
+          54
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 78,
+            "right": 68
+          },
+          "label": "a",
+          "probability": 0.4738245155723274
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 680,
+            "right": 68
+          },
+          "label": "b",
+          "probability": 0.0057810598610314136
+        },
+        {
+          "action": {
+            "left": 68,
+            "operator": "-",
+            "result": 58,
+            "right": 10
+          },
+          "label": "c",
+          "probability": 0.5203944245666412
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          10,
+          68
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 82,
+            "operator": "-",
+            "result": 72,
+            "right": 10
+          },
+          "label": "a",
+          "probability": 0.9980760793621007
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 92,
+            "right": 82
+          },
+          "label": "b",
+          "probability": 0.0018100048145231141
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 820,
+            "right": 82
+          },
+          "label": "c",
+          "probability": 0.0001139158233763628
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          10,
+          82
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 106,
+            "right": 96
+          },
+          "label": "a",
+          "probability": 0.0951957101799843
+        },
+        {
+          "action": {
+            "left": 96,
+            "operator": "-",
+            "result": 86,
+            "right": 10
+          },
+          "label": "b",
+          "probability": 0.9031917509422371
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 960,
+            "right": 96
+          },
+          "label": "c",
+          "probability": 0.0016125388777785674
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          10,
+          96
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 100,
+            "operator": "-",
+            "result": 90,
+            "right": 10
+          },
+          "label": "a",
+          "probability": 0.9955436774520295
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 110,
+            "right": 100
+          },
+          "label": "b",
+          "probability": 0.004132629955604488
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 1000,
+            "right": 100
+          },
+          "label": "c",
+          "probability": 0.0003236925923658775
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          10,
+          100
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 164,
+            "right": 154
+          },
+          "label": "a",
+          "probability": 0.14203992925445189
+        },
+        {
+          "action": {
+            "left": 154,
+            "operator": "-",
+            "result": 144,
+            "right": 10
+          },
+          "label": "b",
+          "probability": 0.8566104033208747
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 1540,
+            "right": 154
+          },
+          "label": "c",
+          "probability": 0.001349667424673508
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          10,
+          154
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 172,
+            "operator": "-",
+            "result": 162,
+            "right": 10
+          },
+          "label": "a",
+          "probability": 0.995691520001273
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 182,
+            "right": 172
+          },
+          "label": "b",
+          "probability": 0.004198332785875381
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 1720,
+            "right": 172
+          },
+          "label": "c",
+          "probability": 0.00011014721285158315
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          10,
+          172
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 178,
+            "operator": "-",
+            "result": 168,
+            "right": 10
+          },
+          "label": "a",
+          "probability": 0.994930180667555
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 1780,
+            "right": 178
+          },
+          "label": "b",
+          "probability": 0.004904595214390609
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 188,
+            "right": 178
+          },
+          "label": "c",
+          "probability": 0.00016522411805423856
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          10,
+          178
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 196,
+            "operator": "-",
+            "result": 186,
+            "right": 10
+          },
+          "label": "a",
+          "probability": 0.9961449844007412
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 206,
+            "right": 196
+          },
+          "label": "b",
+          "probability": 0.003765075121559344
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 1960,
+            "right": 196
+          },
+          "label": "c",
+          "probability": 8.994047769939143e-05
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          10,
+          196
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 260,
+            "right": 250
+          },
+          "label": "a",
+          "probability": 0.025945948847522837
+        },
+        {
+          "action": {
+            "left": 250,
+            "operator": "-",
+            "result": 240,
+            "right": 10
+          },
+          "label": "b",
+          "probability": 0.973614547616463
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 2500,
+            "right": 250
+          },
+          "label": "c",
+          "probability": 0.0004395035360141844
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          10,
+          250
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 5250,
+            "right": 525
+          },
+          "label": "a",
+          "probability": 0.8186016942780809
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 535,
+            "right": 525
+          },
+          "label": "b",
+          "probability": 0.00436327374164147
+        },
+        {
+          "action": {
+            "left": 525,
+            "operator": "-",
+            "result": 515,
+            "right": 10
+          },
+          "label": "c",
+          "probability": 0.1770350319802776
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          10,
+          525
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 14,
+            "right": 11
+          },
+          "label": "a",
+          "probability": 0.9976669930624326
+        },
+        {
+          "action": {
+            "left": 11,
+            "operator": "+",
+            "result": 36,
+            "right": 25
+          },
+          "label": "b",
+          "probability": 0.001781212917092398
+        },
+        {
+          "action": {
+            "left": 11,
+            "operator": "*",
+            "result": 275,
+            "right": 25
+          },
+          "label": "c",
+          "probability": 0.0005517940204752186
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          11,
+          25
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 18,
+            "operator": "-",
+            "result": 5,
+            "right": 13
+          },
+          "label": "a",
+          "probability": 0.9905501780028845
+        },
+        {
+          "action": {
+            "left": 13,
+            "operator": "*",
+            "result": 234,
+            "right": 18
+          },
+          "label": "b",
+          "probability": 0.009266312613491373
+        },
+        {
+          "action": {
+            "left": 13,
+            "operator": "+",
+            "result": 31,
+            "right": 18
+          },
+          "label": "c",
+          "probability": 0.00018350938362414812
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          13,
+          18
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 32,
+            "operator": "-",
+            "result": 19,
+            "right": 13
+          },
+          "label": "a",
+          "probability": 0.9984134817412653
+        },
+        {
+          "action": {
+            "left": 13,
+            "operator": "+",
+            "result": 45,
+            "right": 32
+          },
+          "label": "b",
+          "probability": 0.001477782274631549
+        },
+        {
+          "action": {
+            "left": 13,
+            "operator": "*",
+            "result": 416,
+            "right": 32
+          },
+          "label": "c",
+          "probability": 0.00010873598410315505
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          13,
+          32
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 175,
+            "operator": "-",
+            "result": 162,
+            "right": 13
+          },
+          "label": "a",
+          "probability": 0.9907235899231436
+        },
+        {
+          "action": {
+            "left": 13,
+            "operator": "*",
+            "result": 2275,
+            "right": 175
+          },
+          "label": "b",
+          "probability": 0.00912424882073245
+        },
+        {
+          "action": {
+            "left": 13,
+            "operator": "+",
+            "result": 188,
+            "right": 175
+          },
+          "label": "c",
+          "probability": 0.000152161256123938
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          13,
+          175
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 11,
+            "right": 14
+          },
+          "label": "a",
+          "probability": 0.9988019013214624
+        },
+        {
+          "action": {
+            "left": 14,
+            "operator": "+",
+            "result": 39,
+            "right": 25
+          },
+          "label": "b",
+          "probability": 0.0010648207360221577
+        },
+        {
+          "action": {
+            "left": 14,
+            "operator": "*",
+            "result": 350,
+            "right": 25
+          },
+          "label": "c",
+          "probability": 0.0001332779425156373
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          14,
+          25
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 15,
+            "operator": "+",
+            "result": 36,
+            "right": 21
+          },
+          "label": "a",
+          "probability": 0.6491215494875925
+        },
+        {
+          "action": {
+            "left": 15,
+            "operator": "*",
+            "result": 315,
+            "right": 21
+          },
+          "label": "b",
+          "probability": 0.014118626959581543
+        },
+        {
+          "action": {
+            "left": 21,
+            "operator": "-",
+            "result": 6,
+            "right": 15
+          },
+          "label": "c",
+          "probability": 0.3367598235528259
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          15,
+          21
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 22,
+            "operator": "-",
+            "result": 5,
+            "right": 17
+          },
+          "label": "a",
+          "probability": 0.9898898024404171
+        },
+        {
+          "action": {
+            "left": 17,
+            "operator": "*",
+            "result": 374,
+            "right": 22
+          },
+          "label": "b",
+          "probability": 0.009554083228114385
+        },
+        {
+          "action": {
+            "left": 17,
+            "operator": "+",
+            "result": 39,
+            "right": 22
+          },
+          "label": "c",
+          "probability": 0.0005561143314686408
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          17,
+          22
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 17,
+            "operator": "*",
+            "result": 476,
+            "right": 28
+          },
+          "label": "a",
+          "probability": 0.32035273248939666
+        },
+        {
+          "action": {
+            "left": 28,
+            "operator": "-",
+            "result": 11,
+            "right": 17
+          },
+          "label": "b",
+          "probability": 0.6781867400019684
+        },
+        {
+          "action": {
+            "left": 17,
+            "operator": "+",
+            "result": 45,
+            "right": 28
+          },
+          "label": "c",
+          "probability": 0.001460527508634891
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          17,
+          28
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 17,
+            "operator": "+",
+            "result": 92,
+            "right": 75
+          },
+          "label": "a",
+          "probability": 0.175049105402269
+        },
+        {
+          "action": {
+            "left": 17,
+            "operator": "*",
+            "result": 1275,
+            "right": 75
+          },
+          "label": "b",
+          "probability": 0.002785539405025777
+        },
+        {
+          "action": {
+            "left": 75,
+            "operator": "-",
+            "result": 58,
+            "right": 17
+          },
+          "label": "c",
+          "probability": 0.8221653551927054
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          17,
+          75
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 18,
+            "operator": "*",
+            "result": 540,
+            "right": 30
+          },
+          "label": "a",
+          "probability": 0.8738926205852167
+        },
+        {
+          "action": {
+            "left": 18,
+            "operator": "+",
+            "result": 48,
+            "right": 30
+          },
+          "label": "b",
+          "probability": 0.018422679891180595
+        },
+        {
+          "action": {
+            "left": 30,
+            "operator": "-",
+            "result": 12,
+            "right": 18
+          },
+          "label": "c",
+          "probability": 0.10768469952360264
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          18,
+          30
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 20,
+            "operator": "+",
+            "result": 45,
+            "right": 25
+          },
+          "label": "a",
+          "probability": 0.22829509575747362
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 5,
+            "right": 20
+          },
+          "label": "b",
+          "probability": 0.7603387607020009
+        },
+        {
+          "action": {
+            "left": 20,
+            "operator": "*",
+            "result": 500,
+            "right": 25
+          },
+          "label": "c",
+          "probability": 0.011366143540525384
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          20,
+          25
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 35,
+            "operator": "-",
+            "result": 14,
+            "right": 21
+          },
+          "label": "a",
+          "probability": 0.9985094607493181
+        },
+        {
+          "action": {
+            "left": 21,
+            "operator": "+",
+            "result": 56,
+            "right": 35
+          },
+          "label": "b",
+          "probability": 0.001388381427174276
+        },
+        {
+          "action": {
+            "left": 21,
+            "operator": "*",
+            "result": 735,
+            "right": 35
+          },
+          "label": "c",
+          "probability": 0.00010215782350751089
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          21,
+          35
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 21,
+            "operator": "+",
+            "result": 271,
+            "right": 250
+          },
+          "label": "a",
+          "probability": 0.050292793205329055
+        },
+        {
+          "action": {
+            "left": 250,
+            "operator": "-",
+            "result": 229,
+            "right": 21
+          },
+          "label": "b",
+          "probability": 0.9489553904515217
+        },
+        {
+          "action": {
+            "left": 21,
+            "operator": "*",
+            "result": 5250,
+            "right": 250
+          },
+          "label": "c",
+          "probability": 0.0007518163431494061
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          21,
+          250
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 70,
+            "operator": "-",
+            "result": 48,
+            "right": 22
+          },
+          "label": "a",
+          "probability": 0.9989896163678857
+        },
+        {
+          "action": {
+            "left": 22,
+            "operator": "+",
+            "result": 92,
+            "right": 70
+          },
+          "label": "b",
+          "probability": 0.0008039199210629613
+        },
+        {
+          "action": {
+            "left": 22,
+            "operator": "*",
+            "result": 1540,
+            "right": 70
+          },
+          "label": "c",
+          "probability": 0.00020646371105132418
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          22,
+          70
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 23,
+            "operator": "*",
+            "result": 575,
+            "right": 25
+          },
+          "label": "a",
+          "probability": 0.9743471519663175
+        },
+        {
+          "action": {
+            "left": 23,
+            "operator": "+",
+            "result": 48,
+            "right": 25
+          },
+          "label": "b",
+          "probability": 0.016248777237102458
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 2,
+            "right": 23
+          },
+          "label": "c",
+          "probability": 0.00940407079658014
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          23,
+          25
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 31,
+            "operator": "-",
+            "result": 6,
+            "right": 25
+          },
+          "label": "a",
+          "probability": 0.9972282450462053
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "+",
+            "result": 56,
+            "right": 31
+          },
+          "label": "b",
+          "probability": 0.002471881683041454
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "*",
+            "result": 775,
+            "right": 31
+          },
+          "label": "c",
+          "probability": 0.0002998732707532934
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          25,
+          31
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 25,
+            "operator": "*",
+            "result": 925,
+            "right": 37
+          },
+          "label": "a",
+          "probability": 0.9248585976997157
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "+",
+            "result": 62,
+            "right": 37
+          },
+          "label": "b",
+          "probability": 0.004929639484356702
+        },
+        {
+          "action": {
+            "left": 37,
+            "operator": "-",
+            "result": 12,
+            "right": 25
+          },
+          "label": "c",
+          "probability": 0.07021176281592782
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          25,
+          37
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 25,
+            "operator": "+",
+            "result": 65,
+            "right": 40
+          },
+          "label": "a",
+          "probability": 0.17129948976626994
+        },
+        {
+          "action": {
+            "left": 40,
+            "operator": "-",
+            "result": 15,
+            "right": 25
+          },
+          "label": "b",
+          "probability": 0.8172241598820636
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "*",
+            "result": 1000,
+            "right": 40
+          },
+          "label": "c",
+          "probability": 0.01147635035166641
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          25,
+          40
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 49,
+            "operator": "-",
+            "result": 24,
+            "right": 25
+          },
+          "label": "a",
+          "probability": 0.9978031761832782
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "*",
+            "result": 1225,
+            "right": 49
+          },
+          "label": "b",
+          "probability": 0.0019873578413196354
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "+",
+            "result": 74,
+            "right": 49
+          },
+          "label": "c",
+          "probability": 0.0002094659754020302
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          25,
+          49
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 25,
+            "operator": "+",
+            "result": 76,
+            "right": 51
+          },
+          "label": "a",
+          "probability": 0.08595976691031429
+        },
+        {
+          "action": {
+            "left": 51,
+            "operator": "-",
+            "result": 26,
+            "right": 25
+          },
+          "label": "b",
+          "probability": 0.9098268986604067
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "*",
+            "result": 1275,
+            "right": 51
+          },
+          "label": "c",
+          "probability": 0.004213334429278931
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          25,
+          51
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 25,
+            "operator": "*",
+            "result": 1675,
+            "right": 67
+          },
+          "label": "a",
+          "probability": 0.7324082246644655
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "+",
+            "result": 92,
+            "right": 67
+          },
+          "label": "b",
+          "probability": 0.002331094832667799
+        },
+        {
+          "action": {
+            "left": 67,
+            "operator": "-",
+            "result": 42,
+            "right": 25
+          },
+          "label": "c",
+          "probability": 0.26526068050286666
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          25,
+          67
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 25,
+            "operator": "+",
+            "result": 98,
+            "right": 73
+          },
+          "label": "a",
+          "probability": 0.05982624672297648
+        },
+        {
+          "action": {
+            "left": 73,
+            "operator": "-",
+            "result": 48,
+            "right": 25
+          },
+          "label": "b",
+          "probability": 0.93583995450014
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "*",
+            "result": 1825,
+            "right": 73
+          },
+          "label": "c",
+          "probability": 0.004333798776883599
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          25,
+          73
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 25,
+            "operator": "*",
+            "result": 2275,
+            "right": 91
+          },
+          "label": "a",
+          "probability": 0.8869516704694789
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "+",
+            "result": 116,
+            "right": 91
+          },
+          "label": "b",
+          "probability": 0.002033310990799668
+        },
+        {
+          "action": {
+            "left": 91,
+            "operator": "-",
+            "result": 66,
+            "right": 25
+          },
+          "label": "c",
+          "probability": 0.11101501853972144
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          25,
+          91
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 25,
+            "operator": "+",
+            "result": 125,
+            "right": 100
+          },
+          "label": "a",
+          "probability": 0.07357832950448062
+        },
+        {
+          "action": {
+            "left": 100,
+            "operator": "-",
+            "result": 75,
+            "right": 25
+          },
+          "label": "b",
+          "probability": 0.9248213153888326
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "*",
+            "result": 2500,
+            "right": 100
+          },
+          "label": "c",
+          "probability": 0.0016003551066868264
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          25,
+          100
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 210,
+            "operator": "-",
+            "result": 185,
+            "right": 25
+          },
+          "label": "a",
+          "probability": 0.9948656941222978
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "+",
+            "result": 235,
+            "right": 210
+          },
+          "label": "b",
+          "probability": 0.004981508452434461
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "*",
+            "result": 5250,
+            "right": 210
+          },
+          "label": "c",
+          "probability": 0.0001527974252677336
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          25,
+          210
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 70,
+            "operator": "-",
+            "result": 42,
+            "right": 28
+          },
+          "label": "a",
+          "probability": 0.9989515745770602
+        },
+        {
+          "action": {
+            "left": 28,
+            "operator": "+",
+            "result": 98,
+            "right": 70
+          },
+          "label": "b",
+          "probability": 0.0007791562337448896
+        },
+        {
+          "action": {
+            "left": 28,
+            "operator": "*",
+            "result": 1960,
+            "right": 70
+          },
+          "label": "c",
+          "probability": 0.0002692691891949375
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          28,
+          70
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 32,
+            "operator": "-",
+            "result": 2,
+            "right": 30
+          },
+          "label": "a",
+          "probability": 0.9934712400370325
+        },
+        {
+          "action": {
+            "left": 30,
+            "operator": "+",
+            "result": 62,
+            "right": 32
+          },
+          "label": "b",
+          "probability": 0.0056368765755589
+        },
+        {
+          "action": {
+            "left": 30,
+            "operator": "*",
+            "result": 960,
+            "right": 32
+          },
+          "label": "c",
+          "probability": 0.0008918833874086344
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          30,
+          32
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 30,
+            "operator": "*",
+            "result": 5250,
+            "right": 175
+          },
+          "label": "a",
+          "probability": 0.8614216443563109
+        },
+        {
+          "action": {
+            "left": 30,
+            "operator": "+",
+            "result": 205,
+            "right": 175
+          },
+          "label": "b",
+          "probability": 0.006475067933923294
+        },
+        {
+          "action": {
+            "left": 175,
+            "operator": "-",
+            "result": 145,
+            "right": 30
+          },
+          "label": "c",
+          "probability": 0.13210328770976582
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          30,
+          175
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 70,
+            "operator": "*",
+            "result": 5250,
+            "right": 75
+          },
+          "label": "a",
+          "probability": 0.9304301579682829
+        },
+        {
+          "action": {
+            "left": 70,
+            "operator": "+",
+            "result": 145,
+            "right": 75
+          },
+          "label": "b",
+          "probability": 0.013693167895152937
+        },
+        {
+          "action": {
+            "left": 75,
+            "operator": "-",
+            "result": 5,
+            "right": 70
+          },
+          "label": "c",
+          "probability": 0.055876674136564136
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          70,
+          75
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 28,
+            "right": 25
+          },
+          "label": "a",
+          "probability": 0.7352456137251328
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 9,
+            "right": 3
+          },
+          "label": "b",
+          "probability": 0.01188413849841888
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 75,
+            "right": 25
+          },
+          "label": "c",
+          "probability": 0.01456075086335994
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 6,
+            "right": 3
+          },
+          "label": "d",
+          "probability": 0.0716705276163228
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 22,
+            "right": 3
+          },
+          "label": "e",
+          "probability": 0.16663896929676567
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          3,
+          25
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 105,
+            "right": 15
+          },
+          "label": "a",
+          "probability": 0.2542311777998268
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 22,
+            "right": 15
+          },
+          "label": "b",
+          "probability": 0.0016092110082674355
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 21,
+            "right": 7
+          },
+          "label": "c",
+          "probability": 0.001105993473294619
+        },
+        {
+          "action": {
+            "left": 15,
+            "operator": "-",
+            "result": 12,
+            "right": 3
+          },
+          "label": "d",
+          "probability": 0.18892856901506896
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 10,
+            "right": 7
+          },
+          "label": "e",
+          "probability": 0.0047297341786251895
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 18,
+            "right": 15
+          },
+          "label": "f",
+          "probability": 0.0009169007938787161
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "-",
+            "result": 4,
+            "right": 3
+          },
+          "label": "g",
+          "probability": 0.08649780188686945
+        },
+        {
+          "action": {
+            "left": 15,
+            "operator": "-",
+            "result": 8,
+            "right": 7
+          },
+          "label": "h",
+          "probability": 0.36990418102702144
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 45,
+            "right": 15
+          },
+          "label": "i",
+          "probability": 0.09207643081714731
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          7,
+          15
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 35,
+            "operator": "-",
+            "result": 32,
+            "right": 3
+          },
+          "label": "a",
+          "probability": 0.040214195172435005
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 10,
+            "right": 7
+          },
+          "label": "b",
+          "probability": 0.0014420923027415147
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 38,
+            "right": 35
+          },
+          "label": "c",
+          "probability": 0.00036461803493830066
+        },
+        {
+          "action": {
+            "left": 35,
+            "operator": "-",
+            "result": 28,
+            "right": 7
+          },
+          "label": "d",
+          "probability": 0.026788429173700622
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "-",
+            "result": 4,
+            "right": 3
+          },
+          "label": "e",
+          "probability": 0.0004131663622506014
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 21,
+            "right": 7
+          },
+          "label": "f",
+          "probability": 0.00241505013575768
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 42,
+            "right": 35
+          },
+          "label": "g",
+          "probability": 0.06840665033602727
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 245,
+            "right": 35
+          },
+          "label": "h",
+          "probability": 0.8598174050860471
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 105,
+            "right": 35
+          },
+          "label": "i",
+          "probability": 0.0001383933961020249
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          7,
+          35
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 7,
+            "operator": "-",
+            "result": 4,
+            "right": 3
+          },
+          "label": "a",
+          "probability": 0.5937720253815075
+        },
+        {
+          "action": {
+            "left": 250,
+            "operator": "-",
+            "result": 247,
+            "right": 3
+          },
+          "label": "b",
+          "probability": 0.0058211361067615425
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 253,
+            "right": 250
+          },
+          "label": "c",
+          "probability": 0.001471813700358004
+        },
+        {
+          "action": {
+            "left": 250,
+            "operator": "-",
+            "result": 243,
+            "right": 7
+          },
+          "label": "d",
+          "probability": 0.03456167641162447
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 750,
+            "right": 250
+          },
+          "label": "e",
+          "probability": 0.001361205154051451
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 1750,
+            "right": 250
+          },
+          "label": "f",
+          "probability": 0.001319325274247158
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 10,
+            "right": 7
+          },
+          "label": "g",
+          "probability": 0.3128958695486894
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 21,
+            "right": 7
+          },
+          "label": "h",
+          "probability": 0.047984135700554334
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 257,
+            "right": 250
+          },
+          "label": "i",
+          "probability": 0.0008128127222062091
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          7,
+          250
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 13,
+            "right": 10
+          },
+          "label": "a",
+          "probability": 0.0736119475679115
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 54,
+            "right": 18
+          },
+          "label": "b",
+          "probability": 0.0015762637691545166
+        },
+        {
+          "action": {
+            "left": 18,
+            "operator": "-",
+            "result": 8,
+            "right": 10
+          },
+          "label": "c",
+          "probability": 0.0039012902963889394
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 180,
+            "right": 18
+          },
+          "label": "d",
+          "probability": 0.0033894997483548406
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 30,
+            "right": 10
+          },
+          "label": "e",
+          "probability": 0.0018142684772691697
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 28,
+            "right": 18
+          },
+          "label": "f",
+          "probability": 0.0008569997463543277
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 7,
+            "right": 3
+          },
+          "label": "g",
+          "probability": 0.11948398476010022
+        },
+        {
+          "action": {
+            "left": 18,
+            "operator": "-",
+            "result": 15,
+            "right": 3
+          },
+          "label": "h",
+          "probability": 0.7914030189553779
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 21,
+            "right": 18
+          },
+          "label": "i",
+          "probability": 0.003962726679088537
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          10,
+          18
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 13,
+            "right": 10
+          },
+          "label": "a",
+          "probability": 0.07044588685925435
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 35,
+            "right": 32
+          },
+          "label": "b",
+          "probability": 0.0013105800858308632
+        },
+        {
+          "action": {
+            "left": 32,
+            "operator": "-",
+            "result": 29,
+            "right": 3
+          },
+          "label": "c",
+          "probability": 0.015474907680150711
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 7,
+            "right": 3
+          },
+          "label": "d",
+          "probability": 0.010308510877358729
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 42,
+            "right": 32
+          },
+          "label": "e",
+          "probability": 0.0017093186704975197
+        },
+        {
+          "action": {
+            "left": 32,
+            "operator": "-",
+            "result": 22,
+            "right": 10
+          },
+          "label": "f",
+          "probability": 0.0018773192958581552
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 30,
+            "right": 10
+          },
+          "label": "g",
+          "probability": 0.8062104823840035
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 320,
+            "right": 32
+          },
+          "label": "h",
+          "probability": 0.08631210483136949
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 96,
+            "right": 32
+          },
+          "label": "i",
+          "probability": 0.006350889315676517
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          10,
+          32
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 185,
+            "right": 175
+          },
+          "label": "a",
+          "probability": 0.5863207487891277
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 13,
+            "right": 10
+          },
+          "label": "b",
+          "probability": 0.0037112434890655363
+        },
+        {
+          "action": {
+            "left": 175,
+            "operator": "-",
+            "result": 165,
+            "right": 10
+          },
+          "label": "c",
+          "probability": 0.01826738067768796
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 7,
+            "right": 3
+          },
+          "label": "d",
+          "probability": 0.02069965415650495
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 525,
+            "right": 175
+          },
+          "label": "e",
+          "probability": 0.010907951216622733
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 30,
+            "right": 10
+          },
+          "label": "f",
+          "probability": 0.0028903193354528926
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 1750,
+            "right": 175
+          },
+          "label": "g",
+          "probability": 0.20262702882552985
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 178,
+            "right": 175
+          },
+          "label": "h",
+          "probability": 0.14594677387168117
+        },
+        {
+          "action": {
+            "left": 175,
+            "operator": "-",
+            "result": 172,
+            "right": 3
+          },
+          "label": "i",
+          "probability": 0.008628899638327284
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          10,
+          175
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 22,
+            "right": 3
+          },
+          "label": "a",
+          "probability": 0.7238859380229125
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 20,
+            "right": 17
+          },
+          "label": "b",
+          "probability": 0.00300494371032605
+        },
+        {
+          "action": {
+            "left": 17,
+            "operator": "*",
+            "result": 425,
+            "right": 25
+          },
+          "label": "c",
+          "probability": 0.0021984637825794486
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 75,
+            "right": 25
+          },
+          "label": "d",
+          "probability": 0.006070153152497618
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 51,
+            "right": 17
+          },
+          "label": "e",
+          "probability": 0.003568458949561356
+        },
+        {
+          "action": {
+            "left": 17,
+            "operator": "+",
+            "result": 42,
+            "right": 25
+          },
+          "label": "f",
+          "probability": 0.012651285566333374
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 8,
+            "right": 17
+          },
+          "label": "g",
+          "probability": 0.21398027455719132
+        },
+        {
+          "action": {
+            "left": 17,
+            "operator": "-",
+            "result": 14,
+            "right": 3
+          },
+          "label": "h",
+          "probability": 0.033856595856327575
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 28,
+            "right": 25
+          },
+          "label": "i",
+          "probability": 0.0007838864022706985
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          17,
+          25
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 22,
+            "right": 3
+          },
+          "label": "a",
+          "probability": 0.6927152975641838
+        },
+        {
+          "action": {
+            "left": 70,
+            "operator": "-",
+            "result": 45,
+            "right": 25
+          },
+          "label": "b",
+          "probability": 0.003523197960793002
+        },
+        {
+          "action": {
+            "left": 70,
+            "operator": "-",
+            "result": 67,
+            "right": 3
+          },
+          "label": "c",
+          "probability": 0.00044097993155536104
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "+",
+            "result": 95,
+            "right": 70
+          },
+          "label": "d",
+          "probability": 0.0012175846347481157
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 210,
+            "right": 70
+          },
+          "label": "e",
+          "probability": 0.0009482558669975428
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "*",
+            "result": 1750,
+            "right": 70
+          },
+          "label": "f",
+          "probability": 0.004453739537325828
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 73,
+            "right": 70
+          },
+          "label": "g",
+          "probability": 0.23203056037651235
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 75,
+            "right": 25
+          },
+          "label": "h",
+          "probability": 0.0634336253251282
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 28,
+            "right": 25
+          },
+          "label": "i",
+          "probability": 0.0012367588027557552
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          25,
+          70
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 4,
+            "operator": "*",
+            "result": 100,
+            "right": 25
+          },
+          "label": "a",
+          "probability": 0.737724783797855
+        },
+        {
+          "action": {
+            "left": 4,
+            "operator": "*",
+            "result": 40,
+            "right": 10
+          },
+          "label": "b",
+          "probability": 0.006186198939403119
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 15,
+            "right": 10
+          },
+          "label": "c",
+          "probability": 0.003363378024484801
+        },
+        {
+          "action": {
+            "left": 4,
+            "operator": "+",
+            "result": 14,
+            "right": 10
+          },
+          "label": "d",
+          "probability": 0.0027883383177459715
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 21,
+            "right": 4
+          },
+          "label": "e",
+          "probability": 0.05688722694190718
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 6,
+            "right": 4
+          },
+          "label": "f",
+          "probability": 0.00341634352148125
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 35,
+            "right": 25
+          },
+          "label": "g",
+          "probability": 0.07304464527829249
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 250,
+            "right": 25
+          },
+          "label": "h",
+          "probability": 0.11137978338874789
+        },
+        {
+          "action": {
+            "left": 4,
+            "operator": "+",
+            "result": 29,
+            "right": 25
+          },
+          "label": "i",
+          "probability": 0.005209301790082275
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          4,
+          10,
+          25
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 49,
+            "right": 7
+          },
+          "label": "a",
+          "probability": 0.9232741374116853
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 175,
+            "right": 25
+          },
+          "label": "b",
+          "probability": 0.0032273978629018788
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 18,
+            "right": 7
+          },
+          "label": "c",
+          "probability": 0.0608965301773682
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 32,
+            "right": 25
+          },
+          "label": "d",
+          "probability": 0.010418167918975128
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 14,
+            "right": 7
+          },
+          "label": "e",
+          "probability": 0.0021837666290694425
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          7,
+          25
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 29,
+            "right": 22
+          },
+          "label": "a",
+          "probability": 0.1797201249354936
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 220,
+            "right": 22
+          },
+          "label": "b",
+          "probability": 0.004789379102707938
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 154,
+            "right": 22
+          },
+          "label": "c",
+          "probability": 0.003240656002991882
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 70,
+            "right": 10
+          },
+          "label": "d",
+          "probability": 0.010962997946375532
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 3,
+            "right": 7
+          },
+          "label": "e",
+          "probability": 0.00789635120008127
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 17,
+            "right": 10
+          },
+          "label": "f",
+          "probability": 0.0031904142885056963
+        },
+        {
+          "action": {
+            "left": 22,
+            "operator": "-",
+            "result": 12,
+            "right": 10
+          },
+          "label": "g",
+          "probability": 0.29171455692114445
+        },
+        {
+          "action": {
+            "left": 22,
+            "operator": "-",
+            "result": 15,
+            "right": 7
+          },
+          "label": "h",
+          "probability": 0.4962231771061837
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 32,
+            "right": 22
+          },
+          "label": "i",
+          "probability": 0.002262342496516003
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          10,
+          22
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 35,
+            "right": 28
+          },
+          "label": "a",
+          "probability": 0.307162356870389
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 280,
+            "right": 28
+          },
+          "label": "b",
+          "probability": 0.004381435706438733
+        },
+        {
+          "action": {
+            "left": 28,
+            "operator": "-",
+            "result": 21,
+            "right": 7
+          },
+          "label": "c",
+          "probability": 0.05681932277271155
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 17,
+            "right": 10
+          },
+          "label": "d",
+          "probability": 0.0024196586041125346
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 3,
+            "right": 7
+          },
+          "label": "e",
+          "probability": 0.003307281184788639
+        },
+        {
+          "action": {
+            "left": 28,
+            "operator": "-",
+            "result": 18,
+            "right": 10
+          },
+          "label": "f",
+          "probability": 0.006083021060584272
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 196,
+            "right": 28
+          },
+          "label": "g",
+          "probability": 0.5475761055144539
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 38,
+            "right": 28
+          },
+          "label": "h",
+          "probability": 0.07071278970029153
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 70,
+            "right": 10
+          },
+          "label": "i",
+          "probability": 0.0015380285862298876
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          10,
+          28
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 3,
+            "right": 7
+          },
+          "label": "a",
+          "probability": 0.6753420999677615
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 525,
+            "right": 75
+          },
+          "label": "b",
+          "probability": 0.0025927507486946558
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 82,
+            "right": 75
+          },
+          "label": "c",
+          "probability": 0.000596885114132268
+        },
+        {
+          "action": {
+            "left": 75,
+            "operator": "-",
+            "result": 68,
+            "right": 7
+          },
+          "label": "d",
+          "probability": 0.28595783710788547
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 70,
+            "right": 10
+          },
+          "label": "e",
+          "probability": 0.000968840171151771
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 750,
+            "right": 75
+          },
+          "label": "f",
+          "probability": 0.000403872670491999
+        },
+        {
+          "action": {
+            "left": 75,
+            "operator": "-",
+            "result": 65,
+            "right": 10
+          },
+          "label": "g",
+          "probability": 0.02104092555697231
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 17,
+            "right": 10
+          },
+          "label": "h",
+          "probability": 0.012761966459034824
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 85,
+            "right": 75
+          },
+          "label": "i",
+          "probability": 0.0003348222038751453
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          10,
+          75
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 13,
+            "operator": "+",
+            "result": 38,
+            "right": 25
+          },
+          "label": "a",
+          "probability": 0.486069818242033
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 12,
+            "right": 13
+          },
+          "label": "b",
+          "probability": 0.058052761177510896
+        },
+        {
+          "action": {
+            "left": 13,
+            "operator": "-",
+            "result": 6,
+            "right": 7
+          },
+          "label": "c",
+          "probability": 0.003653652208958283
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 18,
+            "right": 7
+          },
+          "label": "d",
+          "probability": 0.06893935964882321
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 20,
+            "right": 13
+          },
+          "label": "e",
+          "probability": 0.004618649159019368
+        },
+        {
+          "action": {
+            "left": 13,
+            "operator": "*",
+            "result": 325,
+            "right": 25
+          },
+          "label": "f",
+          "probability": 0.01179413380296306
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 91,
+            "right": 13
+          },
+          "label": "g",
+          "probability": 0.30417471980727423
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 32,
+            "right": 25
+          },
+          "label": "h",
+          "probability": 0.059895553632016714
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 175,
+            "right": 25
+          },
+          "label": "i",
+          "probability": 0.002801352321401217
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          13,
+          25
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 25,
+            "operator": "+",
+            "result": 55,
+            "right": 30
+          },
+          "label": "a",
+          "probability": 0.17310889006574487
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 175,
+            "right": 25
+          },
+          "label": "b",
+          "probability": 0.004834587543427891
+        },
+        {
+          "action": {
+            "left": 30,
+            "operator": "-",
+            "result": 23,
+            "right": 7
+          },
+          "label": "c",
+          "probability": 0.14351231048039234
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 210,
+            "right": 30
+          },
+          "label": "d",
+          "probability": 0.005478305396051463
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 32,
+            "right": 25
+          },
+          "label": "e",
+          "probability": 0.005146391651132297
+        },
+        {
+          "action": {
+            "left": 30,
+            "operator": "-",
+            "result": 5,
+            "right": 25
+          },
+          "label": "f",
+          "probability": 0.04309020972868473
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 37,
+            "right": 30
+          },
+          "label": "g",
+          "probability": 0.4779689722816577
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "*",
+            "result": 750,
+            "right": 30
+          },
+          "label": "h",
+          "probability": 0.13694040330903018
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 18,
+            "right": 7
+          },
+          "label": "i",
+          "probability": 0.00991992954387855
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          7,
+          25,
+          30
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 250,
+            "right": 25
+          },
+          "label": "a",
+          "probability": 0.9687334374578387
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 100,
+            "right": 10
+          },
+          "label": "b",
+          "probability": 0.0037776966940265564
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 15,
+            "right": 10
+          },
+          "label": "c",
+          "probability": 0.023141197802249016
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 35,
+            "right": 25
+          },
+          "label": "d",
+          "probability": 0.003282119765764639
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 20,
+            "right": 10
+          },
+          "label": "e",
+          "probability": 0.001065548280121099
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          10,
+          10,
+          25
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 210,
+            "right": 21
+          },
+          "label": "a",
+          "probability": 0.43217448100363565
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 35,
+            "right": 25
+          },
+          "label": "b",
+          "probability": 0.003099774596106451
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 4,
+            "right": 21
+          },
+          "label": "c",
+          "probability": 0.0073206886243563744
+        },
+        {
+          "action": {
+            "left": 21,
+            "operator": "*",
+            "result": 525,
+            "right": 25
+          },
+          "label": "d",
+          "probability": 0.017289154508878486
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 31,
+            "right": 21
+          },
+          "label": "e",
+          "probability": 0.0012721449310272217
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 250,
+            "right": 25
+          },
+          "label": "f",
+          "probability": 0.015257625302391758
+        },
+        {
+          "action": {
+            "left": 21,
+            "operator": "-",
+            "result": 11,
+            "right": 10
+          },
+          "label": "g",
+          "probability": 0.2009797984761119
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 15,
+            "right": 10
+          },
+          "label": "h",
+          "probability": 0.321164803496822
+        },
+        {
+          "action": {
+            "left": 21,
+            "operator": "+",
+            "result": 46,
+            "right": 25
+          },
+          "label": "i",
+          "probability": 0.0014415290606703008
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          10,
+          21,
+          25
+        ]
+      }
+    },
+    {
+      "menu": [
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 3,
+            "right": 7
+          },
+          "label": "a",
+          "probability": 0.2990908619259301
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 18,
+            "right": 7
+          },
+          "label": "b",
+          "probability": 0.005309498642917527
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 32,
+            "right": 25
+          },
+          "label": "c",
+          "probability": 0.0010786900769412303
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 22,
+            "right": 3
+          },
+          "label": "d",
+          "probability": 0.007371508845501886
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "-",
+            "result": 7,
+            "right": 3
+          },
+          "label": "e",
+          "probability": 0.0002948974569194298
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 13,
+            "right": 10
+          },
+          "label": "f",
+          "probability": 0.00019953760049870657
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "+",
+            "result": 17,
+            "right": 10
+          },
+          "label": "g",
+          "probability": 0.023795522036938268
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 75,
+            "right": 25
+          },
+          "label": "h",
+          "probability": 0.07925118879926926
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "+",
+            "result": 35,
+            "right": 25
+          },
+          "label": "i",
+          "probability": 0.03152394492053266
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 70,
+            "right": 10
+          },
+          "label": "j",
+          "probability": 0.04586706921427209
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 21,
+            "right": 7
+          },
+          "label": "k",
+          "probability": 0.19011371882808903
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "*",
+            "result": 175,
+            "right": 25
+          },
+          "label": "l",
+          "probability": 0.0955951812322518
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "*",
+            "result": 30,
+            "right": 10
+          },
+          "label": "m",
+          "probability": 0.11176208974354238
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 28,
+            "right": 25
+          },
+          "label": "n",
+          "probability": 0.02003783854305289
+        },
+        {
+          "action": {
+            "left": 7,
+            "operator": "-",
+            "result": 4,
+            "right": 3
+          },
+          "label": "o",
+          "probability": 0.0032710872214303482
+        },
+        {
+          "action": {
+            "left": 25,
+            "operator": "-",
+            "result": 15,
+            "right": 10
+          },
+          "label": "p",
+          "probability": 0.0234266066620494
+        },
+        {
+          "action": {
+            "left": 3,
+            "operator": "+",
+            "result": 10,
+            "right": 7
+          },
+          "label": "q",
+          "probability": 0.034622280270103396
+        },
+        {
+          "action": {
+            "left": 10,
+            "operator": "*",
+            "result": 250,
+            "right": 25
+          },
+          "label": "r",
+          "probability": 0.02738847797975936
+        }
+      ],
+      "state": {
+        "target": 245,
+        "values": [
+          3,
+          7,
+          10,
+          25
+        ]
+      }
+    }
+  ]
+}

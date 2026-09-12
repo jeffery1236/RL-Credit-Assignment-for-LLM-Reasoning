@@ -47,8 +47,134 @@ The exact oracle in this repository (`oracle/evaluation.py`) rests on one assump
 When you build the Phase 2 LLM policy:
 
 - **The prompt must be rendered from the current state only** — no trajectory history, no carried-over chain-of-thought. If history is included, history becomes part of the policy's actual state, the merged-state DAG is no longer valid for that policy, and `Vπ`/`Qπ`/`Aπ` must **not** be computed over merged nodes for it.
-- **The randomized action-menu ordering** (needed so the model can't learn "option B is usually right") must be seeded from a **stable hash of the canonical state** — e.g. `hashlib.blake2b` of its canonical representation — **never** Python's built-in `hash()`, which is randomly salted per process and would make the same state produce a different menu on every run.
+- **The randomized action-menu ordering** (needed so the model can't learn "option B is usually right") must be seeded from a **stable hash of the canonical state** — e.g. `hashlib.blake2b` of its canonical representation — **never** Python's built-in `hash()`, which is randomized per process and would make the same state produce a different menu on every run.
 - **Exact evaluation requires forced-choice, single-token logprobs.** If Phase 2 instead samples free-form chain-of-thought before the model commits to a choice, `π(a|s)` becomes the *marginal* over CoT samples — still a valid stationary policy in principle, but now something you must *estimate* (Monte Carlo), not read exactly. Keep the two evaluation modes clearly labeled in any downstream analysis.
+
+---
+
+## Two LLM evaluation modes
+
+`experiments.evaluate_allowed_action_llm_policy` is the exact-credit mode. It
+shows only the current state, requires one allowed-action label, and keeps
+thinking disabled so the merged-state DAG remains valid.
+
+`experiments.evaluate_countdown_capability` is a separate literature-style
+model check. It asks for a complete expression using every number once,
+samples 32 responses per problem at temperature `0.6`, and reports accuracy,
+Pass@32, All-correct@32, format rate, and valid-equation rate. Its free-form
+outputs must never be passed to the exact credit oracle.
+
+Example:
+
+```bash
+uv run python -m experiments.evaluate_countdown_capability \
+  --model Qwen/Qwen3.5-4B \
+  --output artifacts/phase2/capability/qwen3.5-4b \
+  --samples-per-problem 32 \
+  --temperature 0.6 \
+  --max-new-tokens 1024 \
+  --generation-batch-size 1 \
+  --device mps
+```
+
+For the complete 12-problem, 32-sample evaluation, use the prepared Cloud Run
+Job with one NVIDIA L4:
+
+```bash
+brew install --cask google-cloud-sdk
+gcloud init
+gcloud auth login
+
+PROJECT_ID=your-billed-project \
+  scripts/cloud_run_countdown_capability.sh deploy
+
+PROJECT_ID=your-billed-project \
+  scripts/cloud_run_countdown_capability.sh execute
+
+PROJECT_ID=your-billed-project \
+  scripts/cloud_run_countdown_capability.sh download
+```
+
+The job mounts Cloud Storage at `/results`, checkpoints after each completed
+problem, and can resume across Cloud Run retries.
+The configured non-zonal L4, 8-vCPU, 32-GiB instance costs approximately
+`$1.42` per active hour in `us-central1`. The project needs quota for one
+non-zonal Cloud Run L4 GPU.
+
+## Generic RunPod experiments
+
+`scripts/runpod_experiment.sh` builds the CUDA image, launches an arbitrary
+repository experiment, follows its completion, downloads the complete output
+directory, and terminates successful Pods. Failed runs download partial
+artifacts and leave the Pod running for inspection.
+
+Configure `runpodctl`, then build the CUDA image. The build pushes to this
+project's Artifact Registry repository by default; override `IMAGE` only to
+publish somewhere else.
+
+```bash
+runpodctl doctor
+
+scripts/runpod_experiment.sh build
+```
+
+The general form is:
+
+```bash
+scripts/runpod_experiment.sh run RUN_NAME LOCAL_OUTPUT -- \
+  python -m experiments.EXPERIMENT [arguments writing to /workspace/results]
+```
+
+Named runs can also be managed separately:
+
+```bash
+scripts/runpod_experiment.sh submit RUN_NAME LOCAL_OUTPUT -- COMMAND [ARG...]
+scripts/runpod_experiment.sh status RUN_NAME
+scripts/runpod_experiment.sh logs RUN_NAME
+scripts/runpod_experiment.sh wait RUN_NAME
+scripts/runpod_experiment.sh download RUN_NAME
+scripts/runpod_experiment.sh terminate RUN_NAME
+```
+
+For staged experiments, set `NETWORK_VOLUME_ID` on every command so
+`/workspace/results` persists between Pods. For example, run policy-bridge
+Stage A:
+
+```bash
+export NETWORK_VOLUME_ID=YOUR_RUNPOD_NETWORK_VOLUME_ID
+
+scripts/runpod_experiment.sh run policy-bridge-stage-a \
+  artifacts/phase2/policy-bridge/qwen3.5-4b -- \
+  python -m experiments.evaluate_policy_bridge stage-a \
+  --output /workspace/results \
+  --model Qwen/Qwen3.5-4B \
+  --device cuda
+```
+
+Inspect the downloaded Stage A gate:
+
+```bash
+python -c '
+import json
+from pathlib import Path
+p = Path("artifacts/phase2/policy-bridge/qwen3.5-4b/policy_bridge_stage_a.json")
+print(json.loads(p.read_text())["aggregate"]["gate"])
+'
+```
+
+Only after that gate passes, reuse the same network volume for Stage B:
+
+```bash
+scripts/runpod_experiment.sh run policy-bridge-stage-b \
+  artifacts/phase2/policy-bridge/qwen3.5-4b -- \
+  python -m experiments.evaluate_policy_bridge stage-b \
+  --output /workspace/results \
+  --model Qwen/Qwen3.5-4B \
+  --device cuda
+```
+
+The previous capability-specific launcher remains as a compatibility wrapper
+around this generic helper.
 
 ---
 

@@ -542,17 +542,27 @@ Then ask:
 
 # 10. Model
 
-Start with:
+The original plan started with:
 
 **Qwen3-0.6B**
 
-It is small enough for inexpensive experimentation while retaining reasoning capability, and an official 0.6B checkpoint is publicly available.
+It was inexpensive enough to validate the Phase 2 pipeline, but the completed
+experiment showed that it is not suitable as the primary research policy. Its
+choices changed sharply when the same actions were assigned different option
+labels, and it displayed a strong preference for early labels.
 
-Do **not** begin with a 7B model.
+The revised primary model is:
 
-The purpose of the first month is understanding the phenomenon, not maximizing benchmark accuracy.
+**Qwen3.5-4B**
 
-Only scale to roughly a 1–3B model if V1 produces a result worth testing for robustness.
+It demonstrated useful Countdown capability in the literature-style check while
+remaining inexpensive enough for repeated policy evaluation. Use Qwen3.5-9B as
+a robustness comparison where the additional cost is justified; do not assume
+that parameter count alone makes its constrained policy better.
+
+The purpose remains understanding the phenomenon rather than maximizing
+benchmark accuracy. Model capability is a prerequisite for a meaningful credit
+experiment, not the dependent variable the project is trying to optimize.
 
 ---
 
@@ -815,6 +825,150 @@ This is the first “aha” visualization of the project.
 
 ---
 
+# 15.1 Phase 2 findings and revised validity gate
+
+Phase 2 produced two deliberately different evaluations.
+
+## Exact-credit mode
+
+The model saw only the current state and a labeled menu of legal actions.
+Complete-DAG policies were evaluated for the worked problem
+`(3, 7, 10, 25) → 245` under five deterministic menu orderings.
+
+Observed root success probabilities were:
+
+```text
+Qwen3-0.6B      approximately 0.00%–17.70%
+Qwen3.5-4B      approximately 0.89%–11.06%
+Qwen3.5-9B      approximately 1.06%–5.30%
+```
+
+Qwen3-0.6B changed behavior drastically across menu orderings and strongly
+preferred early option labels. Qwen3.5-4B and Qwen3.5-9B were more stable in
+which arithmetic move they preferred, but their probabilities still changed
+meaningfully with menu order. Both larger models most often preferred
+`10 × 25 = 250`, a tempting but losing move, rather than the unique winning
+first move `10 + 25 = 35`.
+
+The numerical dynamic-programming value for the original Qwen3-0.6B policy was
+`0.02710`; a 20,000-trajectory Monte Carlo check observed `0.02775`. This
+agreement validates the evaluator for the cached constrained policy.
+
+## Literature-style capability mode
+
+Qwen3.5-4B generated 32 complete solutions for each of 12 held-out TinyZero
+problems. Across 384 samples:
+
+```text
+sample accuracy          38.80%
+Pass@32                  91.67% (11 of 12 problems)
+valid answer format      42.71%
+```
+
+This establishes that the model has useful Countdown ability when allowed to
+reason and write a complete solution.
+
+These percentages must not be compared as if they measured the same behavior.
+The modes use different problems, rules, outputs, and sampling procedures.
+The capability result therefore does not invalidate the exact-credit
+calculation. It does reveal a representativeness risk: exact credit is currently
+exact for a constrained labeled-menu policy that may behave differently from
+the model's ordinary reasoning process.
+
+## Decision
+
+Do not proceed directly to the full 200–500-problem Phase 3 benchmark. First run
+a bridge study asking whether a menu-order-averaged constrained policy and a
+state-only deliberative policy behave similarly enough for the constrained
+policy to serve as the project's primary measurement instrument.
+
+“Menu-order-averaged” means averaging the action probabilities obtained from
+the five predeclared menu orderings after matching entries by arithmetic action,
+not by option label. The resulting policy still depends only on the current
+state, so its `Vπ`, `Qπ`, and `Aπ` remain exactly computable conditional on the
+cached probabilities.
+
+The deliberative policy receives only the current state and legal actions,
+reasons within that one call, and returns one semantic arithmetic action. No
+reasoning or trajectory history is carried to the next state. Its action
+probabilities are estimated from samples rather than read from one next-token
+distribution.
+
+## Bridge study
+
+Use Qwen3.5-4B on 12 representative four-number problems from the frozen
+diagnostic data.
+
+### Stage A — behavioral agreement at roots
+
+For every root state:
+
+1. compute the constrained action distribution under each of the same five
+   menu orderings and average them by arithmetic action;
+2. draw 160 deliberative responses, balanced as 32 responses per menu ordering;
+3. parse the final semantic action and report invalid-response frequency;
+4. condition the deliberative action distribution on valid legal responses for
+   the behavioral comparison;
+5. compare the two legal-action distributions using rank correlation,
+   total-variation distance, top-action agreement, and probability assigned to
+   solution-preserving actions.
+
+The bridge advances to Stage B if at least 90% of deliberative responses produce
+a valid legal action, the median statewise rank correlation is at least `0.5`,
+and the median total-variation distance is at most `0.35`. These thresholds are
+practical similarity gates, not claims of statistical equivalence.
+
+### Stage B — credit agreement over complete DAGs (superseded)
+
+Choose three Stage A problems by a predeclared rule: the roots with the lowest,
+median, and highest total-variation distance. For every nonterminal state in
+those three DAGs, estimate the deliberative action policy using the same 160
+balanced responses. Treat an invalid response as a terminal failure when
+computing policy value; do not silently discard it or resample it. Use the
+estimated policy to compute `Vπ`, `Qπ`, and `Aπ`, with bootstrap intervals that
+reflect action-sampling uncertainty.
+
+Compare deliberative and constrained credit using:
+
+- rank correlation across legal state-action advantages, computed separately
+  for each problem;
+- helpful/harmful sign agreement for legal actions whose constrained-policy
+  `|Aπ| > 0.05`;
+- agreement on the most consequential action in sampled trajectories.
+
+Treat the setups as roughly aligned if the median per-problem advantage rank
+correlation is at least `0.5` and aggregate sign agreement is at least `70%`
+for those non-negligible actions.
+
+### Stage B Redesign & Execution: Conclusion Robustness (executed & passed)
+
+The original complete-DAG Stage B was superseded due to prohibitive cost
+(~50,000 generations) and 0% format compliance when asking the model to emit a
+single action after deliberation.
+
+Stage B was redesigned into a compute-bounded benchmark ($10 budget limit) asking:
+*Do the practical conclusions about which credit estimators work best survive
+when evaluation uses full-solution Qwen completions instead of the constrained
+next-token policy?*
+
+Key results (completed 2026-09-09):
+- **Decision: `GO`** (all three gates passed).
+- **Method Rank Agreement:** `0.941` (threshold `0.70`). Both policies rank
+  credit estimators in the identical order: Uniform < $K=1 < K=2 < K=4 < K=8 < K=16$.
+- **Reference Split-Half Stability:** `0.987` (threshold `0.50`), confirming the
+  256-sample deliberative ground truth is stable.
+- **Directional Support:** In `100.0%` of 1,000 bootstrap replicates (threshold `80%`),
+  $K=16$ beats Uniform and fidelity increases monotonically with $K$, under both policies.
+- **Reference Action Correlation:** Spearman $\rho = 0.9925$ between the exact
+  constrained advantages and the sampled deliberative advantages across the 24
+  benchmark state-action pairs.
+
+See [`docs/policy_bridge_findings.md`](policy_bridge_findings.md) for the complete
+breakdown of calibration, throughput sweeps, raw rollouts, and methodological
+caveats.
+
+---
+
 # 16. Phase 3 — Benchmark credit estimators
 
 ## Weeks 5–6
@@ -827,7 +981,17 @@ Cumulative budget cap:
 
 No RL training yet.
 
-For approximately 200–500 diagnostic problems, collect trajectories.
+Begin only after the Phase 2 bridge study passes. **Status: PASSED (`GO` on 2026-09-09). Phase 3 is greenlit.**
+
+Start with a 50-problem four-number pilot using the menu-order-averaged Qwen3.5-4B
+policy. This pilot checks that estimator quality has meaningful spread and that
+inference cost is consistent with the budget before scaling the benchmark.
+consistent with the budget before scaling the benchmark.
+
+If the pilot is informative, expand toward approximately 200–500 diagnostic
+problems and then add five- and six-number strata. Record clearly where complete
+DAG evaluation remains affordable; do not silently substitute a sampled oracle
+for an exact one.
 
 Compare:
 

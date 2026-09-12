@@ -1,0 +1,30 @@
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+
+WORKDIR /app
+
+ENV UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy \
+    HF_HOME=/workspace/huggingface \
+    HF_HUB_DISABLE_TELEMETRY=1 \
+    PATH="/app/.venv/bin:$PATH"
+
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --no-dev --no-install-project
+RUN uv pip install \
+    --python .venv/bin/python \
+    --reinstall \
+    --torch-backend=cu128 \
+    "torch==2.9.1"
+
+COPY env ./env
+COPY experiments ./experiments
+COPY inference ./inference
+COPY oracle ./oracle
+COPY policies ./policies
+COPY analysis ./analysis
+COPY data ./data
+COPY scripts/runpod_container_entrypoint.sh ./scripts/runpod_container_entrypoint.sh
+
+RUN chmod +x ./scripts/runpod_container_entrypoint.sh
+
+ENTRYPOINT ["./scripts/runpod_container_entrypoint.sh"]

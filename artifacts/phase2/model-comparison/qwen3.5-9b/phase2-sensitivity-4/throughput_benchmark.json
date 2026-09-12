@@ -1,0 +1,97 @@
+{
+  "artifact_version": "1.0",
+  "estimated_full_scoring_seconds": 30.80435323434449,
+  "fastest_states_per_second": 3.3436832520529243,
+  "maximum_allowed_seconds": 1800,
+  "measurements": [
+    {
+      "batch_size": 1,
+      "elapsed_seconds": 2.3925711249976302,
+      "state_count": 8,
+      "states_per_second": 3.3436832520529243
+    },
+    {
+      "batch_size": 4,
+      "elapsed_seconds": 2.8919067079987144,
+      "state_count": 8,
+      "states_per_second": 2.766340967318492
+    },
+    {
+      "batch_size": 8,
+      "elapsed_seconds": 4.034614625001268,
+      "state_count": 8,
+      "states_per_second": 1.982841174080532
+    }
+  ],
+  "nonterminal_state_count": 103,
+  "representative_states": [
+    {
+      "target": 245,
+      "values": [
+        3,
+        7,
+        10,
+        25
+      ]
+    },
+    {
+      "target": 245,
+      "values": [
+        7,
+        13,
+        25
+      ]
+    },
+    {
+      "target": 245,
+      "values": [
+        3,
+        185
+      ]
+    },
+    {
+      "target": 245,
+      "values": [
+        7,
+        38
+      ]
+    },
+    {
+      "target": 245,
+      "values": [
+        10,
+        15
+      ]
+    },
+    {
+      "target": 245,
+      "values": [
+        10,
+        525
+      ]
+    },
+    {
+      "target": 245,
+      "values": [
+        22,
+        70
+      ]
+    },
+    {
+      "target": 245,
+      "values": [
+        70,
+        75
+      ]
+    }
+  ],
+  "root_problem": {
+    "target": 245,
+    "values": [
+      3,
+      7,
+      10,
+      25
+    ]
+  }
+}

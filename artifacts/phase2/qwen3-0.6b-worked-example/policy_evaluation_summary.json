@@ -1,0 +1,23 @@
+{
+  "artifact_attempt_limit": 10000,
+  "artifact_found": true,
+  "artifact_version": "1.0",
+  "monte_carlo_acceptance_margin": 0.005742315654631245,
+  "monte_carlo_check_passed": true,
+  "monte_carlo_rollout_count": 20000,
+  "monte_carlo_standard_error": 0.0011482631309262489,
+  "monte_carlo_success_rate": 0.02775,
+  "numerical_invariants_passed": true,
+  "numerical_root_v_pi": 0.02710483651964787,
+  "root_problem": {
+    "target": 245,
+    "values": [
+      3,
+      7,
+      10,
+      25
+    ]
+  },
+  "seed": 20260815,
+  "selected_trajectory_sample_index": 49
+}

@@ -1,0 +1,208 @@
+{
+  "affordable_reference_pool_size": 256,
+  "budget_projections": [
+    {
+      "affordable": true,
+      "projected_gpu_hours": 6.871789868804626,
+      "projected_usd": 2.336408555393573,
+      "projected_usd_with_contingency": 2.8036902664722874,
+      "reference_pool_size": 256,
+      "response_count": 9792,
+      "seconds_per_response": 2.526393334119348
+    },
+    {
+      "affordable": true,
+      "projected_gpu_hours": 3.638006401131861,
+      "projected_usd": 1.2369221763848328,
+      "projected_usd_with_contingency": 1.4843066116617993,
+      "reference_pool_size": 128,
+      "response_count": 5184,
+      "seconds_per_response": 2.526393334119348
+    },
+    {
+      "affordable": true,
+      "projected_gpu_hours": 2.0211146672954783,
+      "projected_usd": 0.6871789868804626,
+      "projected_usd_with_contingency": 0.8246147842565551,
+      "reference_pool_size": 64,
+      "response_count": 2880,
+      "seconds_per_response": 2.526393334119348
+    },
+    {
+      "affordable": true,
+      "projected_gpu_hours": 1.212668800377287,
+      "projected_usd": 0.4123073921282776,
+      "projected_usd_with_contingency": 0.4947688705539331,
+      "reference_pool_size": 32,
+      "response_count": 1728,
+      "seconds_per_response": 2.526393334119348
+    }
+  ],
+  "measurements": [
+    {
+      "batch_size": 16,
+      "batches": [
+        {
+          "batch_index": 0,
+          "generated_token_count": 19816,
+          "seconds": 96.30476424843073,
+          "state": {
+            "target": 100,
+            "values": [
+              2,
+              3,
+              5,
+              7
+            ]
+          },
+          "success_count": 16,
+          "truncation_count": 0
+        },
+        {
+          "batch_index": 1,
+          "generated_token_count": 14342,
+          "seconds": 109.35733531042933,
+          "state": {
+            "target": 103,
+            "values": [
+              3,
+              8,
+              9,
+              100
+            ]
+          },
+          "success_count": 14,
+          "truncation_count": 3
+        }
+      ],
+      "failure": null,
+      "mean_generated_token_count": 1067.4375,
+      "response_count": 32,
+      "seconds": 205.66209955886006,
+      "seconds_per_response": 6.426940611214377,
+      "success_rate": 0.9375,
+      "tokens_per_second": 166.08796697723128,
+      "truncation_rate": 0.09375
+    },
+    {
+      "batch_size": 32,
+      "batches": [
+        {
+          "batch_index": 0,
+          "generated_token_count": 39348,
+          "seconds": 114.88730200380087,
+          "state": {
+            "target": 100,
+            "values": [
+              2,
+              3,
+              5,
+              7
+            ]
+          },
+          "success_count": 31,
+          "truncation_count": 1
+        },
+        {
+          "batch_index": 1,
+          "generated_token_count": 23594,
+          "seconds": 111.52451815083623,
+          "state": {
+            "target": 103,
+            "values": [
+              3,
+              8,
+              9,
+              100
+            ]
+          },
+          "success_count": 30,
+          "truncation_count": 4
+        }
+      ],
+      "failure": null,
+      "mean_generated_token_count": 983.46875,
+      "response_count": 64,
+      "seconds": 226.4118201546371,
+      "seconds_per_response": 3.5376846899162047,
+      "success_rate": 0.953125,
+      "tokens_per_second": 277.99785345575697,
+      "truncation_rate": 0.078125
+    },
+    {
+      "batch_size": 64,
+      "batches": [
+        {
+          "batch_index": 0,
+          "generated_token_count": 86816,
+          "seconds": 162.48757437989116,
+          "state": {
+            "target": 100,
+            "values": [
+              2,
+              3,
+              5,
+              7
+            ]
+          },
+          "success_count": 55,
+          "truncation_count": 9
+        },
+        {
+          "batch_index": 1,
+          "generated_token_count": 37707,
+          "seconds": 160.89077238738537,
+          "state": {
+            "target": 103,
+            "values": [
+              3,
+              8,
+              9,
+              100
+            ]
+          },
+          "success_count": 63,
+          "truncation_count": 1
+        }
+      ],
+      "failure": null,
+      "mean_generated_token_count": 972.8359375,
+      "response_count": 128,
+      "seconds": 323.3783467672765,
+      "seconds_per_response": 2.526393334119348,
+      "success_rate": 0.921875,
+      "tokens_per_second": 385.06907232602873,
+      "truncation_rate": 0.078125
+    }
+  ],
+  "metadata": {
+    "artifact_version": "1.0",
+    "batch_sizes": [
+      16,
+      32,
+      64
+    ],
+    "batches_per_batch_size": 2,
+    "budget_ceiling_usd": 25.0,
+    "completion_model": {
+      "device": "cuda",
+      "dtype": "float16",
+      "model_repository": "Qwen/Qwen3.5-4B",
+      "model_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "temperature": 0.6,
+      "tokenizer_repository": "Qwen/Qwen3.5-4B",
+      "tokenizer_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a"
+    },
+    "completion_prompt_version": "policy-bridge-completion-v1",
+    "gpu_hourly_usd": 0.34,
+    "model_repository": "Qwen/Qwen3.5-4B",
+    "seed": 20260904,
+    "software_versions": {
+      "torch": "2.9.1+cu128",
+      "transformers": "5.15.0"
+    },
+    "token_cap": 2048
+  },
+  "recommended_batch_size": 64,
+  "seconds_per_response": 2.526393334119348
+}

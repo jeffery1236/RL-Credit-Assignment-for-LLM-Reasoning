@@ -56,7 +56,7 @@ class GeneratedCandidate:
 
 def _rng_for_index(config: GenerationConfig, index: int) -> random.Random:
     """A fresh, independent RNG for this index. Uses hashlib.blake2b, NOT
-    Python's built-in hash() -- the built-in is randomly salted per
+    Python's built-in hash() -- the built-in is randomized per
     process and would make "the same index" produce a different problem
     every run.
     """

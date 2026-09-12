@@ -3,7 +3,11 @@ name = "causal-credit-rl"
 version = "0.1.0"
 description = "Causal credit assignment in LLM RL — Countdown environment and exact credit oracle"
 requires-python = ">=3.12,<3.13"
-dependencies = []
+dependencies = [
+    "huggingface-hub>=1.27.0",
+    "torch>=2.13.0",
+    "transformers>=5.15.0",
+]
 
 [dependency-groups]
 dev = ["pytest>=8", "hypothesis>=6"]
@@ -15,4 +19,5 @@ package = false
 addopts = "-m 'not slow'"
 markers = [
     "slow: marks tests as slow (run explicitly with '-m slow', e.g. the MC-vs-exact rollout check)",
+    "model: requires downloading and loading an external model checkpoint",
 ]
