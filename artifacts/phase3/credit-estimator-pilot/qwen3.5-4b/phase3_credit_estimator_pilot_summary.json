@@ -1,0 +1,30 @@
+{
+  "artifact_version": "1.0",
+  "estimator_pool_size": 16,
+  "fidelity_by_estimator": {
+    "Sampled Counterfactual Advantage (K=1)": 0.36165243510203443,
+    "Sampled Counterfactual Advantage (K=16)": 0.6846031724247752,
+    "Sampled Counterfactual Advantage (K=2)": 0.4486517153099838,
+    "Sampled Counterfactual Advantage (K=4)": 0.5424350632183111,
+    "Sampled Counterfactual Advantage (K=8)": 0.6213115087532806,
+    "Uniform Outcome Credit": 0.661341449752076
+  },
+  "menu_ordering_ids": [
+    "phase2-v1",
+    "phase2-sensitivity-1",
+    "phase2-sensitivity-2",
+    "phase2-sensitivity-3",
+    "phase2-sensitivity-4"
+  ],
+  "model": "Qwen/Qwen3.5-4B",
+  "pairs_per_problem": 32,
+  "pilot_gate": {
+    "bootstrap_support": 0.016,
+    "decision": "REWORK",
+    "median_fidelity_improvement": -0.023041620814272523,
+    "minimum_bootstrap_support": 0.8,
+    "minimum_median_fidelity_improvement": 0.1
+  },
+  "problem_count": 50,
+  "status": "completed"
+}

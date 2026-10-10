@@ -8,3 +8,18 @@ __pycache__/
 .runpod-countdown-pod-id
 .runpod/
 .worktrees/
+.superpowers/
+
+# Phase 3 raw rollout caches live in the GitHub release linked by
+# artifacts/phase3/credit-estimator-pilot/raw_artifacts_manifest.json.
+artifacts/phase3/credit-estimator-pilot/qwen3.5-4b/experiment.log
+artifacts/phase3/credit-estimator-pilot/qwen3.5-4b/phase3_credit_estimator_pilot.json
+artifacts/phase3/credit-estimator-pilot/qwen3.5-4b/phase3_credit_estimator_pilot.md
+artifacts/phase3/credit-estimator-pilot/qwen3.5-4b/policy_bridge_preflight.json
+artifacts/phase3/credit-estimator-pilot/qwen3.5-4b/policy_bridge_stage_b.json
+artifacts/phase3/credit-estimator-pilot/qwen3.5-4b/policy_bridge_stage_b.md
+artifacts/phase3/credit-estimator-pilot/qwen3.5-4b/plots/
+artifacts/phase3/credit-estimator-pilot/qwen3.5-4b/problems/
+artifacts/phase3/credit-estimator-pilot/qwen3.5-4b/smoke/
+artifacts/phase3/credit-estimator-pilot/qwen3.5-4b/stratified/phase3_credit_estimator_stratified.json
+artifacts/phase3/credit-estimator-pilot/qwen3.5-4b/stratified/problems/

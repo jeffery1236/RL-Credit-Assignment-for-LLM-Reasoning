@@ -1,0 +1,8 @@
+{
+  "archive": "phase3-credit-estimator-raw-artifacts-v1.tar.gz",
+  "download_url": "https://github.com/jeffery1236/RL-Credit-Assignment-for-LLM-Reasoning/releases/download/phase3-credit-estimator-data-v1/phase3-credit-estimator-raw-artifacts-v1.tar.gz",
+  "extract_into": "artifacts/phase3/credit-estimator-pilot",
+  "file_count": 116,
+  "sha256": "1b2ca4320086f4914fa81f1e13773f92d0b614042f025b1162c2f241fc9b05aa",
+  "size_bytes": 7058857
+}

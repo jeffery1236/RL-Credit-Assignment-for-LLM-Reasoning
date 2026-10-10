@@ -178,6 +178,119 @@ around this generic helper.
 
 ---
 
+## Phase 3 credit-estimator pilot
+
+The Phase 3 pilot asks whether simulating games before and after a move ranks
+the available moves better than using one game after the move. It uses 50
+deterministic four-number validation problems and writes resumable raw
+checkpoints, machine-readable summaries, a plain-language report, and four SVG
+plots.
+
+Run this no-model smoke command to verify deterministic problem selection:
+
+```bash
+uv run python -m experiments.benchmark_credit_estimator_fidelity \
+  --validation-dataset data/v1/validation.jsonl \
+  --output artifacts/phase3/credit-estimator-pilot/smoke \
+  --problem-count 1 \
+  --dry-run
+```
+
+Before any paid RunPod launch, enter a measured host-time estimate and the
+provider's current hourly rate. This command only projects cost; it does not
+contact RunPod. A projection over the `$50` Phase 3 budget ceiling is refused.
+
+```bash
+scripts/runpod_phase3_credit_estimator_pilot.sh preflight \
+  --problem-count 50 \
+  --projected-hours 6 \
+  --hourly-rate-usd 3.00
+```
+
+Only after a passing preflight, launch using the same measured inputs:
+
+```bash
+PROJECTED_HOURS=6 HOURLY_RATE_USD=3.00 \
+  scripts/runpod_phase3_credit_estimator_pilot.sh run
+```
+
+The launcher delegates Pod lifecycle management to
+`scripts/runpod_experiment.sh`. It never supplies an unverified price or
+runtime estimate itself. Set `NETWORK_VOLUME_ID` for the launch: the
+stratified benchmark checkpoints and results must survive a Pod replacement.
+The generic helper uses its recorded immutable image digest and six-hour
+termination limit.
+
+Because that helper untars whatever the Pod produced into the directory it is
+handed, the launcher never hands it the Benchmark A artifact root. It downloads
+into `${STAGING_ROOT:-.runpod/phase3-staging}/$RUN_NAME`, then copies only the
+`stratified/` subtree into place. The tracked
+`artifacts/phase3/credit-estimator-pilot/benchmark_a_sha256sums.txt` manifest is
+verified before the launch, before the copy, and again after it; any mismatch,
+missing subtree, or symbolic link in the staged output aborts with exit code
+`3` and leaves Benchmark A untouched. Both steps are available on their own:
+
+```bash
+scripts/runpod_phase3_credit_estimator_pilot.sh verify-benchmark-a
+scripts/runpod_phase3_credit_estimator_pilot.sh promote STAGING_DIRECTORY
+```
+
+### Benchmark B: stratified capability
+
+Benchmark B uses the same frozen roots but selects, at each exact depth 0, 1,
+and 2, the state with the widest exact action-credit spread. It evaluates every
+legal action at those states and writes only to `stratified/`; it never changes
+Benchmark A's completed artifacts.
+
+The `run` command executes:
+
+```bash
+python -m experiments.benchmark_credit_estimator_fidelity \
+  --benchmark stratified \
+  --output /workspace/results/stratified \
+  --batch-size 1
+```
+
+Each problem checkpoint stores the menu-averaged policy table and the raw
+parent and child rollout outcomes. Uniform and every `K` are derived from that
+one raw draw, so the clustered bootstrap can resample the underlying outcomes
+once per state-action pair and keep the estimators paired.
+
+Its report contains selection coverage, unique pair count, exact-advantage
+distribution, within-state fidelity by estimator and depth, pivotal-action
+detection rates, defined-state coverage, clustered-bootstrap intervals, the
+`CAPABLE` / `NOT-DEMONSTRATED` capability gate, and four clearly labelled
+post-hoc sensitivity analyses (shared per-state baseline, stratum-balanced
+depths, nondegenerate states only, and depths 0 and 1 only) that qualify the
+gate without redefining it. The aggregate JSON references each checkpoint by relative path
+and SHA-256 rather than embedding it.
+
+### Result files and raw checkpoints
+
+Git keeps the files a reviewer needs: compact JSON summaries, the
+plain-language reports, the four Benchmark B plots, run metadata, and checksums.
+The 100 per-problem checkpoints and other large raw outputs live in the
+`phase3-credit-estimator-data-v1` GitHub Release instead of normal Git history.
+This keeps the pull request reviewable without discarding reproducibility.
+
+Restore the raw files before regenerating the reports:
+
+```bash
+curl -L \
+  https://github.com/jeffery1236/RL-Credit-Assignment-for-LLM-Reasoning/releases/download/phase3-credit-estimator-data-v1/phase3-credit-estimator-raw-artifacts-v1.tar.gz \
+  -o /tmp/phase3-credit-estimator-raw-artifacts-v1.tar.gz
+echo "1b2ca4320086f4914fa81f1e13773f92d0b614042f025b1162c2f241fc9b05aa  /tmp/phase3-credit-estimator-raw-artifacts-v1.tar.gz" \
+  | shasum -a 256 -c -
+tar -xzf /tmp/phase3-credit-estimator-raw-artifacts-v1.tar.gz \
+  -C artifacts/phase3/credit-estimator-pilot
+```
+
+Rerunning the command above without `--device cuda` then regenerates every
+Benchmark B summary and plot deterministically without loading a model. See
+`docs/phase3_credit_estimator_findings.md` for the interpretation.
+
+---
+
 ## Repository layout
 
 ```
