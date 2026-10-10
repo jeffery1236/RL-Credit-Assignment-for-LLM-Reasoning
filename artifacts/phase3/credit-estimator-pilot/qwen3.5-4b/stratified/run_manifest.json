@@ -1,0 +1,38 @@
+{
+  "artifact_version": "1.0",
+  "checkpoint_configuration": {
+    "estimator_pool_size": 16,
+    "menu_ordering_ids": [
+      "phase2-v1",
+      "phase2-sensitivity-1",
+      "phase2-sensitivity-2",
+      "phase2-sensitivity-3",
+      "phase2-sensitivity-4"
+    ],
+    "model": "Qwen/Qwen3.5-4B",
+    "model_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "prompt_version": "phase2-allowed-action-v2",
+    "rules": {
+      "min_intermediate": 1,
+      "operators": [
+        "+",
+        "-",
+        "*"
+      ]
+    },
+    "seed": 20260912,
+    "selection_depths": [
+      0,
+      1,
+      2
+    ],
+    "temperature": 1.0,
+    "tokenizer_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a"
+  },
+  "scorer_metadata": {
+    "model_repository": "Qwen/Qwen3.5-4B",
+    "model_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "tokenizer_repository": "Qwen/Qwen3.5-4B",
+    "tokenizer_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a"
+  }
+}
